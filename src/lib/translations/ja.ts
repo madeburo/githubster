@@ -24,18 +24,21 @@ export const ja: Translations = {
   tabs: {
     unfollowers: "フォロバなし",
     notFollowingBack: "未フォロー",
+    mutuals: "相互フォロー",
     following: "フォロー中",
     followers: "フォロワー",
   },
   stats: {
     followers: "フォロワー",
     following: "フォロー中",
+    mutuals: "相互フォロー",
     unfollowers: "フォロバなし",
     notFollowingBack: "未フォロー",
   },
   empty: {
     unfollowers: "フォローしている全員がフォロバしています！🎉",
     notFollowingBack: "全フォロワーをフォローしています！🤝",
+    mutuals: "まだ相互フォローがいません。",
     following: "まだ誰もフォローしていません。",
     followers: "まだフォロワーがいません。",
     initial: "上にユーザー名を入力してください",

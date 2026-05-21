@@ -24,18 +24,21 @@ export const id: Translations = {
   tabs: {
     unfollowers: "Tidak Follow Back",
     notFollowingBack: "Kamu Tidak Follow",
+    mutuals: "Saling Follow",
     following: "Mengikuti",
     followers: "Pengikut",
   },
   stats: {
     followers: "Pengikut",
     following: "Mengikuti",
+    mutuals: "Saling Follow",
     unfollowers: "Tidak follow back",
     notFollowingBack: "Kamu tidak follow",
   },
   empty: {
     unfollowers: "Semua yang kamu follow sudah follow back! 🎉",
     notFollowingBack: "Kamu sudah follow semua pengikutmu! 🤝",
+    mutuals: "Belum ada koneksi timbal balik.",
     following: "Belum mengikuti siapa pun.",
     followers: "Belum ada pengikut.",
     initial: "Masukkan username di atas",

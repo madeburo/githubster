@@ -24,18 +24,21 @@ export const ar: Translations = {
   tabs: {
     unfollowers: "لا يتابعونك",
     notFollowingBack: "لا تتابعهم",
+    mutuals: "متبادلون",
     following: "المتابَعون",
     followers: "المتابِعون",
   },
   stats: {
     followers: "المتابِعون",
     following: "المتابَعون",
+    mutuals: "متبادلون",
     unfollowers: "لا يتابعونك",
     notFollowingBack: "لا تتابعهم",
   },
   empty: {
     unfollowers: "كل من تتابعهم يتابعونك! 🎉",
     notFollowingBack: "أنت تتابع جميع متابعيك! 🤝",
+    mutuals: "لا توجد اتصالات متبادلة بعد.",
     following: "لا تتابع أحداً بعد.",
     followers: "لا يوجد متابعون بعد.",
     initial: "أدخل اسم مستخدم أعلاه",

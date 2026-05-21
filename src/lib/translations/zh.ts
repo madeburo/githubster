@@ -24,18 +24,21 @@ export const zh: Translations = {
   tabs: {
     unfollowers: "未回关",
     notFollowingBack: "你未关注",
+    mutuals: "互关",
     following: "关注中",
     followers: "粉丝",
   },
   stats: {
     followers: "粉丝",
     following: "关注中",
+    mutuals: "互关",
     unfollowers: "未回关",
     notFollowingBack: "你未关注",
   },
   empty: {
     unfollowers: "你关注的所有人都回关了你！🎉",
     notFollowingBack: "你已关注所有粉丝！🤝",
+    mutuals: "暂无互关。",
     following: "暂无关注。",
     followers: "暂无粉丝。",
     initial: "输入用户名开始查询",

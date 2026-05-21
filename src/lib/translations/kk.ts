@@ -24,18 +24,21 @@ export const kk: Translations = {
   tabs: {
     unfollowers: "Жауап бермейді",
     notFollowingBack: "Сіз жазылмағансыз",
+    mutuals: "Өзара",
     following: "Жазылымдар",
     followers: "Жазылушылар",
   },
   stats: {
     followers: "Жазылушылар",
     following: "Жазылымдар",
+    mutuals: "Өзара",
     unfollowers: "Жауап бермейді",
     notFollowingBack: "Сіз жазылмағансыз",
   },
   empty: {
     unfollowers: "Барлық жазылымдарыңыз сізге жауап берген! 🎉",
     notFollowingBack: "Сіз барлық жазылушыларыңызға жазылғансыз! 🤝",
+    mutuals: "Әзірге өзара байланыстар жоқ.",
     following: "Әзірге жазылымдар жоқ.",
     followers: "Әзірге жазылушылар жоқ.",
     initial: "Жоғарыда пайдаланушы атын енгізіңіз",

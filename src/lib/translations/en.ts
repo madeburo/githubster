@@ -23,18 +23,21 @@ export const en = {
   tabs: {
     unfollowers: "Not Following Back",
     notFollowingBack: "You Don't Follow",
+    mutuals: "Mutuals",
     following: "Following",
     followers: "Followers",
   },
   stats: {
     followers: "Followers",
     following: "Following",
+    mutuals: "Mutuals",
     unfollowers: "Don't follow back",
     notFollowingBack: "You don't follow",
   },
   empty: {
     unfollowers: "Everyone you follow follows you back! 🎉",
     notFollowingBack: "You follow everyone who follows you! 🤝",
+    mutuals: "No mutual connections yet.",
     following: "Not following anyone yet.",
     followers: "No followers yet.",
     initial: "Enter a username above to see the full picture",

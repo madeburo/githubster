@@ -117,6 +117,7 @@ export interface FollowData {
   following: GitHubUser[];
   unfollowers: GitHubUser[];
   notFollowingBack: GitHubUser[];
+  mutuals: GitHubUser[];
   rateLimit: RateLimitInfo | null;
 }
 
@@ -152,8 +153,11 @@ export async function getFollowData(
     (u) => !followingLogins.has(u.login)
   );
 
+  // People you follow who also follow you back
+  const mutuals = following.filter((u) => followerLogins.has(u.login));
+
   // Use the lowest remaining rate limit from both requests
   const rateLimit = followingResult.rateLimit ?? followersResult.rateLimit;
 
-  return { followers, following, unfollowers, notFollowingBack, rateLimit };
+  return { followers, following, unfollowers, notFollowingBack, mutuals, rateLimit };
 }

@@ -25,18 +25,21 @@ export const ru: Translations = {
   tabs: {
     unfollowers: "Не подписаны в ответ",
     notFollowingBack: "Вы не подписаны",
+    mutuals: "Взаимные",
     following: "Подписки",
     followers: "Подписчики",
   },
   stats: {
     followers: "Подписчики",
     following: "Подписки",
+    mutuals: "Взаимные",
     unfollowers: "Не подписаны в ответ",
     notFollowingBack: "Вы не подписаны",
   },
   empty: {
     unfollowers: "Все, на кого вы подписаны, подписаны на вас!",
     notFollowingBack: "Вы подписаны на всех, кто подписан на вас!",
+    mutuals: "Пока нет взаимных подписок.",
     following: "Пока нет подписок.",
     followers: "Пока нет подписчиков.",
     initial: "Введите имя пользователя выше",

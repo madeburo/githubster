@@ -24,18 +24,21 @@ export const ko: Translations = {
   tabs: {
     unfollowers: "맞팔 안 함",
     notFollowingBack: "내가 안 팔로우",
+    mutuals: "맞팔",
     following: "팔로잉",
     followers: "팔로워",
   },
   stats: {
     followers: "팔로워",
     following: "팔로잉",
+    mutuals: "맞팔",
     unfollowers: "맞팔 안 함",
     notFollowingBack: "내가 안 팔로우",
   },
   empty: {
     unfollowers: "팔로우하는 모든 사람이 맞팔하고 있어요! 🎉",
     notFollowingBack: "모든 팔로워를 팔로우하고 있어요! 🤝",
+    mutuals: "아직 맞팔이 없습니다.",
     following: "아직 팔로잉이 없습니다.",
     followers: "아직 팔로워가 없습니다.",
     initial: "위에 사용자명을 입력하세요",

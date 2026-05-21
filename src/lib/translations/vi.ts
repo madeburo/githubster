@@ -24,18 +24,21 @@ export const vi: Translations = {
   tabs: {
     unfollowers: "Không follow lại",
     notFollowingBack: "Bạn chưa follow",
+    mutuals: "Theo dõi lẫn nhau",
     following: "Đang follow",
     followers: "Người theo dõi",
   },
   stats: {
     followers: "Người theo dõi",
     following: "Đang follow",
+    mutuals: "Theo dõi lẫn nhau",
     unfollowers: "Không follow lại",
     notFollowingBack: "Bạn chưa follow",
   },
   empty: {
     unfollowers: "Tất cả người bạn follow đều follow lại bạn! 🎉",
     notFollowingBack: "Bạn đã follow tất cả người theo dõi! 🤝",
+    mutuals: "Chưa có kết nối tương hỗ.",
     following: "Chưa follow ai.",
     followers: "Chưa có người theo dõi.",
     initial: "Nhập tên người dùng ở trên",

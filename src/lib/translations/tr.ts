@@ -24,18 +24,21 @@ export const tr: Translations = {
   tabs: {
     unfollowers: "Geri takip etmiyor",
     notFollowingBack: "Takip etmiyorsun",
+    mutuals: "Karşılıklı",
     following: "Takip edilen",
     followers: "Takipçiler",
   },
   stats: {
     followers: "Takipçiler",
     following: "Takip edilen",
+    mutuals: "Karşılıklı",
     unfollowers: "Geri takip etmiyor",
     notFollowingBack: "Takip etmiyorsun",
   },
   empty: {
     unfollowers: "Takip ettiğin herkes seni geri takip ediyor! 🎉",
     notFollowingBack: "Tüm takipçilerini takip ediyorsun! 🤝",
+    mutuals: "Henüz karşılıklı bağlantı yok.",
     following: "Henüz kimseyi takip etmiyorsun.",
     followers: "Henüz takipçi yok.",
     initial: "Yukarıya bir kullanıcı adı girin",

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { SearchForm } from "@/components/search-form";
 import { Tabs } from "@/components/tabs";
 import { UserGrid } from "@/components/user-grid";
@@ -11,7 +11,7 @@ import { RateLimit } from "@/components/rate-limit";
 import { useLocale } from "@/lib/locale-context";
 import { getFollowData, type FollowData, type RateLimitInfo } from "@/lib/github";
 
-type TabId = "unfollowers" | "notFollowingBack" | "following" | "followers";
+type TabId = "unfollowers" | "notFollowingBack" | "mutuals" | "following" | "followers";
 
 export default function Home() {
   const { t } = useLocale();
@@ -24,20 +24,17 @@ export default function Home() {
   const [rateLimit, setRateLimit] = useState<RateLimitInfo | null>(null);
   const [lastSearch, setLastSearch] = useState<{ user: string; token?: string } | null>(null);
 
-  useEffect(() => {
-    if (!showPrivacy) return;
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setShowPrivacy(false);
-    };
-    document.addEventListener("keydown", handleKey);
-    return () => document.removeEventListener("keydown", handleKey);
-  }, [showPrivacy]);
-
-  async function handleSearch(user: string, token?: string) {
+  const handleSearch = useCallback(async (user: string, token?: string) => {
     setIsLoading(true);
     setError(null);
     setData(null);
     setLastSearch({ user, token });
+
+    // Update URL without reload
+    const url = new URL(window.location.href);
+    url.searchParams.set("user", user);
+    window.history.pushState({}, "", url.toString());
+
     try {
       const result = await getFollowData(user, token);
       setData(result);
@@ -50,7 +47,25 @@ export default function Home() {
     } finally {
       setIsLoading(false);
     }
-  }
+  }, []);
+
+  // Read username from URL on mount
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const userFromUrl = params.get("user");
+    if (userFromUrl) {
+      handleSearch(userFromUrl);
+    }
+  }, [handleSearch]);
+
+  useEffect(() => {
+    if (!showPrivacy) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setShowPrivacy(false);
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [showPrivacy]);
 
   function handleRetry() {
     if (lastSearch) {
@@ -82,6 +97,19 @@ export default function Home() {
               <circle cx="8.5" cy="7" r="4" />
               <line x1="20" y1="8" x2="20" y2="14" />
               <line x1="23" y1="11" x2="17" y2="11" />
+            </svg>
+          ),
+        },
+        {
+          id: "mutuals",
+          label: t.tabs.mutuals,
+          count: data.mutuals.length,
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="8.5" cy="7" r="4" />
+              <path d="M17 14h6" />
+              <path d="M20 11v6" />
             </svg>
           ),
         },
@@ -118,6 +146,7 @@ export default function Home() {
   const emptyMessages: Record<TabId, string> = {
     unfollowers: t.empty.unfollowers,
     notFollowingBack: t.empty.notFollowingBack,
+    mutuals: t.empty.mutuals,
     following: t.empty.following,
     followers: t.empty.followers,
   };
@@ -234,6 +263,7 @@ export default function Home() {
               following={data.following.length}
               unfollowers={data.unfollowers.length}
               notFollowingBack={data.notFollowingBack.length}
+              mutuals={data.mutuals.length}
             />
 
             {rateLimit && <RateLimit rateLimit={rateLimit} />}

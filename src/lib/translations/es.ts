@@ -24,18 +24,21 @@ export const es: Translations = {
   tabs: {
     unfollowers: "No te siguen",
     notFollowingBack: "No sigues",
+    mutuals: "Mutuos",
     following: "Siguiendo",
     followers: "Seguidores",
   },
   stats: {
     followers: "Seguidores",
     following: "Siguiendo",
+    mutuals: "Mutuos",
     unfollowers: "No te siguen",
     notFollowingBack: "No sigues",
   },
   empty: {
     unfollowers: "¡Todos los que sigues te siguen de vuelta! 🎉",
     notFollowingBack: "¡Sigues a todos tus seguidores! 🤝",
+    mutuals: "Aún no hay conexiones mutuas.",
     following: "Aún no sigues a nadie.",
     followers: "Aún sin seguidores.",
     initial: "Ingresa un nombre de usuario arriba",

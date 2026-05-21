@@ -24,18 +24,21 @@ export const uk: Translations = {
   tabs: {
     unfollowers: "Не підписані у відповідь",
     notFollowingBack: "Ви не підписані",
+    mutuals: "Взаємні",
     following: "Підписки",
     followers: "Підписники",
   },
   stats: {
     followers: "Підписники",
     following: "Підписки",
+    mutuals: "Взаємні",
     unfollowers: "Не підписані у відповідь",
     notFollowingBack: "Ви не підписані",
   },
   empty: {
     unfollowers: "Усі, на кого ви підписані, підписані на вас! 🎉",
     notFollowingBack: "Ви підписані на всіх своїх підписників! 🤝",
+    mutuals: "Поки немає взаємних підписок.",
     following: "Поки немає підписок.",
     followers: "Поки немає підписників.",
     initial: "Введіть ім'я користувача вище",

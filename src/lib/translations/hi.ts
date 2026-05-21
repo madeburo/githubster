@@ -24,18 +24,21 @@ export const hi: Translations = {
   tabs: {
     unfollowers: "वापस फॉलो नहीं करते",
     notFollowingBack: "आप फॉलो नहीं करते",
+    mutuals: "म्यूचुअल",
     following: "फॉलोइंग",
     followers: "फॉलोअर्स",
   },
   stats: {
     followers: "फॉलोअर्स",
     following: "फॉलोइंग",
+    mutuals: "म्यूचुअल",
     unfollowers: "वापस फॉलो नहीं करते",
     notFollowingBack: "आप फॉलो नहीं करते",
   },
   empty: {
     unfollowers: "आप जिन्हें फॉलो करते हैं वे सभी आपको वापस फॉलो करते हैं! 🎉",
     notFollowingBack: "आप अपने सभी फॉलोअर्स को फॉलो करते हैं! 🤝",
+    mutuals: "अभी तक कोई म्यूचुअल कनेक्शन नहीं।",
     following: "अभी तक किसी को फॉलो नहीं किया।",
     followers: "अभी तक कोई फॉलोअर नहीं।",
     initial: "ऊपर यूज़रनेम दर्ज करें",
