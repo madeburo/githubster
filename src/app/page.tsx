@@ -371,6 +371,12 @@ export default function Home() {
                 <strong style={{ color: "var(--text)" }}>Minimal local storage.</strong> We save only your theme and language preferences in your browser's localStorage. No cookies, no fingerprinting, no tracking.
               </p>
               <p>
+                <strong style={{ color: "var(--text)" }}>Privacy-friendly analytics.</strong> We use anonymous, cookie-free analytics to understand general usage patterns (e.g. page views, country). No personal data is collected or shared with third parties. This is fully compliant with GDPR — no consent banner is required.
+              </p>
+              <p>
+                <strong style={{ color: "var(--text)" }}>Email communication.</strong> If you reach out to us by email, we may collect your name and email address solely to respond to your inquiry. We will never share this information with third parties or use it for marketing.
+              </p>
+              <p>
                 <strong style={{ color: "var(--text)" }}>Fully open source.</strong> Every line of code is publicly available on{" "}
                 <a href="https://github.com/madeburo/githubster" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: "var(--text)" }}>
                   GitHub
