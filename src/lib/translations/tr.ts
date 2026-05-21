@@ -49,7 +49,7 @@ export const tr: Translations = {
       "Githubster, GitHub bağlantılarınızı anlamanıza yardımcı olan ücretsiz ve açık kaynaklı bir araçtır. Giriş gerektirmez, veri toplamaz.",
     feature1Title: "Takip etmeyenler",
     feature1Desc: "Takip ettiğiniz ama sizi geri takip etmeyenleri görün.",
-    feature2Title: "Hayranlar",
+    feature2Title: "Takipçiler",
     feature2Desc: "Sizi takip eden ama takip etmediğiniz kişileri keşfedin.",
     feature3Title: "Gizli ve Güvenli",
     feature3Desc: "Tamamen tarayıcınızda çalışır. Hiçbir veri saklanmaz.",

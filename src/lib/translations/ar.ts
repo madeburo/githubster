@@ -49,7 +49,7 @@ export const ar: Translations = {
       "Githubster أداة مجانية ومفتوحة المصدر لفهم علاقاتك على GitHub. بدون تسجيل دخول، بدون جمع بيانات.",
     feature1Title: "غير المتابعين",
     feature1Desc: "اعرف من تتابعه ولا يتابعك.",
-    feature2Title: "المعجبون",
+    feature2Title: "المتابِعون",
     feature2Desc: "اكتشف من يتابعك ولكنك لا تتابعه.",
     feature3Title: "خاص وآمن",
     feature3Desc: "يعمل بالكامل في المتصفح. لا يتم تخزين أي بيانات.",

@@ -49,7 +49,7 @@ export const ja: Translations = {
       "Githubsterは、GitHubのソーシャルグラフを理解するための無料オープンソースツールです。ログイン不要、データ収集なし。",
     feature1Title: "アンフォロワー",
     feature1Desc: "フォローしているのにフォロバされていない人を確認。",
-    feature2Title: "ファン",
+    feature2Title: "フォロワー",
     feature2Desc: "フォローされているのにフォローしていない人を発見。",
     feature3Title: "プライベート＆安全",
     feature3Desc: "完全にブラウザで動作。データは保存・送信されません。",

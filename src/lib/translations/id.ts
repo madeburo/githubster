@@ -49,7 +49,7 @@ export const id: Translations = {
       "Githubster adalah alat gratis dan open-source untuk memahami koneksi GitHub-mu. Tanpa login, tanpa pengumpulan data.",
     feature1Title: "Unfollowers",
     feature1Desc: "Lihat siapa yang kamu follow tapi tidak follow back.",
-    feature2Title: "Fans",
+    feature2Title: "Pengikut",
     feature2Desc: "Temukan orang yang follow kamu tapi belum kamu follow.",
     feature3Title: "Privat & Aman",
     feature3Desc: "Berjalan sepenuhnya di browser. Tidak ada data yang disimpan.",

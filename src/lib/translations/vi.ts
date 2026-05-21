@@ -49,7 +49,7 @@ export const vi: Translations = {
       "Githubster là công cụ miễn phí mã nguồn mở giúp bạn hiểu mối quan hệ trên GitHub. Không cần đăng nhập, không thu thập dữ liệu.",
     feature1Title: "Unfollower",
     feature1Desc: "Xem ai bạn follow mà không follow lại bạn.",
-    feature2Title: "Fan",
+    feature2Title: "Người theo dõi",
     feature2Desc: "Khám phá người follow bạn mà bạn chưa follow lại.",
     feature3Title: "Riêng tư & An toàn",
     feature3Desc: "Chạy hoàn toàn trên trình duyệt. Không lưu trữ dữ liệu.",

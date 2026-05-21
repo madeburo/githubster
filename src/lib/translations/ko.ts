@@ -49,7 +49,7 @@ export const ko: Translations = {
       "Githubster는 GitHub 소셜 관계를 파악하는 무료 오픈소스 도구입니다. 로그인 없이 맞팔 여부를 확인하세요.",
     feature1Title: "언팔로워",
     feature1Desc: "내가 팔로우하지만 맞팔하지 않는 사람을 확인하세요.",
-    feature2Title: "팬",
+    feature2Title: "팔로워",
     feature2Desc: "나를 팔로우하지만 내가 팔로우하지 않는 사람을 발견하세요.",
     feature3Title: "프라이버시",
     feature3Desc: "브라우저에서만 실행됩니다. 데이터가 저장되거나 전송되지 않습니다.",

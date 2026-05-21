@@ -49,7 +49,7 @@ export const pt: Translations = {
       "Githubster é uma ferramenta gratuita e open-source para entender suas conexões no GitHub. Veja quem não te segue de volta — sem login e sem coleta de dados.",
     feature1Title: "Unfollowers",
     feature1Desc: "Veja quem você segue que não te segue de volta.",
-    feature2Title: "Fãs",
+    feature2Title: "Seguidores",
     feature2Desc: "Descubra quem te segue mas você ainda não segue.",
     feature3Title: "Privado e Seguro",
     feature3Desc: "Roda inteiramente no navegador. Nenhum dado é armazenado.",

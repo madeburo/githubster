@@ -49,7 +49,7 @@ export const fr: Translations = {
       "Githubster est un outil gratuit et open-source pour comprendre vos connexions GitHub. Sans connexion ni collecte de données.",
     feature1Title: "Unfollowers",
     feature1Desc: "Voyez qui vous suivez mais qui ne vous suit pas en retour.",
-    feature2Title: "Fans",
+    feature2Title: "Abonnés",
     feature2Desc: "Découvrez qui vous suit mais que vous ne suivez pas encore.",
     feature3Title: "Privé et Sécurisé",
     feature3Desc: "Fonctionne entièrement dans votre navigateur. Aucune donnée stockée.",
