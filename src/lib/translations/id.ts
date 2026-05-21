@@ -5,6 +5,11 @@ export const id: Translations = {
     title: "Githubster — Lacak Pengikut dan Unfollower GitHub",
     description: "Alat gratis dan open-source untuk melihat siapa yang tidak follow back di GitHub. Tanpa login.",
   },
+  notFound: {
+    title: "Halaman tidak ditemukan",
+    description: "Halaman yang Anda cari tidak ada atau telah dipindahkan.",
+    button: "Kembali ke beranda",
+  },
   hero: {
     description: "Cari tahu siapa yang tidak follow back, siapa yang belum kamu follow, dan kelola koneksi GitHub-mu.",
   },

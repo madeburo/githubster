@@ -5,6 +5,11 @@ export const ko: Translations = {
     title: "Githubster — GitHub 팔로워 및 언팔로워 추적",
     description: "무료 오픈소스 도구: 맞팔하지 않는 사람을 확인하고 팬을 발견하세요. 로그인 불필요.",
   },
+  notFound: {
+    title: "페이지를 찾을 수 없습니다",
+    description: "찾고 있는 페이지가 존재하지 않거나 이동되었습니다.",
+    button: "홈으로 돌아가기",
+  },
   hero: {
     description: "누가 맞팔하지 않는지, 누구를 팔로우하지 않는지 확인하고 GitHub 관계를 관리하세요.",
   },

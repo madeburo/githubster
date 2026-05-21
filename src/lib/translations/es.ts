@@ -5,6 +5,11 @@ export const es: Translations = {
     title: "Githubster — Rastrea tus seguidores y unfollowers en GitHub",
     description: "Herramienta gratuita y de código abierto para ver quién no te sigue de vuelta en GitHub. Sin inicio de sesión.",
   },
+  notFound: {
+    title: "Página no encontrada",
+    description: "La página que buscas no existe o ha sido movida.",
+    button: "Volver al inicio",
+  },
   hero: {
     description: "Descubre quién no te sigue de vuelta, a quién no sigues, y gestiona tus conexiones en GitHub.",
   },

@@ -5,6 +5,11 @@ export const tr: Translations = {
     title: "Githubster — GitHub Takipçi ve Unfollower Takibi",
     description: "Ücretsiz ve açık kaynaklı araç: Sizi geri takip etmeyenleri görün. Giriş gerektirmez.",
   },
+  notFound: {
+    title: "Sayfa bulunamadı",
+    description: "Aradığınız sayfa mevcut değil veya taşınmış.",
+    button: "Ana sayfaya dön",
+  },
   hero: {
     description: "Sizi geri takip etmeyenleri, takip etmediklerinizi öğrenin ve GitHub bağlantılarınızı yönetin.",
   },

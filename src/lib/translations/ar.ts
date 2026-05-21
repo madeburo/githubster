@@ -5,6 +5,11 @@ export const ar: Translations = {
     title: "Githubster — تتبع متابعيك وغير المتابعين على GitHub",
     description: "أداة مجانية ومفتوحة المصدر لمعرفة من لا يتابعك على GitHub. بدون تسجيل دخول.",
   },
+  notFound: {
+    title: "الصفحة غير موجودة",
+    description: "الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
+    button: "العودة للرئيسية",
+  },
   hero: {
     description: "اكتشف من لا يتابعك، من لا تتابعه، وأدر علاقاتك على GitHub.",
   },

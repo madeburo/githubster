@@ -5,6 +5,11 @@ export const de: Translations = {
     title: "Githubster — Verfolge deine GitHub-Follower und Unfollower",
     description: "Kostenloses Open-Source-Tool: Sieh, wer dir nicht zurückfolgt, entdecke Fans und verwalte deine Verbindungen. Ohne Anmeldung.",
   },
+  notFound: {
+    title: "Seite nicht gefunden",
+    description: "Die Seite, die Sie suchen, existiert nicht oder wurde verschoben.",
+    button: "Zurück zur Startseite",
+  },
   hero: {
     description: "Finde heraus, wer dir nicht zurückfolgt, wem du nicht folgst, und verwalte deine GitHub-Verbindungen.",
   },

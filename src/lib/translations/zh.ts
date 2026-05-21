@@ -5,6 +5,11 @@ export const zh: Translations = {
     title: "Githubster — 追踪你的 GitHub 关注者和取关者",
     description: "免费开源工具：查看谁没有回关你，发现粉丝，管理你的关注列表。无需登录。",
   },
+  notFound: {
+    title: "页面未找到",
+    description: "您访问的页面不存在或已被移动。",
+    button: "返回首页",
+  },
   hero: {
     description: "查看谁没有回关你、你没有关注谁，管理你的 GitHub 社交关系。",
   },

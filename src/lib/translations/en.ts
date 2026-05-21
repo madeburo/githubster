@@ -3,6 +3,11 @@ export const en = {
     title: "Githubster — Track Your GitHub Followers & Unfollowers",
     description: "Free open-source tool to see who doesn't follow you back on GitHub, discover your fans, and manage your following list. No login required.",
   },
+  notFound: {
+    title: "Page not found",
+    description: "The page you're looking for doesn't exist or has been moved.",
+    button: "Back to home",
+  },
   hero: {
     description:
       "Find out who doesn't follow you back, who you're not following, and manage your GitHub connections.",
