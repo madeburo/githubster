@@ -43,10 +43,10 @@ export const en = {
     searchPlaceholder: "Search {count} users...",
   },
   seo: {
-    title: "What is Githubster?",
+    title: "What is Githubster",
     description:
       "Githubster is a free, open-source tool that helps you understand your GitHub social graph. Instantly see who doesn't follow you back, discover followers you haven't followed yet, and get a clear overview of your connections — all without signing in or sharing any personal data.",
-    feature1Title: "Unfollowers",
+    feature1Title: "Track Unfollowers",
     feature1Desc: "See who you follow that doesn't follow you back. Clean up your following list.",
     feature2Title: "Followers",
     feature2Desc: "Discover people who follow you that you haven't followed back yet.",

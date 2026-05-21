@@ -123,9 +123,11 @@ export default function Home() {
                   alt="Githubster"
                   className="block h-10 dark:hidden sm:h-12"
                 />
+                <span className="sr-only">Githubster</span>
                 <span
                   className="pointer-events-none absolute -bottom-7 left-1/2 -translate-x-1/2 rounded-md px-2 py-0.5 text-[10px] opacity-0 transition-opacity group-hover:opacity-100"
                   style={{ background: "var(--bg-card)", color: "var(--text-muted)", border: "1px solid var(--border)", boxShadow: "var(--shadow)" }}
+                  aria-hidden="true"
                 >
                   meow
                 </span>
