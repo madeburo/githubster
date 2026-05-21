@@ -37,11 +37,11 @@ const nextConfig: NextConfig = {
           key: "Content-Security-Policy",
           value: [
             "default-src 'self'",
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://umami.madeburo.com",
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
             "img-src 'self' https://avatars.githubusercontent.com data:",
             "font-src 'self' https://fonts.gstatic.com",
-            "connect-src 'self' https://api.github.com",
+            "connect-src 'self' https://api.github.com https://umami.madeburo.com",
             "frame-ancestors 'none'",
           ].join("; "),
         },
