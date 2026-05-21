@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 
 export function ThemeToggle() {
   const [dark, setDark] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const stored = localStorage.getItem("theme");
     if (stored === "light") {
       setDark(false);
@@ -16,7 +18,7 @@ export function ThemeToggle() {
     }
   }, []);
 
-  function toggle(isDark: boolean) {
+  function handleToggle(isDark: boolean) {
     setDark(isDark);
     if (isDark) {
       document.documentElement.classList.add("dark");
@@ -27,14 +29,17 @@ export function ThemeToggle() {
     }
   }
 
+  if (!mounted) return null;
+
   return (
     <div
-      className="relative flex rounded-full p-0.5"
+      className="relative flex touch-manipulation rounded-full p-0.5"
       style={{ background: "var(--border)" }}
     >
       <button
-        onClick={() => toggle(false)}
-        className="relative z-10 rounded-full px-3 py-1.5 text-xs font-medium transition-colors"
+        type="button"
+        onPointerDown={() => handleToggle(false)}
+        className="relative z-10 cursor-pointer select-none rounded-full px-3 py-1.5 text-xs font-medium transition-all"
         style={{
           background: !dark ? "var(--bg-card)" : "transparent",
           color: !dark ? "var(--text)" : "var(--text-muted)",
@@ -44,8 +49,9 @@ export function ThemeToggle() {
         Light
       </button>
       <button
-        onClick={() => toggle(true)}
-        className="relative z-10 rounded-full px-3 py-1.5 text-xs font-medium transition-colors"
+        type="button"
+        onPointerDown={() => handleToggle(true)}
+        className="relative z-10 cursor-pointer select-none rounded-full px-3 py-1.5 text-xs font-medium transition-all"
         style={{
           background: dark ? "var(--bg-card)" : "transparent",
           color: dark ? "var(--text)" : "var(--text-muted)",
