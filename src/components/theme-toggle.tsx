@@ -19,7 +19,9 @@ export function ThemeToggle() {
   }, []);
 
   function handleToggle(isDark: boolean) {
+    if (isDark === dark) return;
     setDark(isDark);
+
     if (isDark) {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
@@ -27,19 +29,25 @@ export function ThemeToggle() {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
+
+    // Force repaint on mobile Safari
+    document.body.style.display = "none";
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    document.body.offsetHeight;
+    document.body.style.display = "";
   }
 
   if (!mounted) return null;
 
   return (
     <div
-      className="relative flex touch-manipulation rounded-full p-0.5"
+      className="relative flex rounded-full p-0.5"
       style={{ background: "var(--border)" }}
     >
       <button
         type="button"
-        onPointerDown={() => handleToggle(false)}
-        className="relative z-10 cursor-pointer select-none rounded-full px-3 py-1.5 text-xs font-medium transition-all"
+        onClick={() => handleToggle(false)}
+        className="relative z-10 cursor-pointer select-none rounded-full px-3 py-1.5 text-xs font-medium"
         style={{
           background: !dark ? "var(--bg-card)" : "transparent",
           color: !dark ? "var(--text)" : "var(--text-muted)",
@@ -50,8 +58,8 @@ export function ThemeToggle() {
       </button>
       <button
         type="button"
-        onPointerDown={() => handleToggle(true)}
-        className="relative z-10 cursor-pointer select-none rounded-full px-3 py-1.5 text-xs font-medium transition-all"
+        onClick={() => handleToggle(true)}
+        className="relative z-10 cursor-pointer select-none rounded-full px-3 py-1.5 text-xs font-medium"
         style={{
           background: dark ? "var(--bg-card)" : "transparent",
           color: dark ? "var(--text)" : "var(--text-muted)",
