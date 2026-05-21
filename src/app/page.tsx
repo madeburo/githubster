@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SearchForm } from "@/components/search-form";
 import { Tabs } from "@/components/tabs";
 import { UserGrid } from "@/components/user-grid";
@@ -19,6 +19,16 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [username, setUsername] = useState<string | null>(null);
+  const [showPrivacy, setShowPrivacy] = useState(false);
+
+  useEffect(() => {
+    if (!showPrivacy) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setShowPrivacy(false);
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [showPrivacy]);
 
   async function handleSearch(user: string, token?: string) {
     setIsLoading(true);
@@ -313,8 +323,70 @@ export default function Home() {
           <a href="mailto:hi@githubster.com" className="transition-colors hover:underline" style={{ color: "var(--text-muted)" }}>
             hi@githubster.com
           </a>
+          {" · "}
+          <button
+            type="button"
+            onClick={() => setShowPrivacy(true)}
+            className="cursor-pointer transition-colors hover:underline"
+            style={{ color: "var(--text-muted)" }}
+          >
+            Privacy
+          </button>
         </p>
       </footer>
+
+      {/* Privacy popup */}
+      {showPrivacy && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          onClick={() => setShowPrivacy(false)}
+        >
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+          <div
+            className="relative max-h-[80vh] w-full max-w-lg overflow-y-auto rounded-2xl p-6 sm:p-8"
+            style={{ background: "var(--bg-card)", border: "1px solid var(--border)", boxShadow: "var(--shadow-lg)" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setShowPrivacy(false)}
+              className="absolute right-4 top-4 cursor-pointer rounded-full p-1 transition-colors"
+              style={{ color: "var(--text-muted)" }}
+              aria-label="Close"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+            <h2 className="mb-4 text-lg font-semibold" style={{ color: "var(--text)" }}>Privacy Policy</h2>
+            <div className="space-y-3 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+              <p>
+                <strong style={{ color: "var(--text)" }}>Your data stays with you.</strong> Githubster works entirely in your browser. We do not collect, store, or transmit any personal information to our servers.
+              </p>
+              <p>
+                <strong style={{ color: "var(--text)" }}>Direct GitHub communication.</strong> When you enter a username or token, your browser communicates directly with the GitHub API. Your credentials never pass through our infrastructure.
+              </p>
+              <p>
+                <strong style={{ color: "var(--text)" }}>Minimal local storage.</strong> We save only your theme and language preferences in your browser's localStorage. No cookies, no fingerprinting, no tracking.
+              </p>
+              <p>
+                <strong style={{ color: "var(--text)" }}>Fully open source.</strong> Every line of code is publicly available on{" "}
+                <a href="https://github.com/madeburo/githubster" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: "var(--text)" }}>
+                  GitHub
+                </a>
+                . You can verify exactly how the app works.
+              </p>
+              <p>
+                <strong style={{ color: "var(--text)" }}>Questions?</strong> Reach out at{" "}
+                <a href="mailto:hi@githubster.com" className="underline" style={{ color: "var(--text)" }}>
+                  hi@githubster.com
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
