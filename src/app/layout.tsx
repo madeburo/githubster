@@ -12,7 +12,7 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Githubster — Track Your GitHub Followers & Unfollowers",
   description:
-    "Free open-source tool to see who doesn't follow you back on GitHub, discover your fans, and manage your following list. No login required.",
+    "Free open-source tool to see who doesn't follow you back on GitHub, discover your fans, and manage your following list.",
   keywords: [
     "github", "followers", "unfollowers", "github tracker",
     "who unfollowed me", "github following", "not following back",

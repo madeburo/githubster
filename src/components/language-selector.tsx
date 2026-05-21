@@ -15,14 +15,24 @@ export function LanguageSelector() {
         setOpen(false);
       }
     }
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
     document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
   return (
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-haspopup="listbox"
+        aria-label="Select language"
         className="flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors"
         style={{
           borderColor: "var(--border)",
@@ -40,7 +50,7 @@ export function LanguageSelector() {
 
       {open && (
         <div
-          className="absolute end-0 top-full z-50 mt-2 max-h-80 w-40 overflow-y-auto rounded-xl border p-1"
+          className="absolute inset-e-0 top-full z-50 mt-2 max-h-80 w-40 overflow-y-auto rounded-xl border p-1"
           style={{
             borderColor: "var(--border)",
             background: "var(--bg-card)",

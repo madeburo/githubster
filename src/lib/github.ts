@@ -26,10 +26,17 @@ async function fetchAllPages(
   }
 
   while (true) {
-    const response = await fetch(
-      `${url}?per_page=${perPage}&page=${page}`,
-      { headers }
-    );
+    let response: Response;
+    try {
+      response = await fetch(
+        `${url}?per_page=${perPage}&page=${page}`,
+        { headers }
+      );
+    } catch {
+      throw new Error(
+        "Network error. Please check your internet connection and try again."
+      );
+    }
 
     if (!response.ok) {
       if (response.status === 403) {
@@ -83,13 +90,22 @@ export interface FollowData {
   notFollowingBack: GitHubUser[];
 }
 
+function validateUsername(username: string): string {
+  const sanitized = username.trim();
+  if (!/^[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}$/.test(sanitized)) {
+    throw new Error("Invalid GitHub username format.");
+  }
+  return encodeURIComponent(sanitized);
+}
+
 export async function getFollowData(
   username: string,
   token?: string
 ): Promise<FollowData> {
+  const safeUsername = validateUsername(username);
   const [followers, following] = await Promise.all([
-    getFollowers(username, token),
-    getFollowing(username, token),
+    getFollowers(safeUsername, token),
+    getFollowing(safeUsername, token),
   ]);
 
   const followerLogins = new Set(followers.map((u) => u.login));

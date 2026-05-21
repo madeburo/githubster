@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { GitHubUser } from "@/lib/github";
 
 interface UserCardProps {
@@ -17,12 +18,13 @@ export function UserCard({ user }: UserCardProps) {
         boxShadow: "var(--shadow)",
       }}
     >
-      <img
+      <Image
         src={user.avatar_url}
-        alt={user.login}
+        alt={`${user.login}'s avatar`}
         width={40}
         height={40}
-        className="rounded-full ring-2 ring-transparent transition-all group-hover:ring-[var(--gradient-start)]"
+        className="rounded-full ring-2 ring-transparent transition-all group-hover:ring-(--gradient-start)"
+        unoptimized
       />
       <div className="min-w-0 flex-1">
         <p

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import type { GitHubUser } from "@/lib/github";
 import { useLocale } from "@/lib/locale-context";
 import { UserCard } from "./user-card";
@@ -19,9 +19,15 @@ export function UserGrid({
   const { t } = useLocale();
   const [search, setSearch] = useState("");
 
-  const filtered = users.filter((u) =>
-    u.login.toLowerCase().includes(search.toLowerCase())
+  const filtered = useMemo(
+    () =>
+      users.filter((u) =>
+        u.login.toLowerCase().includes(search.toLowerCase())
+      ),
+    [users, search]
   );
+
+  const handleClear = useCallback(() => setSearch(""), []);
 
   return (
     <div className="space-y-4">
@@ -45,12 +51,14 @@ export function UserGrid({
             onChange={(e) => setSearch(e.target.value)}
             className="w-full bg-transparent text-sm outline-none placeholder:opacity-50"
             style={{ color: "var(--text)" }}
+            aria-label="Filter users"
           />
           {search && (
             <button
-              onClick={() => setSearch("")}
+              onClick={handleClear}
               className="text-xs"
               style={{ color: "var(--text-muted)" }}
+              aria-label="Clear search"
             >
               ✕
             </button>

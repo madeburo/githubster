@@ -160,6 +160,7 @@ export default function Home() {
         {/* Error */}
         {error && (
           <div
+            role="alert"
             className="mx-auto mt-6 flex max-w-2xl items-center gap-2 rounded-xl border px-4 py-3 text-sm"
             style={{
               borderColor: "rgba(239, 68, 68, 0.3)",
@@ -339,6 +340,9 @@ export default function Home() {
       {showPrivacy && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="privacy-title"
           onClick={() => setShowPrivacy(false)}
         >
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
@@ -359,7 +363,7 @@ export default function Home() {
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             </button>
-            <h2 className="mb-4 text-lg font-semibold" style={{ color: "var(--text)" }}>Privacy Policy</h2>
+            <h2 id="privacy-title" className="mb-4 text-lg font-semibold" style={{ color: "var(--text)" }}>Privacy Policy</h2>
             <div className="space-y-3 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
               <p>
                 <strong style={{ color: "var(--text)" }}>Your data stays with you.</strong> Githubster works entirely in your browser. We do not collect, store, or transmit any personal information to our servers.
