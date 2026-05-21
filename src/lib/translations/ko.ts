@@ -43,6 +43,13 @@ export const ko: Translations = {
   grid: {
     searchPlaceholder: "{count}명 검색...",
   },
+  rateLimit: {
+    resets: "{time} 후 초기화",
+    now: "지금",
+  },
+  error: {
+    retry: "재시도",
+  },
   seo: {
     title: "Githubster란?",
     description:

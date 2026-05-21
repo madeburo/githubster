@@ -43,6 +43,13 @@ export const zh: Translations = {
   grid: {
     searchPlaceholder: "搜索 {count} 位用户...",
   },
+  rateLimit: {
+    resets: "{time} 后重置",
+    now: "现在",
+  },
+  error: {
+    retry: "重试",
+  },
   seo: {
     title: "什么是 Githubster？",
     description:

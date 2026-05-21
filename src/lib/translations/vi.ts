@@ -43,6 +43,13 @@ export const vi: Translations = {
   grid: {
     searchPlaceholder: "Tìm {count} người dùng...",
   },
+  rateLimit: {
+    resets: "đặt lại sau {time}",
+    now: "bây giờ",
+  },
+  error: {
+    retry: "Thử lại",
+  },
   seo: {
     title: "Githubster là gì?",
     description:

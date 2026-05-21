@@ -7,8 +7,9 @@ import { UserGrid } from "@/components/user-grid";
 import { StatsBar } from "@/components/stats-bar";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageSelector } from "@/components/language-selector";
+import { RateLimit } from "@/components/rate-limit";
 import { useLocale } from "@/lib/locale-context";
-import { getFollowData, type FollowData } from "@/lib/github";
+import { getFollowData, type FollowData, type RateLimitInfo } from "@/lib/github";
 
 type TabId = "unfollowers" | "notFollowingBack" | "following" | "followers";
 
@@ -20,6 +21,8 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [username, setUsername] = useState<string | null>(null);
   const [showPrivacy, setShowPrivacy] = useState(false);
+  const [rateLimit, setRateLimit] = useState<RateLimitInfo | null>(null);
+  const [lastSearch, setLastSearch] = useState<{ user: string; token?: string } | null>(null);
 
   useEffect(() => {
     if (!showPrivacy) return;
@@ -34,14 +37,24 @@ export default function Home() {
     setIsLoading(true);
     setError(null);
     setData(null);
+    setLastSearch({ user, token });
     try {
       const result = await getFollowData(user, token);
       setData(result);
       setUsername(user);
+      if (result.rateLimit) {
+        setRateLimit(result.rateLimit);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");
     } finally {
       setIsLoading(false);
+    }
+  }
+
+  function handleRetry() {
+    if (lastSearch) {
+      handleSearch(lastSearch.user, lastSearch.token);
     }
   }
 
@@ -168,12 +181,30 @@ export default function Home() {
               color: "#ef4444",
             }}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0">
               <circle cx="12" cy="12" r="10" />
               <line x1="15" y1="9" x2="9" y2="15" />
               <line x1="9" y1="9" x2="15" y2="15" />
             </svg>
-            {error}
+            <span className="flex-1">{error}</span>
+            <button
+              type="button"
+              onClick={handleRetry}
+              disabled={isLoading}
+              className="shrink-0 rounded-lg px-3 py-1 text-xs font-medium transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
+              style={{
+                background: "rgba(239, 68, 68, 0.15)",
+                color: "#ef4444",
+              }}
+            >
+              <span className="flex items-center gap-1.5">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="23 4 23 10 17 10" />
+                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                </svg>
+                {t.error.retry}
+              </span>
+            </button>
           </div>
         )}
 
@@ -204,6 +235,8 @@ export default function Home() {
               unfollowers={data.unfollowers.length}
               notFollowingBack={data.notFollowingBack.length}
             />
+
+            {rateLimit && <RateLimit rateLimit={rateLimit} />}
 
             <Tabs
               tabs={tabs}

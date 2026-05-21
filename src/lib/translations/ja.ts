@@ -43,6 +43,13 @@ export const ja: Translations = {
   grid: {
     searchPlaceholder: "{count}人を検索...",
   },
+  rateLimit: {
+    resets: "{time}後にリセット",
+    now: "今すぐ",
+  },
+  error: {
+    retry: "再試行",
+  },
   seo: {
     title: "Githubsterとは？",
     description:

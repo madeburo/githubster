@@ -43,6 +43,13 @@ export const kk: Translations = {
   grid: {
     searchPlaceholder: "{count} пайдаланушыны іздеу...",
   },
+  rateLimit: {
+    resets: "{time} кейін қалпына келеді",
+    now: "қазір",
+  },
+  error: {
+    retry: "Қайталау",
+  },
   seo: {
     title: "Githubster дегеніміз не?",
     description:

@@ -42,6 +42,13 @@ export const en = {
   grid: {
     searchPlaceholder: "Search {count} users...",
   },
+  rateLimit: {
+    resets: "resets {time}",
+    now: "now",
+  },
+  error: {
+    retry: "Retry",
+  },
   seo: {
     title: "What is Githubster",
     description:

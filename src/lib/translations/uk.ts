@@ -43,6 +43,13 @@ export const uk: Translations = {
   grid: {
     searchPlaceholder: "Пошук серед {count} користувачів...",
   },
+  rateLimit: {
+    resets: "скидання через {time}",
+    now: "зараз",
+  },
+  error: {
+    retry: "Повторити",
+  },
   seo: {
     title: "Що таке Githubster?",
     description:

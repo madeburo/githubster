@@ -43,6 +43,13 @@ export const id: Translations = {
   grid: {
     searchPlaceholder: "Cari {count} pengguna...",
   },
+  rateLimit: {
+    resets: "reset dalam {time}",
+    now: "sekarang",
+  },
+  error: {
+    retry: "Coba lagi",
+  },
   seo: {
     title: "Apa itu Githubster?",
     description:

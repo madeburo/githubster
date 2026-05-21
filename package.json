@@ -1,6 +1,6 @@
 {
   "name": "githubster",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Track your GitHub followers, unfollowers, and following relationships",
   "license": "MIT",
   "scripts": {
@@ -11,6 +11,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-virtual": "^3.13.25",
     "next": "16.2.6",
     "react": "19.1.0",
     "react-dom": "19.1.0"

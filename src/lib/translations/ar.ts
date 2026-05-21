@@ -43,6 +43,13 @@ export const ar: Translations = {
   grid: {
     searchPlaceholder: "البحث في {count} مستخدم...",
   },
+  rateLimit: {
+    resets: "إعادة التعيين خلال {time}",
+    now: "الآن",
+  },
+  error: {
+    retry: "إعادة المحاولة",
+  },
   seo: {
     title: "ما هو Githubster؟",
     description:

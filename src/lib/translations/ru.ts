@@ -44,6 +44,13 @@ export const ru: Translations = {
   grid: {
     searchPlaceholder: "Поиск среди {count} пользователей...",
   },
+  rateLimit: {
+    resets: "сброс через {time}",
+    now: "сейчас",
+  },
+  error: {
+    retry: "Повторить",
+  },
   seo: {
     title: "Что такое Githubster",
     description:

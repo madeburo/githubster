@@ -43,6 +43,13 @@ export const de: Translations = {
   grid: {
     searchPlaceholder: "{count} Benutzer durchsuchen...",
   },
+  rateLimit: {
+    resets: "Reset in {time}",
+    now: "jetzt",
+  },
+  error: {
+    retry: "Erneut versuchen",
+  },
   seo: {
     title: "Was ist Githubster?",
     description:

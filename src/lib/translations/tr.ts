@@ -43,6 +43,13 @@ export const tr: Translations = {
   grid: {
     searchPlaceholder: "{count} kullanıcı ara...",
   },
+  rateLimit: {
+    resets: "{time} sonra sıfırlanır",
+    now: "şimdi",
+  },
+  error: {
+    retry: "Tekrar dene",
+  },
   seo: {
     title: "Githubster nedir?",
     description:
