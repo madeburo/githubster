@@ -64,6 +64,17 @@ export const zh: Translations = {
     feature3Title: "隐私安全",
     feature3Desc: "完全在浏览器中运行，不存储或发送任何数据。",
   },
+  profileOverview: {
+    title: "个人概览",
+    ownProjects: "个人项目",
+    repositories: "个仓库",
+    totalStars: "总星标数",
+    topLanguages: "按星标排列的语言",
+  },
+  banner: {
+    text: "Githubster 是免费开源项目。在 GitHub 上给个星标支持一下。",
+    cta: "去 GitHub 点星",
+  },
   footer: {
     openSource: "开源于",
     madeWith: "用 ♥ 制作于",

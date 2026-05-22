@@ -64,6 +64,17 @@ export const vi: Translations = {
     feature3Title: "Riêng tư & An toàn",
     feature3Desc: "Chạy hoàn toàn trên trình duyệt. Không lưu trữ dữ liệu.",
   },
+  profileOverview: {
+    title: "Tổng quan hồ sơ",
+    ownProjects: "Dự án cá nhân",
+    repositories: "kho lưu trữ",
+    totalStars: "Tổng sao",
+    topLanguages: "Ngôn ngữ theo sao",
+  },
+  banner: {
+    text: "Githubster miễn phí và mã nguồn mở. Hỗ trợ dự án bằng một ngôi sao trên GitHub.",
+    cta: "Sao trên GitHub",
+  },
   footer: {
     openSource: "Mã nguồn mở trên",
     madeWith: "Được tạo với ♥ tại",

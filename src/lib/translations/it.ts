@@ -64,6 +64,17 @@ export const it: Translations = {
     feature3Title: "Privato e Sicuro",
     feature3Desc: "Funziona interamente nel browser. Nessun dato viene salvato.",
   },
+  profileOverview: {
+    title: "Panoramica profilo",
+    ownProjects: "Progetti propri",
+    repositories: "repository",
+    totalStars: "Stelle totali",
+    topLanguages: "Linguaggi per stelle",
+  },
+  banner: {
+    text: "Githubster è gratuito e open source. Supporta il progetto con una stella su GitHub.",
+    cta: "Stella su GitHub",
+  },
   footer: {
     openSource: "Open source su",
     madeWith: "Fatto con ♥ da",

@@ -64,6 +64,17 @@ export const kk: Translations = {
     feature3Title: "Құпия және Қауіпсіз",
     feature3Desc: "Толығымен браузерде жұмыс істейді. Деректер сақталмайды.",
   },
+  profileOverview: {
+    title: "Профиль шолуы",
+    ownProjects: "Жеке жобалар",
+    repositories: "репозиторий",
+    totalStars: "Барлық жұлдыздар",
+    topLanguages: "Жұлдыздар бойынша тілдер",
+  },
+  banner: {
+    text: "Githubster — тегін және ашық бастапқы код. GitHub-та жұлдыз қойып қолдаңыз.",
+    cta: "GitHub-та жұлдыз",
+  },
   footer: {
     openSource: "Ашық код",
     madeWith: "♥ арқылы жасалған",

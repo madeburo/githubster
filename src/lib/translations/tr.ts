@@ -64,6 +64,17 @@ export const tr: Translations = {
     feature3Title: "Gizli ve Güvenli",
     feature3Desc: "Tamamen tarayıcınızda çalışır. Hiçbir veri saklanmaz.",
   },
+  profileOverview: {
+    title: "Profil Özeti",
+    ownProjects: "Kendi Projeleri",
+    repositories: "depo",
+    totalStars: "Toplam Yıldız",
+    topLanguages: "Yıldıza göre diller",
+  },
+  banner: {
+    text: "Githubster ücretsiz ve açık kaynaklıdır. GitHub'da yıldız vererek projeyi destekleyin.",
+    cta: "GitHub'da yıldız ver",
+  },
   footer: {
     openSource: "Açık kaynak",
     madeWith: "♥ ile yapıldı",

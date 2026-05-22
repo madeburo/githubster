@@ -64,6 +64,17 @@ export const ja: Translations = {
     feature3Title: "プライベート＆安全",
     feature3Desc: "完全にブラウザで動作。データは保存・送信されません。",
   },
+  profileOverview: {
+    title: "プロフィール概要",
+    ownProjects: "自分のプロジェクト",
+    repositories: "リポジトリ",
+    totalStars: "合計スター",
+    topLanguages: "スター数別の言語",
+  },
+  banner: {
+    text: "Githubsterは無料のオープンソースです。GitHubでスターを付けて応援してください。",
+    cta: "GitHubでスター",
+  },
   footer: {
     openSource: "オープンソース",
     madeWith: "♥を込めて制作",

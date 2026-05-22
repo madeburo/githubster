@@ -5,6 +5,21 @@ export interface GitHubUser {
   html_url: string;
 }
 
+export interface GitHubRepo {
+  name: string;
+  stargazers_count: number;
+  language: string | null;
+  fork: boolean;
+}
+
+export interface ProfileOverview {
+  publicRepos: number;
+  totalStars: number;
+  topLanguages: { language: string; percentage: number }[];
+  avatarUrl: string;
+}
+
+
 export interface RateLimitInfo {
   remaining: number;
   limit: number;
@@ -160,4 +175,88 @@ export async function getFollowData(
   const rateLimit = followingResult.rateLimit ?? followersResult.rateLimit;
 
   return { followers, following, unfollowers, notFollowingBack, mutuals, rateLimit };
+}
+
+export async function getProfileOverview(
+  username: string,
+  token?: string
+): Promise<ProfileOverview> {
+  const safeUsername = validateUsername(username);
+
+  const headers: HeadersInit = {
+    Accept: "application/vnd.github.v3+json",
+  };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
+  // Fetch all repos (paginated)
+  const repos: GitHubRepo[] = [];
+  let page = 1;
+  const perPage = 100;
+
+  while (true) {
+    const response = await fetch(
+      `https://api.github.com/users/${safeUsername}/repos?per_page=${perPage}&page=${page}&type=owner`,
+      { headers }
+    );
+
+    if (!response.ok) break;
+
+    const batch: GitHubRepo[] = await response.json();
+    if (batch.length === 0) break;
+
+    repos.push(...batch);
+    if (batch.length < perPage) break;
+    page++;
+  }
+
+  // Only own (non-fork) repos
+  const ownRepos = repos.filter((r) => !r.fork);
+
+  const totalStars = ownRepos.reduce((sum, r) => sum + r.stargazers_count, 0);
+
+  // Aggregate stars by language
+  const languageStars: Record<string, number> = {};
+  for (const repo of ownRepos) {
+    if (repo.language) {
+      languageStars[repo.language] = (languageStars[repo.language] || 0) + repo.stargazers_count;
+    }
+  }
+
+  // Sort by stars descending, take top 5
+  const sorted = Object.entries(languageStars)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, 5);
+
+  const totalLangStars = sorted.reduce((sum, [, stars]) => sum + stars, 0);
+
+  const topLanguages = sorted.map(([language, stars]) => ({
+    language,
+    percentage: totalLangStars > 0 ? Math.round((stars / totalLangStars) * 100) : 0,
+  }));
+
+  // Fetch user profile for avatar
+  let avatarUrl = `https://github.com/${safeUsername}.png`;
+  try {
+    const userRes = await fetch(
+      `https://api.github.com/users/${safeUsername}`,
+      { headers }
+    );
+    if (userRes.ok) {
+      const userData = await userRes.json();
+      if (userData.avatar_url) {
+        avatarUrl = userData.avatar_url;
+      }
+    }
+  } catch {
+    // fallback to github.com/{user}.png
+  }
+
+  return {
+    publicRepos: ownRepos.length,
+    totalStars,
+    topLanguages,
+    avatarUrl,
+  };
 }

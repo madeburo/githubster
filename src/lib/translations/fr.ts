@@ -64,6 +64,17 @@ export const fr: Translations = {
     feature3Title: "Privé et Sécurisé",
     feature3Desc: "Fonctionne entièrement dans votre navigateur. Aucune donnée stockée.",
   },
+  profileOverview: {
+    title: "Aperçu du profil",
+    ownProjects: "Projets personnels",
+    repositories: "dépôts",
+    totalStars: "Étoiles totales",
+    topLanguages: "Langages par étoiles",
+  },
+  banner: {
+    text: "Githubster est gratuit et open source. Soutenez le projet avec une étoile sur GitHub.",
+    cta: "Étoile sur GitHub",
+  },
   footer: {
     openSource: "Open source sur",
     madeWith: "Fait avec ♥ chez",

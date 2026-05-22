@@ -22,7 +22,7 @@ export function SearchForm({ onSearch, isLoading }: SearchFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
+    <form onSubmit={handleSubmit} className="space-y-3" role="search" autoComplete="off">
       <div
         className="flex flex-col gap-3 rounded-2xl border p-2 sm:flex-row sm:items-center"
         style={{
@@ -41,19 +41,29 @@ export function SearchForm({ onSearch, isLoading }: SearchFormProps) {
             <circle cx="12" cy="7" r="4" />
           </svg>
           <input
-            type="text"
+            type="search"
             placeholder={t.search.placeholder}
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                if (username.trim()) {
+                  onSearch(username.trim(), token.trim() || undefined);
+                }
+              }
+            }}
             className="w-full bg-transparent py-3 text-sm outline-none placeholder:opacity-50"
             style={{ color: "var(--text)" }}
             disabled={isLoading}
+            autoComplete="off"
+            name="github-username-search"
           />
         </div>
         <button
           type="submit"
           disabled={isLoading || !username.trim()}
-          className="rounded-xl px-6 py-3 text-sm font-semibold text-white transition-all hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
+          className="cursor-pointer rounded-xl px-6 py-3 text-sm font-semibold text-white transition-all hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
           style={{ background: "linear-gradient(135deg, var(--gradient-start), var(--gradient-end))" }}
         >
           {isLoading ? (
@@ -89,13 +99,19 @@ export function SearchForm({ onSearch, isLoading }: SearchFormProps) {
             style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
           >
             <input
-              type="password"
+              type="text"
               placeholder={t.search.tokenPlaceholder}
               value={token}
               onChange={(e) => setToken(e.target.value)}
               className="w-full bg-transparent px-4 py-2.5 text-sm outline-none placeholder:opacity-40"
-              style={{ color: "var(--text)" }}
+              style={{
+                color: "var(--text)",
+                WebkitTextSecurity: "disc",
+              } as React.CSSProperties}
               disabled={isLoading}
+              autoComplete="off"
+              spellCheck={false}
+              name="github-token-input"
             />
           </div>
         )}

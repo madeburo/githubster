@@ -64,6 +64,17 @@ export const ar: Translations = {
     feature3Title: "خاص وآمن",
     feature3Desc: "يعمل بالكامل في المتصفح. لا يتم تخزين أي بيانات.",
   },
+  profileOverview: {
+    title: "نظرة عامة على الملف الشخصي",
+    ownProjects: "المشاريع الخاصة",
+    repositories: "مستودعات",
+    totalStars: "إجمالي النجوم",
+    topLanguages: "اللغات حسب النجوم",
+  },
+  banner: {
+    text: "Githubster مجاني ومفتوح المصدر. ادعم المشروع بنجمة على GitHub.",
+    cta: "نجمة على GitHub",
+  },
   footer: {
     openSource: "مفتوح المصدر على",
     madeWith: "صنع بـ ♥ في",

@@ -12,7 +12,7 @@ export const ru: Translations = {
   },
   hero: {
     description:
-      "Узнайте, кто не подписан на вас в ответ, на кого вы не подписаны.",
+      "Узнайте больше о GitHub профиле. Кто не подписан в ответ и связи.",
   },
   search: {
     placeholder: "Введите имя пользователя GitHub",
@@ -64,6 +64,17 @@ export const ru: Translations = {
     feature2Desc: "Найдите людей, которые подписаны на вас, но вы на них — нет.",
     feature3Title: "Приватность",
     feature3Desc: "Работает полностью в браузере. Данные никуда не отправляются.",
+  },
+  profileOverview: {
+    title: "Обзор профиля",
+    ownProjects: "Свои проекты",
+    repositories: "репозиториев",
+    totalStars: "Всего звёзд",
+    topLanguages: "Языки по звёздам",
+  },
+  banner: {
+    text: "Githubster — опенсорс проект. Поддержите звездой на GitHub.",
+    cta: "Поставить звезду",
   },
   footer: {
     openSource: "Open Source проект",

@@ -10,7 +10,7 @@ export const en = {
   },
   hero: {
     description:
-      "Find out who doesn't follow you back, who you're not following, and manage your GitHub connections.",
+      "Understand your GitHub network and profile. See who doesn't follow you back and explore your connections.",
   },
   search: {
     placeholder: "Enter GitHub username",
@@ -62,6 +62,17 @@ export const en = {
     feature2Desc: "Discover people who follow you that you haven't followed back yet.",
     feature3Title: "Private & Secure",
     feature3Desc: "Runs entirely in your browser. No data is stored or sent to any server.",
+  },
+  profileOverview: {
+    title: "Profile Overview",
+    ownProjects: "Own Projects",
+    repositories: "repositories",
+    totalStars: "Total Stars",
+    topLanguages: "Top Languages by Stars",
+  },
+  banner: {
+    text: "Githubster is free and open source. Support the project with a GitHub star.",
+    cta: "Star on GitHub",
   },
   footer: {
     openSource: "Open source on",

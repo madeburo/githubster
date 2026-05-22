@@ -64,6 +64,17 @@ export const ko: Translations = {
     feature3Title: "프라이버시",
     feature3Desc: "브라우저에서만 실행됩니다. 데이터가 저장되거나 전송되지 않습니다.",
   },
+  profileOverview: {
+    title: "프로필 개요",
+    ownProjects: "내 프로젝트",
+    repositories: "개 저장소",
+    totalStars: "총 스타",
+    topLanguages: "스타 기준 상위 언어",
+  },
+  banner: {
+    text: "Githubster는 무료 오픈소스입니다. GitHub 스타로 프로젝트를 응원해주세요.",
+    cta: "GitHub에서 스타",
+  },
   footer: {
     openSource: "오픈소스",
     madeWith: "♥를 담아 제작",

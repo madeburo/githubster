@@ -64,6 +64,17 @@ export const uk: Translations = {
     feature3Title: "Приватність",
     feature3Desc: "Працює повністю у браузері. Дані нікуди не надсилаються.",
   },
+  profileOverview: {
+    title: "Огляд профілю",
+    ownProjects: "Власні проєкти",
+    repositories: "репозиторіїв",
+    totalStars: "Всього зірок",
+    topLanguages: "Мови за зірками",
+  },
+  banner: {
+    text: "Githubster — безкоштовний проєкт з відкритим кодом. Підтримайте зіркою на GitHub.",
+    cta: "Зірка на GitHub",
+  },
   footer: {
     openSource: "Відкритий код на",
     madeWith: "Зроблено з ♥ у",

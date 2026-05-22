@@ -64,6 +64,17 @@ export const hi: Translations = {
     feature3Title: "निजी और सुरक्षित",
     feature3Desc: "पूरी तरह ब्राउज़र में चलता है। कोई डेटा संग्रहित नहीं होता।",
   },
+  profileOverview: {
+    title: "प्रोफ़ाइल अवलोकन",
+    ownProjects: "अपनी परियोजनाएँ",
+    repositories: "रिपॉजिटरी",
+    totalStars: "कुल स्टार",
+    topLanguages: "स्टार के अनुसार भाषाएँ",
+  },
+  banner: {
+    text: "Githubster मुफ़्त और ओपन सोर्स है। GitHub पर स्टार देकर प्रोजेक्ट का समर्थन करें।",
+    cta: "GitHub पर स्टार दें",
+  },
   footer: {
     openSource: "ओपन सोर्स",
     madeWith: "♥ से बनाया",

@@ -64,6 +64,17 @@ export const id: Translations = {
     feature3Title: "Privat & Aman",
     feature3Desc: "Berjalan sepenuhnya di browser. Tidak ada data yang disimpan.",
   },
+  profileOverview: {
+    title: "Ikhtisar Profil",
+    ownProjects: "Proyek Sendiri",
+    repositories: "repositori",
+    totalStars: "Total Bintang",
+    topLanguages: "Bahasa berdasarkan bintang",
+  },
+  banner: {
+    text: "Githubster gratis dan open source. Dukung proyek dengan bintang di GitHub.",
+    cta: "Bintang di GitHub",
+  },
   footer: {
     openSource: "Open source di",
     madeWith: "Dibuat dengan ♥ di",
