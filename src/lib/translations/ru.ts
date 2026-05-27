@@ -11,7 +11,7 @@ export const ru: Translations = {
     button: "На главную",
   },
   hero: {
-    title: "Ваш GitHub-профиль и связи — в одном месте",
+    title: "Ваш GitHub-профиль и связи",
     description:
       "Узнайте больше о GitHub профиле. Кто не подписан в ответ и связи.",
   },

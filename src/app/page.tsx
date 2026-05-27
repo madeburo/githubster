@@ -196,7 +196,7 @@ export default function Home() {
               </a>
             </div>
             <h1
-              className="text-2xl font-bold sm:text-3xl"
+              className="text-xl font-semibold sm:text-2xl"
               style={{ color: "var(--text)" }}
             >
               {t.hero.title}
