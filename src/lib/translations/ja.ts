@@ -11,11 +11,12 @@ export const ja: Translations = {
     button: "ホームに戻る",
   },
   hero: {
+    title: "GitHubネットワークを探索",
     description: "フォローバックしていない人、フォローしていない人を確認し、GitHubのつながりを管理しましょう。",
   },
   search: {
     placeholder: "GitHubユーザー名を入力",
-    button: "確認",
+    button: "探索",
     loading: "読み込み中...",
     tokenToggle: "トークンを追加（任意、レート制限を増加）",
     tokenHide: "トークンを非表示（任意、レート制限を増加）",
@@ -51,7 +52,13 @@ export const ja: Translations = {
     now: "今すぐ",
   },
   error: {
-    retry: "再試行",
+    retry: "",
+    userNotFound: "ユーザーが見つかりません",
+    userNotFoundDesc: "GitHubユーザー名を確認して再試行してください。",
+    rateLimit: "GitHubレート制限に達しました",
+    rateLimitDesc: "トークンを追加するか、数分後に再試行してください。",
+    noPublicFollowers: "公開フォロワーが見つかりません",
+    noPublicFollowersDesc: "このプロフィールは公開活動が限られている可能性があります。",
   },
   seo: {
     title: "Githubsterとは？",

@@ -11,11 +11,12 @@ export const ar: Translations = {
     button: "العودة للرئيسية",
   },
   hero: {
+    title: "استكشف شبكتك على GitHub",
     description: "اكتشف من لا يتابعك، من لا تتابعه، وأدر علاقاتك على GitHub.",
   },
   search: {
     placeholder: "أدخل اسم مستخدم GitHub",
-    button: "تحقق",
+    button: "استكشاف",
     loading: "جاري التحميل...",
     tokenToggle: "إضافة رمز (اختياري، يزيد الحد)",
     tokenHide: "إخفاء الرمز (اختياري، يزيد الحد)",
@@ -51,7 +52,13 @@ export const ar: Translations = {
     now: "الآن",
   },
   error: {
-    retry: "إعادة المحاولة",
+    retry: "",
+    userNotFound: "المستخدم غير موجود",
+    userNotFoundDesc: "تحقق من اسم المستخدم على GitHub وحاول مرة أخرى.",
+    rateLimit: "تم الوصول إلى حد طلبات GitHub",
+    rateLimitDesc: "أضف رمزًا أو حاول مرة أخرى بعد بضع دقائق.",
+    noPublicFollowers: "لم يتم العثور على متابعين عامين",
+    noPublicFollowersDesc: "قد يكون لهذا الملف الشخصي نشاط عام محدود.",
   },
   seo: {
     title: "ما هو Githubster؟",

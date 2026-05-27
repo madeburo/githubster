@@ -11,6 +11,7 @@ export const ru: Translations = {
     button: "На главную",
   },
   hero: {
+    title: "Ваш GitHub-профиль и связи — в одном месте",
     description:
       "Узнайте больше о GitHub профиле. Кто не подписан в ответ и связи.",
   },
@@ -52,7 +53,13 @@ export const ru: Translations = {
     now: "сейчас",
   },
   error: {
-    retry: "Повторить",
+    retry: "",
+    userNotFound: "Пользователь не найден",
+    userNotFoundDesc: "Проверьте имя пользователя GitHub и попробуйте снова.",
+    rateLimit: "Лимит запросов GitHub исчерпан",
+    rateLimitDesc: "Добавьте токен или попробуйте через несколько минут.",
+    noPublicFollowers: "Публичные подписчики не найдены",
+    noPublicFollowersDesc: "Этот профиль может иметь ограниченную публичную активность.",
   },
   seo: {
     title: "Что такое Githubster",

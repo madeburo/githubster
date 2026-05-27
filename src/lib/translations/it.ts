@@ -11,11 +11,12 @@ export const it: Translations = {
     button: "Torna alla home",
   },
   hero: {
+    title: "Esplora la tua rete GitHub",
     description: "Scopri chi non ti segue, chi non segui tu, e gestisci le tue connessioni su GitHub.",
   },
   search: {
     placeholder: "Inserisci il nome utente GitHub",
-    button: "Verifica",
+    button: "Esplora",
     loading: "Caricamento...",
     tokenToggle: "Aggiungi token (opzionale, aumenta il limite)",
     tokenHide: "Nascondi token (opzionale, aumenta il limite)",
@@ -51,7 +52,13 @@ export const it: Translations = {
     now: "adesso",
   },
   error: {
-    retry: "Riprova",
+    retry: "",
+    userNotFound: "Utente non trovato",
+    userNotFoundDesc: "Controlla il nome utente GitHub e riprova.",
+    rateLimit: "Limite richieste GitHub raggiunto",
+    rateLimitDesc: "Aggiungi un token o riprova tra qualche minuto.",
+    noPublicFollowers: "Nessun follower pubblico trovato",
+    noPublicFollowersDesc: "Questo profilo potrebbe avere attività pubblica limitata.",
   },
   seo: {
     title: "Cos'è Githubster?",

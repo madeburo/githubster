@@ -11,11 +11,12 @@ export const de: Translations = {
     button: "Zurück zur Startseite",
   },
   hero: {
+    title: "Erkunde dein GitHub-Netzwerk",
     description: "Finde heraus, wer dir nicht zurückfolgt, wem du nicht folgst, und verwalte deine GitHub-Verbindungen.",
   },
   search: {
     placeholder: "GitHub-Benutzername eingeben",
-    button: "Prüfen",
+    button: "Erkunden",
     loading: "Laden...",
     tokenToggle: "Token hinzufügen (optional, erhöht das Limit)",
     tokenHide: "Token ausblenden (optional, erhöht das Limit)",
@@ -51,7 +52,13 @@ export const de: Translations = {
     now: "jetzt",
   },
   error: {
-    retry: "Erneut versuchen",
+    retry: "",
+    userNotFound: "Benutzer nicht gefunden",
+    userNotFoundDesc: "Überprüfe den GitHub-Benutzernamen und versuche es erneut.",
+    rateLimit: "GitHub-Ratenlimit erreicht",
+    rateLimitDesc: "Füge einen Token hinzu oder versuche es in ein paar Minuten erneut.",
+    noPublicFollowers: "Keine öffentlichen Follower gefunden",
+    noPublicFollowersDesc: "Dieses Profil hat möglicherweise eingeschränkte öffentliche Aktivität.",
   },
   seo: {
     title: "Was ist Githubster?",

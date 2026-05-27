@@ -11,11 +11,12 @@ export const hi: Translations = {
     button: "होम पर वापस जाएं",
   },
   hero: {
+    title: "अपने GitHub नेटवर्क का अन्वेषण करें",
     description: "जानें कौन आपको वापस फॉलो नहीं करता, आप किसे फॉलो नहीं करते, और अपने GitHub कनेक्शन प्रबंधित करें।",
   },
   search: {
     placeholder: "GitHub यूज़रनेम दर्ज करें",
-    button: "जाँचें",
+    button: "अन्वेषण करें",
     loading: "लोड हो रहा है...",
     tokenToggle: "टोकन जोड़ें (वैकल्पिक, सीमा बढ़ाता है)",
     tokenHide: "टोकन छुपाएं (वैकल्पिक, सीमा बढ़ाता है)",
@@ -51,7 +52,13 @@ export const hi: Translations = {
     now: "अभी",
   },
   error: {
-    retry: "पुनः प्रयास",
+    retry: "",
+    userNotFound: "उपयोगकर्ता नहीं मिला",
+    userNotFoundDesc: "GitHub उपयोगकर्ता नाम जांचें और पुनः प्रयास करें।",
+    rateLimit: "GitHub अनुरोध सीमा पूरी हो गई",
+    rateLimitDesc: "टोकन जोड़ें या कुछ मिनट बाद पुनः प्रयास करें।",
+    noPublicFollowers: "कोई सार्वजनिक अनुयायी नहीं मिले",
+    noPublicFollowersDesc: "इस प्रोफ़ाइल की सार्वजनिक गतिविधि सीमित हो सकती है।",
   },
   seo: {
     title: "Githubster क्या है?",

@@ -11,11 +11,12 @@ export const uk: Translations = {
     button: "На головну",
   },
   hero: {
+    title: "Досліджуйте свою мережу на GitHub",
     description: "Дізнайтеся, хто не підписаний на вас у відповідь, на кого ви не підписані, та керуйте зв'язками на GitHub.",
   },
   search: {
     placeholder: "Введіть ім'я користувача GitHub",
-    button: "Перевірити",
+    button: "Дослідити",
     loading: "Завантаження...",
     tokenToggle: "Додати токен (необов'язково, збільшує ліміт)",
     tokenHide: "Сховати токен (необов'язково, збільшує ліміт)",
@@ -51,7 +52,13 @@ export const uk: Translations = {
     now: "зараз",
   },
   error: {
-    retry: "Повторити",
+    retry: "",
+    userNotFound: "Користувача не знайдено",
+    userNotFoundDesc: "Перевірте ім'я користувача GitHub і спробуйте знову.",
+    rateLimit: "Ліміт запитів GitHub вичерпано",
+    rateLimitDesc: "Додайте токен або спробуйте через кілька хвилин.",
+    noPublicFollowers: "Публічних підписників не знайдено",
+    noPublicFollowersDesc: "Цей профіль може мати обмежену публічну активність.",
   },
   seo: {
     title: "Що таке Githubster?",

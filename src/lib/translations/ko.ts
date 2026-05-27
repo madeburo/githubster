@@ -11,11 +11,12 @@ export const ko: Translations = {
     button: "홈으로 돌아가기",
   },
   hero: {
+    title: "GitHub 네트워크 탐색",
     description: "누가 맞팔하지 않는지, 누구를 팔로우하지 않는지 확인하고 GitHub 관계를 관리하세요.",
   },
   search: {
     placeholder: "GitHub 사용자명 입력",
-    button: "확인",
+    button: "탐색",
     loading: "로딩 중...",
     tokenToggle: "토큰 추가 (선택사항, 요청 제한 증가)",
     tokenHide: "토큰 숨기기 (선택사항, 요청 제한 증가)",
@@ -51,7 +52,13 @@ export const ko: Translations = {
     now: "지금",
   },
   error: {
-    retry: "재시도",
+    retry: "",
+    userNotFound: "사용자를 찾을 수 없습니다",
+    userNotFoundDesc: "GitHub 사용자 이름을 확인하고 다시 시도하세요.",
+    rateLimit: "GitHub 요청 한도 도달",
+    rateLimitDesc: "토큰을 추가하거나 몇 분 후에 다시 시도하세요.",
+    noPublicFollowers: "공개 팔로워를 찾을 수 없습니다",
+    noPublicFollowersDesc: "이 프로필은 공개 활동이 제한적일 수 있습니다.",
   },
   seo: {
     title: "Githubster란?",

@@ -11,11 +11,12 @@ export const kk: Translations = {
     button: "Басты бетке оралу",
   },
   hero: {
+    title: "GitHub желіңізді зерттеңіз",
     description: "Кім сізге жауап бермейтінін, кімге жазылмағаныңызды біліңіз және GitHub байланыстарыңызды басқарыңыз.",
   },
   search: {
     placeholder: "GitHub пайдаланушы атын енгізіңіз",
-    button: "Тексеру",
+    button: "Зерттеу",
     loading: "Жүктелуде...",
     tokenToggle: "Токен қосу (міндетті емес, лимитті арттырады)",
     tokenHide: "Токенді жасыру (міндетті емес, лимитті арттырады)",
@@ -51,7 +52,13 @@ export const kk: Translations = {
     now: "қазір",
   },
   error: {
-    retry: "Қайталау",
+    retry: "",
+    userNotFound: "Пайдаланушы табылмады",
+    userNotFoundDesc: "GitHub пайдаланушы атын тексеріп, қайта көріңіз.",
+    rateLimit: "GitHub сұраныс лимитіне жетті",
+    rateLimitDesc: "Токен қосыңыз немесе бірнеше минуттан кейін қайта көріңіз.",
+    noPublicFollowers: "Жария жазылушылар табылмады",
+    noPublicFollowersDesc: "Бұл профильдің жария белсенділігі шектеулі болуы мүмкін.",
   },
   seo: {
     title: "Githubster дегеніміз не?",

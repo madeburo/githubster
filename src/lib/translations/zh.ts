@@ -11,11 +11,12 @@ export const zh: Translations = {
     button: "返回首页",
   },
   hero: {
+    title: "探索你的 GitHub 网络",
     description: "查看谁没有回关你、你没有关注谁，管理你的 GitHub 社交关系。",
   },
   search: {
     placeholder: "输入 GitHub 用户名",
-    button: "查询",
+    button: "探索",
     loading: "加载中...",
     tokenToggle: "添加令牌（可选，提高请求限制）",
     tokenHide: "隐藏令牌（可选，提高请求限制）",
@@ -51,7 +52,13 @@ export const zh: Translations = {
     now: "现在",
   },
   error: {
-    retry: "重试",
+    retry: "",
+    userNotFound: "用户未找到",
+    userNotFoundDesc: "请检查 GitHub 用户名后重试。",
+    rateLimit: "GitHub 请求限制已达到",
+    rateLimitDesc: "添加令牌或几分钟后重试。",
+    noPublicFollowers: "未找到公开关注者",
+    noPublicFollowersDesc: "该用户的公开活动可能有限。",
   },
   seo: {
     title: "什么是 Githubster？",

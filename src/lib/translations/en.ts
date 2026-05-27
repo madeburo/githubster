@@ -9,12 +9,13 @@ export const en = {
     button: "Back to home",
   },
   hero: {
+    title: "Explore your GitHub network",
     description:
-      "Understand your GitHub network and profile. See who doesn't follow you back and explore your connections.",
+      "Explore followers, mutuals, unfollowers and public profile insights. No sign-in. No tracking. No private data.",
   },
   search: {
     placeholder: "Enter GitHub username",
-    button: "Check",
+    button: "Explore",
     loading: "Loading...",
     tokenToggle: "Add token (optional, increases rate limit)",
     tokenHide: "Hide token (optional, increases rate limit)",
@@ -51,6 +52,12 @@ export const en = {
   },
   error: {
     retry: "Retry",
+    userNotFound: "User not found",
+    userNotFoundDesc: "Check the GitHub username and try again.",
+    rateLimit: "GitHub rate limit reached",
+    rateLimitDesc: "Add a token or try again in a few minutes.",
+    noPublicFollowers: "No public followers found",
+    noPublicFollowersDesc: "This profile may have limited public activity.",
   },
   seo: {
     title: "What is Githubster",
@@ -71,7 +78,7 @@ export const en = {
     topLanguages: "Top Languages by Stars",
   },
   banner: {
-    text: "Githubster is free and open source. Support the project with a GitHub star.",
+    text: "Githubster is 100% free and open-source. If it helped you, a GitHub star keeps it alive.",
     cta: "Star on GitHub",
   },
   footer: {

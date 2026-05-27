@@ -11,11 +11,12 @@ export const tr: Translations = {
     button: "Ana sayfaya dön",
   },
   hero: {
+    title: "GitHub ağınızı keşfedin",
     description: "Sizi geri takip etmeyenleri, takip etmediklerinizi öğrenin ve GitHub bağlantılarınızı yönetin.",
   },
   search: {
     placeholder: "GitHub kullanıcı adı girin",
-    button: "Kontrol Et",
+    button: "Keşfet",
     loading: "Yükleniyor...",
     tokenToggle: "Token ekle (isteğe bağlı, limiti artırır)",
     tokenHide: "Tokeni gizle (isteğe bağlı, limiti artırır)",
@@ -51,7 +52,13 @@ export const tr: Translations = {
     now: "şimdi",
   },
   error: {
-    retry: "Tekrar dene",
+    retry: "",
+    userNotFound: "Kullanıcı bulunamadı",
+    userNotFoundDesc: "GitHub kullanıcı adını kontrol edip tekrar deneyin.",
+    rateLimit: "GitHub istek limiti aşıldı",
+    rateLimitDesc: "Bir token ekleyin veya birkaç dakika sonra tekrar deneyin.",
+    noPublicFollowers: "Herkese açık takipçi bulunamadı",
+    noPublicFollowersDesc: "Bu profilin herkese açık etkinliği sınırlı olabilir.",
   },
   seo: {
     title: "Githubster nedir?",

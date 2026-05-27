@@ -11,11 +11,12 @@ export const id: Translations = {
     button: "Kembali ke beranda",
   },
   hero: {
+    title: "Jelajahi jaringan GitHub Anda",
     description: "Cari tahu siapa yang tidak follow back, siapa yang belum kamu follow, dan kelola koneksi GitHub-mu.",
   },
   search: {
     placeholder: "Masukkan username GitHub",
-    button: "Cek",
+    button: "Jelajahi",
     loading: "Memuat...",
     tokenToggle: "Tambah token (opsional, meningkatkan limit)",
     tokenHide: "Sembunyikan token (opsional, meningkatkan limit)",
@@ -51,7 +52,13 @@ export const id: Translations = {
     now: "sekarang",
   },
   error: {
-    retry: "Coba lagi",
+    retry: "",
+    userNotFound: "Pengguna tidak ditemukan",
+    userNotFoundDesc: "Periksa nama pengguna GitHub dan coba lagi.",
+    rateLimit: "Batas permintaan GitHub tercapai",
+    rateLimitDesc: "Tambahkan token atau coba lagi dalam beberapa menit.",
+    noPublicFollowers: "Tidak ada pengikut publik ditemukan",
+    noPublicFollowersDesc: "Profil ini mungkin memiliki aktivitas publik yang terbatas.",
   },
   seo: {
     title: "Apa itu Githubster?",

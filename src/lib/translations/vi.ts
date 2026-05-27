@@ -11,11 +11,12 @@ export const vi: Translations = {
     button: "Về trang chủ",
   },
   hero: {
+    title: "Khám phá mạng lưới GitHub của bạn",
     description: "Xem ai không follow lại bạn, ai bạn chưa follow, và quản lý kết nối GitHub của bạn.",
   },
   search: {
     placeholder: "Nhập tên người dùng GitHub",
-    button: "Kiểm tra",
+    button: "Khám phá",
     loading: "Đang tải...",
     tokenToggle: "Thêm token (tùy chọn, tăng giới hạn)",
     tokenHide: "Ẩn token (tùy chọn, tăng giới hạn)",
@@ -51,7 +52,13 @@ export const vi: Translations = {
     now: "bây giờ",
   },
   error: {
-    retry: "Thử lại",
+    retry: "",
+    userNotFound: "Không tìm thấy người dùng",
+    userNotFoundDesc: "Kiểm tra tên người dùng GitHub và thử lại.",
+    rateLimit: "Đã đạt giới hạn yêu cầu GitHub",
+    rateLimitDesc: "Thêm token hoặc thử lại sau vài phút.",
+    noPublicFollowers: "Không tìm thấy người theo dõi công khai",
+    noPublicFollowersDesc: "Hồ sơ này có thể có hoạt động công khai hạn chế.",
   },
   seo: {
     title: "Githubster là gì?",

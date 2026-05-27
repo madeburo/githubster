@@ -173,7 +173,7 @@ export default function Home() {
         {/* Hero section - centered */}
         <section className={`text-center ${data ? "mb-8" : "mb-0"}`}>
           <div className={`mx-auto max-w-2xl animate-fade-in ${data ? "" : "pt-12 sm:pt-20"}`}>
-            <h1 className="mb-8 flex items-center justify-center">
+            <div className="mb-8 flex items-center justify-center">
               <a href="/" className="group relative transition-opacity hover:opacity-80">
                 <img
                   src="/githubster.svg"
@@ -194,13 +194,19 @@ export default function Home() {
                   meow
                 </span>
               </a>
+            </div>
+            <h1
+              className="text-2xl font-bold sm:text-3xl"
+              style={{ color: "var(--text)" }}
+            >
+              {t.hero.title}
             </h1>
-            <p
-              className="mx-auto mt-5 max-w-md text-base"
+            <h3
+              className="mx-auto mt-4 max-w-md text-base"
               style={{ color: "var(--text-muted)" }}
             >
               {t.hero.description}
-            </p>
+            </h3>
 
             {/* Search - centered */}
             <div className="mt-8">
@@ -213,27 +219,66 @@ export default function Home() {
         {error && (
           <div
             role="alert"
-            className="mx-auto mt-6 flex max-w-2xl items-center gap-2 rounded-xl border px-4 py-3 text-sm"
+            className="mx-auto mt-6 flex max-w-2xl flex-col items-center gap-3 rounded-2xl border px-6 py-8 text-center"
             style={{
-              borderColor: "rgba(239, 68, 68, 0.3)",
-              background: "rgba(239, 68, 68, 0.08)",
-              color: "#ef4444",
+              borderColor: "var(--border)",
+              background: "var(--bg-card)",
+              boxShadow: "var(--shadow)",
             }}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0">
-              <circle cx="12" cy="12" r="10" />
-              <line x1="15" y1="9" x2="9" y2="15" />
-              <line x1="9" y1="9" x2="15" y2="15" />
-            </svg>
-            <span className="flex-1">{error}</span>
+            <div
+              className="flex h-12 w-12 items-center justify-center rounded-full"
+              style={{
+                background: error.includes("not found")
+                  ? "rgba(239, 68, 68, 0.1)"
+                  : error.includes("Rate limit") || error.includes("rate limit")
+                  ? "rgba(245, 158, 11, 0.1)"
+                  : "rgba(99, 102, 241, 0.1)",
+              }}
+            >
+              {error.includes("not found") ? (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="1.5">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="15" y1="9" x2="9" y2="15" />
+                  <line x1="9" y1="9" x2="15" y2="15" />
+                </svg>
+              ) : error.includes("Rate limit") || error.includes("rate limit") ? (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="1.5">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              ) : (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gradient-start)" strokeWidth="1.5">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+              )}
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold" style={{ color: "var(--text)" }}>
+                {error.includes("not found")
+                  ? t.error.userNotFound
+                  : error.includes("Rate limit") || error.includes("rate limit")
+                  ? t.error.rateLimit
+                  : "Error"}
+              </h3>
+              <p className="mt-1 text-xs" style={{ color: "var(--text-muted)" }}>
+                {error.includes("not found")
+                  ? t.error.userNotFoundDesc
+                  : error.includes("Rate limit") || error.includes("rate limit")
+                  ? t.error.rateLimitDesc
+                  : error}
+              </p>
+            </div>
             <button
               type="button"
               onClick={handleRetry}
               disabled={isLoading}
-              className="shrink-0 rounded-lg px-3 py-1 text-xs font-medium transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
+              className="mt-2 shrink-0 cursor-pointer rounded-xl px-5 py-2 text-xs font-medium transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
               style={{
-                background: "rgba(239, 68, 68, 0.15)",
-                color: "#ef4444",
+                background: "var(--border)",
+                color: "var(--text)",
               }}
             >
               <span className="flex items-center gap-1.5">
@@ -248,7 +293,38 @@ export default function Home() {
         )}
 
         {/* Results */}
-        {data && (
+        {data && data.followers.length === 0 && data.following.length === 0 && (
+          <div
+            className="mx-auto mt-6 flex max-w-2xl flex-col items-center gap-3 rounded-2xl border px-6 py-8 text-center animate-fade-in"
+            style={{
+              borderColor: "var(--border)",
+              background: "var(--bg-card)",
+              boxShadow: "var(--shadow)",
+            }}
+          >
+            <div
+              className="flex h-12 w-12 items-center justify-center rounded-full"
+              style={{ background: "rgba(99, 102, 241, 0.1)" }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gradient-start)" strokeWidth="1.5">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold" style={{ color: "var(--text)" }}>
+                {t.error.noPublicFollowers}
+              </h3>
+              <p className="mt-1 text-xs" style={{ color: "var(--text-muted)" }}>
+                {t.error.noPublicFollowersDesc}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {data && (data.followers.length > 0 || data.following.length > 0) && (
           <div className="mt-8 space-y-6 animate-slide-up">
             {profileOverview && (
               <ProfileOverviewCard
