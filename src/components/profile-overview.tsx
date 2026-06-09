@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLocale } from "@/lib/locale-context";
 import type { ProfileOverview } from "@/lib/github";
 
@@ -60,12 +61,13 @@ export function ProfileOverviewCard({ overview, username, avatarUrl }: ProfileOv
         rel="noopener noreferrer"
         className="flex items-center gap-3 transition-opacity hover:opacity-80"
       >
-        <img
+        <Image
           src={avatarUrl}
           alt={`${username}'s avatar`}
           width={44}
           height={44}
           className="rounded-full"
+          unoptimized
         />
         <div className="min-w-0">
           <p className="text-sm font-semibold" style={{ color: "var(--text)" }}>

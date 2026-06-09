@@ -5,6 +5,7 @@ import { useVirtualizer } from "@tanstack/react-virtual";
 import type { GitHubUser } from "@/lib/github";
 import { useLocale } from "@/lib/locale-context";
 import { UserCard } from "./user-card";
+import { SortSelector, type SortOption } from "./sort-selector";
 
 interface UserGridProps {
   users: GitHubUser[];
@@ -107,14 +108,21 @@ export function UserGrid({
 }: UserGridProps) {
   const { t } = useLocale();
   const [search, setSearch] = useState("");
+  const [sort, setSort] = useState<SortOption>("default");
 
-  const filtered = useMemo(
-    () =>
-      users.filter((u) =>
-        u.login.toLowerCase().includes(search.toLowerCase())
-      ),
-    [users, search]
-  );
+  const filtered = useMemo(() => {
+    let result = users.filter((u) =>
+      u.login.toLowerCase().includes(search.toLowerCase())
+    );
+
+    if (sort === "name-asc") {
+      result = [...result].sort((a, b) => a.login.localeCompare(b.login));
+    } else if (sort === "name-desc") {
+      result = [...result].sort((a, b) => b.login.localeCompare(a.login));
+    }
+
+    return result;
+  }, [users, search, sort]);
 
   const handleClear = useCallback(() => setSearch(""), []);
 
@@ -123,37 +131,40 @@ export function UserGrid({
   return (
     <div className="space-y-4">
       {users.length > 0 && (
-        <div
-          className="flex items-center gap-2 rounded-xl border px-4 py-2.5"
-          style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
-        >
-          <svg
-            width="16" height="16" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" strokeWidth="2"
-            style={{ color: "var(--text-muted)" }}
+        <div className="flex items-center gap-2">
+          <div
+            className="flex flex-1 items-center gap-2 rounded-xl border px-4 py-2.5"
+            style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
           >
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-          <input
-            type="text"
-            placeholder={t.grid.searchPlaceholder.replace("{count}", String(users.length))}
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-transparent text-sm outline-none placeholder:opacity-50"
-            style={{ color: "var(--text)" }}
-            aria-label="Filter users"
-          />
-          {search && (
-            <button
-              onClick={handleClear}
-              className="text-xs"
+            <svg
+              width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="2"
               style={{ color: "var(--text-muted)" }}
-              aria-label="Clear search"
             >
-              ✕
-            </button>
-          )}
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input
+              type="text"
+              placeholder={t.grid.searchPlaceholder.replace("{count}", String(users.length))}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full bg-transparent text-sm outline-none placeholder:opacity-50"
+              style={{ color: "var(--text)" }}
+              aria-label="Filter users"
+            />
+            {search && (
+              <button
+                onClick={handleClear}
+                className="text-xs"
+                style={{ color: "var(--text-muted)" }}
+                aria-label="Clear search"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+          <SortSelector value={sort} onChange={setSort} />
         </div>
       )}
 

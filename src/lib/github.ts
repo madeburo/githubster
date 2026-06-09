@@ -28,6 +28,8 @@ export interface RateLimitInfo {
 
 interface FetchOptions {
   token?: string;
+  signal?: AbortSignal;
+  onProgress?: (loaded: number, total: number | null) => void;
 }
 
 interface FetchResult {
@@ -68,13 +70,20 @@ async function fetchAllPages(
   }
 
   while (true) {
+    if (options.signal?.aborted) {
+      throw new DOMException("Aborted", "AbortError");
+    }
+
     let response: Response;
     try {
       response = await fetch(
         `${url}?per_page=${perPage}&page=${page}`,
-        { headers }
+        { headers, signal: options.signal }
       );
-    } catch {
+    } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") {
+        throw err;
+      }
       throw new Error(
         "Network error. Please check your internet connection and try again."
       );
@@ -99,6 +108,7 @@ async function fetchAllPages(
     if (users.length === 0) break;
 
     allUsers.push(...users);
+    options.onProgress?.(allUsers.length, null);
 
     if (users.length < perPage) break;
     page++;
@@ -109,21 +119,25 @@ async function fetchAllPages(
 
 export async function getFollowers(
   username: string,
-  token?: string
+  token?: string,
+  signal?: AbortSignal,
+  onProgress?: (loaded: number, total: number | null) => void
 ): Promise<FetchResult> {
   return fetchAllPages(
     `https://api.github.com/users/${username}/followers`,
-    { token }
+    { token, signal, onProgress }
   );
 }
 
 export async function getFollowing(
   username: string,
-  token?: string
+  token?: string,
+  signal?: AbortSignal,
+  onProgress?: (loaded: number, total: number | null) => void
 ): Promise<FetchResult> {
   return fetchAllPages(
     `https://api.github.com/users/${username}/following`,
-    { token }
+    { token, signal, onProgress }
   );
 }
 
@@ -144,14 +158,32 @@ function validateUsername(username: string): string {
   return encodeURIComponent(sanitized);
 }
 
+export interface LoadingProgress {
+  followersLoaded: number;
+  followingLoaded: number;
+  phase: "followers" | "following" | "done";
+}
+
 export async function getFollowData(
   username: string,
-  token?: string
+  token?: string,
+  signal?: AbortSignal,
+  onProgress?: (progress: LoadingProgress) => void
 ): Promise<FollowData> {
   const safeUsername = validateUsername(username);
+
+  let followersLoaded = 0;
+  let followingLoaded = 0;
+
   const [followersResult, followingResult] = await Promise.all([
-    getFollowers(safeUsername, token),
-    getFollowing(safeUsername, token),
+    getFollowers(safeUsername, token, signal, (loaded) => {
+      followersLoaded = loaded;
+      onProgress?.({ followersLoaded, followingLoaded, phase: "followers" });
+    }),
+    getFollowing(safeUsername, token, signal, (loaded) => {
+      followingLoaded = loaded;
+      onProgress?.({ followersLoaded, followingLoaded, phase: "following" });
+    }),
   ]);
 
   const followers = followersResult.users;
@@ -179,7 +211,8 @@ export async function getFollowData(
 
 export async function getProfileOverview(
   username: string,
-  token?: string
+  token?: string,
+  signal?: AbortSignal
 ): Promise<ProfileOverview> {
   const safeUsername = validateUsername(username);
 
@@ -196,9 +229,13 @@ export async function getProfileOverview(
   const perPage = 100;
 
   while (true) {
+    if (signal?.aborted) {
+      throw new DOMException("Aborted", "AbortError");
+    }
+
     const response = await fetch(
       `https://api.github.com/users/${safeUsername}/repos?per_page=${perPage}&page=${page}&type=owner`,
-      { headers }
+      { headers, signal }
     );
 
     if (!response.ok) break;
@@ -241,7 +278,7 @@ export async function getProfileOverview(
   try {
     const userRes = await fetch(
       `https://api.github.com/users/${safeUsername}`,
-      { headers }
+      { headers, signal }
     );
     if (userRes.ok) {
       const userData = await userRes.json();

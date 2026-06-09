@@ -85,6 +85,30 @@ export const en = {
     openSource: "Open source on",
     madeWith: "Made with ♥ in",
   },
+  share: {
+    button: "Share",
+    copied: "Copied!",
+    tooltip: "Share profile link",
+  },
+  sort: {
+    label: "Sort users",
+    default: "Default",
+    nameAsc: "Name A→Z",
+    nameDesc: "Name Z→A",
+  },
+  loading: {
+    title: "Loading profile data...",
+    followers: "Followers",
+    following: "Following",
+  },
 };
 
-export type Translations = typeof en;
+// New keys are optional — not all translations need to provide them immediately
+type BaseTranslations = Omit<typeof en, "share" | "sort" | "loading">;
+type OptionalTranslations = {
+  share?: typeof en.share;
+  sort?: typeof en.sort;
+  loading?: typeof en.loading;
+};
+
+export type Translations = BaseTranslations & OptionalTranslations;

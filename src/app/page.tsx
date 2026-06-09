@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { SearchForm } from "@/components/search-form";
 import { Tabs } from "@/components/tabs";
 import { UserGrid } from "@/components/user-grid";
@@ -11,8 +11,10 @@ import { GitHubStarButton } from "@/components/github-star-button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageSelector } from "@/components/language-selector";
 import { RateLimit } from "@/components/rate-limit";
+import { ShareButton } from "@/components/share-button";
+import { SkeletonLoader } from "@/components/skeleton-loader";
 import { useLocale } from "@/lib/locale-context";
-import { getFollowData, getProfileOverview, type FollowData, type ProfileOverview, type RateLimitInfo } from "@/lib/github";
+import { getFollowData, getProfileOverview, type FollowData, type ProfileOverview, type RateLimitInfo, type LoadingProgress } from "@/lib/github";
 
 type TabId = "unfollowers" | "notFollowingBack" | "mutuals" | "following" | "followers";
 
@@ -27,12 +29,39 @@ export default function Home() {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [rateLimit, setRateLimit] = useState<RateLimitInfo | null>(null);
   const [lastSearch, setLastSearch] = useState<{ user: string; token?: string } | null>(null);
+  const [progress, setProgress] = useState<LoadingProgress | null>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
+
+  // Keyboard shortcut: "/" to focus search
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "/" && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        const target = e.target as HTMLElement;
+        if (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable) {
+          return;
+        }
+        e.preventDefault();
+        const input = document.querySelector('input[name="github-username-search"]') as HTMLInputElement;
+        input?.focus();
+      }
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const handleSearch = useCallback(async (user: string, token?: string) => {
+    // Abort previous request
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
     setIsLoading(true);
     setError(null);
     setData(null);
     setProfileOverview(null);
+    setProgress(null);
     setLastSearch({ user, token });
 
     // Update URL without reload
@@ -42,8 +71,8 @@ export default function Home() {
 
     try {
       const [result, overview] = await Promise.all([
-        getFollowData(user, token),
-        getProfileOverview(user, token),
+        getFollowData(user, token, controller.signal, (p) => setProgress(p)),
+        getProfileOverview(user, token, controller.signal),
       ]);
       setData(result);
       setProfileOverview(overview);
@@ -52,9 +81,13 @@ export default function Home() {
         setRateLimit(result.rateLimit);
       }
     } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") {
+        return; // silently ignore aborted requests
+      }
       setError(err instanceof Error ? err.message : "Something went wrong");
     } finally {
       setIsLoading(false);
+      setProgress(null);
     }
   }, []);
 
@@ -211,6 +244,11 @@ export default function Home() {
             {/* Search - centered */}
             <div className="mt-8">
               <SearchForm onSearch={handleSearch} isLoading={isLoading} />
+              {!data && !isLoading && (
+                <p className="mt-2 text-[11px]" style={{ color: "var(--text-subtle)" }}>
+                  Press <kbd className="rounded border px-1 py-0.5 text-[10px]" style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}>/</kbd> to focus search
+                </p>
+              )}
             </div>
           </div>
         </section>
@@ -292,6 +330,9 @@ export default function Home() {
           </div>
         )}
 
+        {/* Skeleton loading state */}
+        {isLoading && <SkeletonLoader progress={progress} />}
+
         {/* Results */}
         {data && data.followers.length === 0 && data.following.length === 0 && (
           <div
@@ -326,6 +367,13 @@ export default function Home() {
 
         {data && (data.followers.length > 0 || data.following.length > 0) && (
           <div className="mt-8 space-y-6 animate-slide-up">
+            {/* Share button row */}
+            {username && (
+              <div className="flex justify-end">
+                <ShareButton username={username} />
+              </div>
+            )}
+
             {profileOverview && (
               <ProfileOverviewCard
                 overview={profileOverview}
