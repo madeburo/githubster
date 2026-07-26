@@ -69,7 +69,7 @@ export const ar: Translations = {
     feature2Title: "المتابِعون",
     feature2Desc: "اكتشف من يتابعك ولكنك لا تتابعه.",
     feature3Title: "خاص وآمن",
-    feature3Desc: "يعمل بالكامل في المتصفح. لا يتم تخزين أي بيانات.",
+    feature3Desc: "يتم تحليل الملف الشخصي في متصفحك. لا يتم تخزين رمز الوصول الاختياري.",
   },
   profileOverview: {
     title: "نظرة عامة على الملف الشخصي",

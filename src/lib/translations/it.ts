@@ -69,7 +69,7 @@ export const it: Translations = {
     feature2Title: "Follower",
     feature2Desc: "Scopri chi ti segue ma tu non segui.",
     feature3Title: "Privato e Sicuro",
-    feature3Desc: "Funziona interamente nel browser. Nessun dato viene salvato.",
+    feature3Desc: "L’analisi del profilo avviene nel browser. I token di accesso facoltativi non vengono salvati.",
   },
   profileOverview: {
     title: "Panoramica profilo",

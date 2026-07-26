@@ -70,7 +70,7 @@ body::before {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Google Sans Flex", var(--font-manrope), sans-serif;
+  font-family: var(--font-google-sans-flex), var(--font-manrope), sans-serif;
 }
 
 /* Smooth transitions for theme switching */

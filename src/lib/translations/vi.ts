@@ -69,7 +69,7 @@ export const vi: Translations = {
     feature2Title: "Người theo dõi",
     feature2Desc: "Khám phá người follow bạn mà bạn chưa follow lại.",
     feature3Title: "Riêng tư & An toàn",
-    feature3Desc: "Chạy hoàn toàn trên trình duyệt. Không lưu trữ dữ liệu.",
+    feature3Desc: "Phân tích hồ sơ diễn ra trong trình duyệt. Token truy cập tùy chọn không được lưu trữ.",
   },
   profileOverview: {
     title: "Tổng quan hồ sơ",

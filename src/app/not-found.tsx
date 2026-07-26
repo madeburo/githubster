@@ -1,15 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { useLocale } from "@/lib/locale-context";
 
 export default function NotFound() {
   const { t } = useLocale();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 text-center">
@@ -19,18 +15,24 @@ export default function NotFound() {
         style={{ backgroundImage: "url(/bg.jpg)", opacity: 0.04 }}
       />
 
-      <div className={`relative z-10 space-y-8 ${mounted ? "animate-fade-in" : "opacity-0"}`}>
+      <div className="relative z-10 space-y-8 animate-fade-in">
         {/* Logo */}
-        <a href="/" className="group relative inline-block transition-opacity hover:opacity-80">
-          <img
+        <Link href="/" className="group relative inline-block transition-opacity hover:opacity-80">
+          <Image
             src="/githubster.svg"
             alt="Githubster"
-            className="mx-auto hidden h-8 dark:block"
+            width={425}
+            height={54}
+            loading="eager"
+            className="mx-auto hidden h-8 w-auto dark:block"
           />
-          <img
+          <Image
             src="/logo.svg"
             alt="Githubster"
-            className="mx-auto block h-8 dark:hidden"
+            width={425}
+            height={54}
+            loading="eager"
+            className="mx-auto block h-8 w-auto dark:hidden"
           />
           <span
             className="pointer-events-none absolute -bottom-7 left-1/2 -translate-x-1/2 rounded-md px-2 py-0.5 text-[10px] opacity-0 transition-opacity group-hover:opacity-100"
@@ -38,7 +40,7 @@ export default function NotFound() {
           >
             meow 404 meow
           </span>
-        </a>
+        </Link>
 
         {/* 404 number */}
         <h1
@@ -63,7 +65,7 @@ export default function NotFound() {
         </div>
 
         {/* Button */}
-        <a
+        <Link
           href="/"
           className="inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-white transition-all hover:scale-[1.02] active:scale-[0.98]"
           style={{
@@ -75,7 +77,7 @@ export default function NotFound() {
             <polyline points="12 19 5 12 12 5" />
           </svg>
           {t.notFound.button}
-        </a>
+        </Link>
       </div>
     </main>
   );

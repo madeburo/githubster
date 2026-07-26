@@ -69,7 +69,7 @@ export const zh: Translations = {
     feature2Title: "粉丝",
     feature2Desc: "发现关注你但你还没关注的人。",
     feature3Title: "隐私安全",
-    feature3Desc: "完全在浏览器中运行，不存储或发送任何数据。",
+    feature3Desc: "个人资料分析在浏览器中进行。可选访问令牌不会被存储。",
   },
   profileOverview: {
     title: "个人概览",

@@ -69,7 +69,7 @@ export const id: Translations = {
     feature2Title: "Pengikut",
     feature2Desc: "Temukan orang yang follow kamu tapi belum kamu follow.",
     feature3Title: "Privat & Aman",
-    feature3Desc: "Berjalan sepenuhnya di browser. Tidak ada data yang disimpan.",
+    feature3Desc: "Analisis profil berjalan di browser. Token akses opsional tidak disimpan.",
   },
   profileOverview: {
     title: "Ikhtisar Profil",

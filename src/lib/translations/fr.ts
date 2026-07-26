@@ -69,7 +69,7 @@ export const fr: Translations = {
     feature2Title: "Abonnés",
     feature2Desc: "Découvrez qui vous suit mais que vous ne suivez pas encore.",
     feature3Title: "Privé et Sécurisé",
-    feature3Desc: "Fonctionne entièrement dans votre navigateur. Aucune donnée stockée.",
+    feature3Desc: "L’analyse du profil s’effectue dans votre navigateur. Les jetons d’accès facultatifs ne sont pas stockés.",
   },
   profileOverview: {
     title: "Aperçu du profil",

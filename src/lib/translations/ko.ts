@@ -69,7 +69,7 @@ export const ko: Translations = {
     feature2Title: "팔로워",
     feature2Desc: "나를 팔로우하지만 내가 팔로우하지 않는 사람을 발견하세요.",
     feature3Title: "프라이버시",
-    feature3Desc: "브라우저에서만 실행됩니다. 데이터가 저장되거나 전송되지 않습니다.",
+    feature3Desc: "프로필 분석은 브라우저에서 실행됩니다. 선택적 액세스 토큰은 저장되지 않습니다.",
   },
   profileOverview: {
     title: "프로필 개요",

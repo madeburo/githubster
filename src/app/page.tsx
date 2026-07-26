@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { SearchForm } from "@/components/search-form";
 import { Tabs } from "@/components/tabs";
 import { UserGrid } from "@/components/user-grid";
@@ -95,9 +97,13 @@ export default function Home() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const userFromUrl = params.get("user");
-    if (userFromUrl) {
-      handleSearch(userFromUrl);
-    }
+    if (!userFromUrl) return;
+
+    const timeoutId = window.setTimeout(() => {
+      void handleSearch(userFromUrl);
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
   }, [handleSearch]);
 
   useEffect(() => {
@@ -207,16 +213,22 @@ export default function Home() {
         <section className={`text-center ${data ? "mb-8" : "mb-0"}`}>
           <div className={`mx-auto max-w-2xl animate-fade-in ${data ? "" : "pt-12 sm:pt-20"}`}>
             <div className="mb-8 flex items-center justify-center">
-              <a href="/" className="group relative transition-opacity hover:opacity-80">
-                <img
+              <Link href="/" className="group relative transition-opacity hover:opacity-80">
+                <Image
                   src="/githubster.svg"
                   alt="Githubster"
-                  className="hidden h-10 dark:block sm:h-12"
+                  width={425}
+                  height={54}
+                  loading="eager"
+                  className="hidden h-10 w-auto dark:block sm:h-12"
                 />
-                <img
+                <Image
                   src="/logo.svg"
                   alt="Githubster"
-                  className="block h-10 dark:hidden sm:h-12"
+                  width={425}
+                  height={54}
+                  loading="eager"
+                  className="block h-10 w-auto dark:hidden sm:h-12"
                 />
                 <span className="sr-only">Githubster</span>
                 <span
@@ -226,7 +238,7 @@ export default function Home() {
                 >
                   meow
                 </span>
-              </a>
+              </Link>
             </div>
             <h1
               className="text-xl font-semibold sm:text-2xl"
@@ -553,19 +565,26 @@ export default function Home() {
             <h2 id="privacy-title" className="mb-4 text-lg font-semibold" style={{ color: "var(--text)" }}>Privacy Policy</h2>
             <div className="space-y-3 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
               <p>
-                <strong style={{ color: "var(--text)" }}>Your data stays with you.</strong> Githubster works entirely in your browser. We do not collect, store, or transmit any personal information to our servers.
+                <strong style={{ color: "var(--text)" }}>Browser-based processing.</strong> Githubster processes GitHub profile data and any access token you provide in your browser. The app does not send that information to Githubster application servers.
               </p>
               <p>
-                <strong style={{ color: "var(--text)" }}>Direct GitHub communication.</strong> When you enter a username or token, your browser communicates directly with the GitHub API. Your credentials never pass through our infrastructure.
+                <strong style={{ color: "var(--text)" }}>GitHub requests.</strong> Your browser communicates directly with the GitHub API. GitHub receives and handles those requests under its own{" "}
+                <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: "var(--text)" }}>
+                  privacy statement
+                </a>
+                .
               </p>
               <p>
-                <strong style={{ color: "var(--text)" }}>Minimal local storage.</strong> We save only your theme and language preferences in your browser's localStorage. No cookies, no fingerprinting, no tracking.
+                <strong style={{ color: "var(--text)" }}>Access tokens.</strong> A token is kept only in the current page session so the app can make your requested GitHub API calls. It is not saved to localStorage and is cleared when you close or reload the page.
               </p>
               <p>
-                <strong style={{ color: "var(--text)" }}>Privacy-friendly analytics.</strong> We use anonymous, cookie-free analytics to understand general usage patterns (e.g. page views, country). No personal data is collected or shared with third parties. This is fully compliant with GDPR — no consent banner is required.
+                <strong style={{ color: "var(--text)" }}>Local preferences.</strong> We save your theme and language preferences in localStorage. Githubster does not set application cookies or use browser fingerprinting.
               </p>
               <p>
-                <strong style={{ color: "var(--text)" }}>Email communication.</strong> If you reach out to us by email, we may collect your name and email address solely to respond to your inquiry. We will never share this information with third parties or use it for marketing.
+                <strong style={{ color: "var(--text)" }}>Analytics.</strong> When analytics is enabled, we use a configured Umami instance to understand aggregate usage such as page views, referrers, device types, and approximate country. Analytics requests are sent to that Umami endpoint. We do not use this information to create advertising profiles.
+              </p>
+              <p>
+                <strong style={{ color: "var(--text)" }}>Email communication.</strong> If you contact us by email, we use your contact details and message to reply and retain the correspondence as reasonably needed. We do not use it for marketing without your consent.
               </p>
               <p>
                 <strong style={{ color: "var(--text)" }}>Fully open source.</strong> Every line of code is publicly available on{" "}
@@ -579,6 +598,7 @@ export default function Home() {
                 <a href="mailto:hi@githubster.com" className="underline" style={{ color: "var(--text)" }}>
                   hi@githubster.com
                 </a>
+                . This notice was last updated on July 26, 2026.
               </p>
             </div>
           </div>

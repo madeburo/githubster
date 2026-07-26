@@ -69,7 +69,7 @@ export const de: Translations = {
     feature2Title: "Follower",
     feature2Desc: "Entdecke Leute, die dir folgen, denen du aber nicht folgst.",
     feature3Title: "Privat & Sicher",
-    feature3Desc: "Läuft vollständig im Browser. Keine Daten werden gespeichert.",
+    feature3Desc: "Die Profilanalyse läuft im Browser. Optionale Zugriffstokens werden nicht gespeichert.",
   },
   profileOverview: {
     title: "Profilübersicht",

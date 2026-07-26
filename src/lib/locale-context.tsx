@@ -4,7 +4,7 @@ import {
   createContext,
   useContext,
   useEffect,
-  useState,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 import { locales, type Locale, isRtl } from "./i18n";
@@ -23,13 +23,13 @@ const LocaleContext = createContext<LocaleContextValue>({
   t: translations.en,
 });
 
+const LOCALE_CHANGE_EVENT = "githubster:locale-change";
+
 export function useLocale() {
   return useContext(LocaleContext);
 }
 
 function detectLocale(): Locale {
-  if (typeof window === "undefined") return "en";
-
   const stored = localStorage.getItem("locale");
   if (stored && locales.includes(stored as Locale)) {
     return stored as Locale;
@@ -46,35 +46,57 @@ function detectLocale(): Locale {
   return "en";
 }
 
+function getServerLocaleSnapshot(): Locale {
+  return "en";
+}
+
+function subscribeToLocale(onStoreChange: () => void) {
+  function handleStorage(event: StorageEvent) {
+    if (event.key === "locale") {
+      onStoreChange();
+    }
+  }
+
+  window.addEventListener(LOCALE_CHANGE_EVENT, onStoreChange);
+  window.addEventListener("storage", handleStorage);
+
+  return () => {
+    window.removeEventListener(LOCALE_CHANGE_EVENT, onStoreChange);
+    window.removeEventListener("storage", handleStorage);
+  };
+}
+
+function applyDirection(locale: Locale) {
+  document.documentElement.dir = isRtl(locale) ? "rtl" : "ltr";
+  document.documentElement.lang = locale;
+}
+
+function applyMeta(locale: Locale) {
+  const t = translations[locale];
+  document.title = t.meta.title;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) {
+    metaDesc.setAttribute("content", t.meta.description);
+  }
+}
+
 export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
+  const locale = useSyncExternalStore(
+    subscribeToLocale,
+    detectLocale,
+    getServerLocaleSnapshot
+  );
 
   useEffect(() => {
-    const detected = detectLocale();
-    setLocaleState(detected);
-    applyDirection(detected);
-    applyMeta(detected);
-  }, []);
+    applyDirection(locale);
+    applyMeta(locale);
+  }, [locale]);
 
   function setLocale(newLocale: Locale) {
-    setLocaleState(newLocale);
     localStorage.setItem("locale", newLocale);
     applyDirection(newLocale);
     applyMeta(newLocale);
-  }
-
-  function applyDirection(loc: Locale) {
-    document.documentElement.dir = isRtl(loc) ? "rtl" : "ltr";
-    document.documentElement.lang = loc;
-  }
-
-  function applyMeta(loc: Locale) {
-    const t = translations[loc];
-    document.title = t.meta.title;
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", t.meta.description);
-    }
+    window.dispatchEvent(new Event(LOCALE_CHANGE_EVENT));
   }
 
   const t = translations[locale];

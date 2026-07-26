@@ -69,7 +69,7 @@ export const ja: Translations = {
     feature2Title: "フォロワー",
     feature2Desc: "フォローされているのにフォローしていない人を発見。",
     feature3Title: "プライベート＆安全",
-    feature3Desc: "完全にブラウザで動作。データは保存・送信されません。",
+    feature3Desc: "プロフィール分析はブラウザ内で行われます。任意のアクセストークンは保存されません。",
   },
   profileOverview: {
     title: "プロフィール概要",

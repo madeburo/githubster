@@ -69,7 +69,7 @@ export const tr: Translations = {
     feature2Title: "Takipçiler",
     feature2Desc: "Sizi takip eden ama takip etmediğiniz kişileri keşfedin.",
     feature3Title: "Gizli ve Güvenli",
-    feature3Desc: "Tamamen tarayıcınızda çalışır. Hiçbir veri saklanmaz.",
+    feature3Desc: "Profil analizi tarayıcınızda yapılır. İsteğe bağlı erişim jetonları kaydedilmez.",
   },
   profileOverview: {
     title: "Profil Özeti",
