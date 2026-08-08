@@ -20,7 +20,11 @@ export const ar: Translations = {
     loading: "جاري التحميل...",
     tokenToggle: "إضافة رمز (اختياري، يزيد الحد)",
     tokenHide: "إخفاء الرمز (اختياري، يزيد الحد)",
-    tokenPlaceholder: "ghp_xxxxxxxxxxxxxxxxxxxx",
+    tokenPlaceholder: "github_pat_xxxxxxxxxxxx",
+    tokenShow: "إظهار الرمز",
+    tokenMask: "إخفاء الرمز",
+    tokenClear: "مسح الرمز",
+    tokenPrivacy: "يُستخدم فقط للطلبات المباشرة إلى واجهة GitHub API. لا يتم حفظه أو إرساله إلى Githubster.",
   },
   tabs: {
     unfollowers: "لا يتابعونك",
@@ -77,6 +81,7 @@ export const ar: Translations = {
     repositories: "مستودعات",
     totalStars: "إجمالي النجوم",
     topLanguages: "اللغات حسب النجوم",
+    repositoriesUnavailable: "بيانات المستودعات غير متاحة",
   },
   banner: {
     text: "Githubster مجاني ومفتوح المصدر. ادعم المشروع بنجمة على GitHub.",

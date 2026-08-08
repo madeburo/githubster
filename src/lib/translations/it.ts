@@ -20,7 +20,11 @@ export const it: Translations = {
     loading: "Caricamento...",
     tokenToggle: "Aggiungi token (opzionale, aumenta il limite)",
     tokenHide: "Nascondi token (opzionale, aumenta il limite)",
-    tokenPlaceholder: "ghp_xxxxxxxxxxxxxxxxxxxx",
+    tokenPlaceholder: "github_pat_xxxxxxxxxxxx",
+    tokenShow: "Mostra token",
+    tokenMask: "Nascondi token",
+    tokenClear: "Cancella token",
+    tokenPrivacy: "Usato solo per richieste dirette all’API GitHub. Non viene salvato né inviato a Githubster.",
   },
   tabs: {
     unfollowers: "Non ricambiano",
@@ -77,6 +81,7 @@ export const it: Translations = {
     repositories: "repository",
     totalStars: "Stelle totali",
     topLanguages: "Linguaggi per stelle",
+    repositoriesUnavailable: "Dati dei repository non disponibili",
   },
   banner: {
     text: "Githubster è gratuito e open source. Supporta il progetto con una stella su GitHub.",

@@ -20,7 +20,11 @@ export const tr: Translations = {
     loading: "Yükleniyor...",
     tokenToggle: "Token ekle (isteğe bağlı, limiti artırır)",
     tokenHide: "Tokeni gizle (isteğe bağlı, limiti artırır)",
-    tokenPlaceholder: "ghp_xxxxxxxxxxxxxxxxxxxx",
+    tokenPlaceholder: "github_pat_xxxxxxxxxxxx",
+    tokenShow: "Tokeni göster",
+    tokenMask: "Tokeni gizle",
+    tokenClear: "Tokeni temizle",
+    tokenPrivacy: "Yalnızca GitHub API’ye doğrudan istekler için kullanılır. Kaydedilmez veya Githubster’a gönderilmez.",
   },
   tabs: {
     unfollowers: "Geri takip etmiyor",
@@ -77,6 +81,7 @@ export const tr: Translations = {
     repositories: "depo",
     totalStars: "Toplam Yıldız",
     topLanguages: "Yıldıza göre diller",
+    repositoriesUnavailable: "Depo verileri kullanılamıyor",
   },
   banner: {
     text: "Githubster ücretsiz ve açık kaynaklıdır. GitHub'da yıldız vererek projeyi destekleyin.",

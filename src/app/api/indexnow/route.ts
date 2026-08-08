@@ -1,17 +1,39 @@
-import { NextResponse } from "next/server";
+import { createHash, timingSafeEqual } from "node:crypto";
+import { NextRequest, NextResponse } from "next/server";
 
 const INDEXNOW_KEY = process.env.INDEXNOW_KEY;
+const INDEXNOW_SECRET = process.env.INDEXNOW_SECRET;
 const SITE_URL = "https://www.githubster.com";
 
 const URLS_TO_INDEX = [
   SITE_URL,
 ];
 
-export async function GET() {
-  if (!INDEXNOW_KEY) {
+function hasValidBearerToken(request: NextRequest, expectedToken: string): boolean {
+  const authorization = request.headers.get("authorization");
+  const match = authorization?.match(/^Bearer\s+(.+)$/i);
+  if (!match) return false;
+
+  const provided = createHash("sha256").update(match[1]).digest();
+  const expected = createHash("sha256").update(expectedToken).digest();
+  return timingSafeEqual(provided, expected);
+}
+
+export async function POST(request: NextRequest) {
+  if (!INDEXNOW_KEY || !INDEXNOW_SECRET || INDEXNOW_SECRET.length < 32) {
     return NextResponse.json(
-      { success: false, message: "INDEXNOW_KEY is not configured" },
-      { status: 500 }
+      { success: false, message: "IndexNow is not configured" },
+      { status: 503 }
+    );
+  }
+
+  if (!hasValidBearerToken(request, INDEXNOW_SECRET)) {
+    return NextResponse.json(
+      { success: false, message: "Unauthorized" },
+      {
+        status: 401,
+        headers: { "WWW-Authenticate": "Bearer" },
+      }
     );
   }
 
@@ -38,22 +60,24 @@ export async function GET() {
       });
     }
 
-    const text = await response.text();
+    const details = await response.text();
+    console.error("IndexNow submission failed", response.status, details.slice(0, 500));
     return NextResponse.json(
       {
         success: false,
-        status: response.status,
-        message: `IndexNow API error: ${text}`,
+        message: "IndexNow submission failed",
+        upstreamStatus: response.status,
       },
-      { status: response.status }
+      { status: 502 }
     );
   } catch (error) {
+    console.error("IndexNow request failed", error);
     return NextResponse.json(
       {
         success: false,
-        message: error instanceof Error ? error.message : "Unknown error",
+        message: "IndexNow request failed",
       },
-      { status: 500 }
+      { status: 502 }
     );
   }
 }

@@ -20,7 +20,11 @@ export const vi: Translations = {
     loading: "Đang tải...",
     tokenToggle: "Thêm token (tùy chọn, tăng giới hạn)",
     tokenHide: "Ẩn token (tùy chọn, tăng giới hạn)",
-    tokenPlaceholder: "ghp_xxxxxxxxxxxxxxxxxxxx",
+    tokenPlaceholder: "github_pat_xxxxxxxxxxxx",
+    tokenShow: "Hiện token",
+    tokenMask: "Ẩn token",
+    tokenClear: "Xóa token",
+    tokenPrivacy: "Chỉ dùng cho các yêu cầu trực tiếp đến API GitHub. Không được lưu hoặc gửi đến Githubster.",
   },
   tabs: {
     unfollowers: "Không follow lại",
@@ -77,6 +81,7 @@ export const vi: Translations = {
     repositories: "kho lưu trữ",
     totalStars: "Tổng sao",
     topLanguages: "Ngôn ngữ theo sao",
+    repositoriesUnavailable: "Không có dữ liệu kho lưu trữ",
   },
   banner: {
     text: "Githubster miễn phí và mã nguồn mở. Hỗ trợ dự án bằng một ngôi sao trên GitHub.",

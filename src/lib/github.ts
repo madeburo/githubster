@@ -13,9 +13,11 @@ export interface GitHubRepo {
 }
 
 export interface ProfileOverview {
-  publicRepos: number;
-  totalStars: number;
-  topLanguages: { language: string; percentage: number }[];
+  repositoryStats: {
+    publicRepos: number;
+    totalStars: number;
+    topLanguages: { language: string; percentage: number }[];
+  } | null;
   avatarUrl: string;
 }
 
@@ -223,55 +225,68 @@ export async function getProfileOverview(
     headers.Authorization = `Bearer ${token}`;
   }
 
-  // Fetch all repos (paginated)
-  const repos: GitHubRepo[] = [];
-  let page = 1;
-  const perPage = 100;
+  let repositoryStats: ProfileOverview["repositoryStats"] = null;
 
-  while (true) {
-    if (signal?.aborted) {
-      throw new DOMException("Aborted", "AbortError");
+  try {
+    // Fetch all repos (paginated). Partial results are discarded if any page fails.
+    const repos: GitHubRepo[] = [];
+    let page = 1;
+    const perPage = 100;
+
+    while (true) {
+      if (signal?.aborted) {
+        throw new DOMException("Aborted", "AbortError");
+      }
+
+      const response = await fetch(
+        `https://api.github.com/users/${safeUsername}/repos?per_page=${perPage}&page=${page}&type=owner`,
+        { headers, signal }
+      );
+
+      if (!response.ok) {
+        throw new Error(`GitHub repository API error: ${response.status}`);
+      }
+
+      const batch: GitHubRepo[] = await response.json();
+      if (batch.length === 0) break;
+
+      repos.push(...batch);
+      if (batch.length < perPage) break;
+      page++;
     }
 
-    const response = await fetch(
-      `https://api.github.com/users/${safeUsername}/repos?per_page=${perPage}&page=${page}&type=owner`,
-      { headers, signal }
-    );
+    // Only own (non-fork) repos
+    const ownRepos = repos.filter((r) => !r.fork);
+    const totalStars = ownRepos.reduce((sum, r) => sum + r.stargazers_count, 0);
 
-    if (!response.ok) break;
-
-    const batch: GitHubRepo[] = await response.json();
-    if (batch.length === 0) break;
-
-    repos.push(...batch);
-    if (batch.length < perPage) break;
-    page++;
-  }
-
-  // Only own (non-fork) repos
-  const ownRepos = repos.filter((r) => !r.fork);
-
-  const totalStars = ownRepos.reduce((sum, r) => sum + r.stargazers_count, 0);
-
-  // Aggregate stars by language
-  const languageStars: Record<string, number> = {};
-  for (const repo of ownRepos) {
-    if (repo.language) {
-      languageStars[repo.language] = (languageStars[repo.language] || 0) + repo.stargazers_count;
+    // Aggregate stars by language
+    const languageStars: Record<string, number> = {};
+    for (const repo of ownRepos) {
+      if (repo.language) {
+        languageStars[repo.language] = (languageStars[repo.language] || 0) + repo.stargazers_count;
+      }
     }
+
+    const sorted = Object.entries(languageStars)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 5);
+    const totalLangStars = sorted.reduce((sum, [, stars]) => sum + stars, 0);
+    const topLanguages = sorted.map(([language, stars]) => ({
+      language,
+      percentage: totalLangStars > 0 ? Math.round((stars / totalLangStars) * 100) : 0,
+    }));
+
+    repositoryStats = {
+      publicRepos: ownRepos.length,
+      totalStars,
+      topLanguages,
+    };
+  } catch (error) {
+    if (error instanceof DOMException && error.name === "AbortError") {
+      throw error;
+    }
+    // Repository metrics remain explicitly unavailable instead of becoming false zeroes.
   }
-
-  // Sort by stars descending, take top 5
-  const sorted = Object.entries(languageStars)
-    .sort(([, a], [, b]) => b - a)
-    .slice(0, 5);
-
-  const totalLangStars = sorted.reduce((sum, [, stars]) => sum + stars, 0);
-
-  const topLanguages = sorted.map(([language, stars]) => ({
-    language,
-    percentage: totalLangStars > 0 ? Math.round((stars / totalLangStars) * 100) : 0,
-  }));
 
   // Fetch user profile for avatar
   let avatarUrl = `https://github.com/${safeUsername}.png`;
@@ -286,14 +301,15 @@ export async function getProfileOverview(
         avatarUrl = userData.avatar_url;
       }
     }
-  } catch {
+  } catch (error) {
+    if (error instanceof DOMException && error.name === "AbortError") {
+      throw error;
+    }
     // fallback to github.com/{user}.png
   }
 
   return {
-    publicRepos: ownRepos.length,
-    totalStars,
-    topLanguages,
+    repositoryStats,
     avatarUrl,
   };
 }

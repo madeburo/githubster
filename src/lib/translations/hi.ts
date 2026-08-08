@@ -20,7 +20,11 @@ export const hi: Translations = {
     loading: "लोड हो रहा है...",
     tokenToggle: "टोकन जोड़ें (वैकल्पिक, सीमा बढ़ाता है)",
     tokenHide: "टोकन छुपाएं (वैकल्पिक, सीमा बढ़ाता है)",
-    tokenPlaceholder: "ghp_xxxxxxxxxxxxxxxxxxxx",
+    tokenPlaceholder: "github_pat_xxxxxxxxxxxx",
+    tokenShow: "टोकन दिखाएँ",
+    tokenMask: "टोकन छिपाएँ",
+    tokenClear: "टोकन साफ़ करें",
+    tokenPrivacy: "केवल GitHub API को सीधे अनुरोध भेजने के लिए उपयोग होता है। इसे सहेजा या Githubster को भेजा नहीं जाता।",
   },
   tabs: {
     unfollowers: "वापस फॉलो नहीं करते",
@@ -77,6 +81,7 @@ export const hi: Translations = {
     repositories: "रिपॉजिटरी",
     totalStars: "कुल स्टार",
     topLanguages: "स्टार के अनुसार भाषाएँ",
+    repositoriesUnavailable: "रिपॉज़िटरी डेटा उपलब्ध नहीं है",
   },
   banner: {
     text: "Githubster मुफ़्त और ओपन सोर्स है। GitHub पर स्टार देकर प्रोजेक्ट का समर्थन करें।",

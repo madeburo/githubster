@@ -20,7 +20,11 @@ export const id: Translations = {
     loading: "Memuat...",
     tokenToggle: "Tambah token (opsional, meningkatkan limit)",
     tokenHide: "Sembunyikan token (opsional, meningkatkan limit)",
-    tokenPlaceholder: "ghp_xxxxxxxxxxxxxxxxxxxx",
+    tokenPlaceholder: "github_pat_xxxxxxxxxxxx",
+    tokenShow: "Tampilkan token",
+    tokenMask: "Sembunyikan token",
+    tokenClear: "Hapus token",
+    tokenPrivacy: "Hanya digunakan untuk permintaan langsung ke API GitHub. Tidak disimpan atau dikirim ke Githubster.",
   },
   tabs: {
     unfollowers: "Tidak Follow Back",
@@ -77,6 +81,7 @@ export const id: Translations = {
     repositories: "repositori",
     totalStars: "Total Bintang",
     topLanguages: "Bahasa berdasarkan bintang",
+    repositoriesUnavailable: "Data repositori tidak tersedia",
   },
   banner: {
     text: "Githubster gratis dan open source. Dukung proyek dengan bintang di GitHub.",

@@ -20,7 +20,11 @@ export const zh: Translations = {
     loading: "加载中...",
     tokenToggle: "添加令牌（可选，提高请求限制）",
     tokenHide: "隐藏令牌（可选，提高请求限制）",
-    tokenPlaceholder: "ghp_xxxxxxxxxxxxxxxxxxxx",
+    tokenPlaceholder: "github_pat_xxxxxxxxxxxx",
+    tokenShow: "显示令牌",
+    tokenMask: "隐藏令牌",
+    tokenClear: "清除令牌",
+    tokenPrivacy: "仅用于直接请求 GitHub API。不会保存或发送到 Githubster。",
   },
   tabs: {
     unfollowers: "未回关",
@@ -77,6 +81,7 @@ export const zh: Translations = {
     repositories: "个仓库",
     totalStars: "总星标数",
     topLanguages: "按星标排列的语言",
+    repositoriesUnavailable: "仓库数据不可用",
   },
   banner: {
     text: "Githubster 是免费开源项目。在 GitHub 上给个星标支持一下。",

@@ -20,7 +20,11 @@ export const uk: Translations = {
     loading: "Завантаження...",
     tokenToggle: "Додати токен (необов'язково, збільшує ліміт)",
     tokenHide: "Сховати токен (необов'язково, збільшує ліміт)",
-    tokenPlaceholder: "ghp_xxxxxxxxxxxxxxxxxxxx",
+    tokenPlaceholder: "github_pat_xxxxxxxxxxxx",
+    tokenShow: "Показати токен",
+    tokenMask: "Приховати токен",
+    tokenClear: "Очистити токен",
+    tokenPrivacy: "Використовується лише для прямих запитів до GitHub API. Не зберігається і не надсилається до Githubster.",
   },
   tabs: {
     unfollowers: "Не підписані у відповідь",
@@ -77,6 +81,7 @@ export const uk: Translations = {
     repositories: "репозиторіїв",
     totalStars: "Всього зірок",
     topLanguages: "Мови за зірками",
+    repositoriesUnavailable: "Дані репозиторіїв недоступні",
   },
   banner: {
     text: "Githubster — безкоштовний проєкт з відкритим кодом. Підтримайте зіркою на GitHub.",

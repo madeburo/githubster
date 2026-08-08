@@ -6,7 +6,7 @@ Track your GitHub followers, unfollowers and following relationships.
 
 ![Githubster](https://img.shields.io/badge/Next.js-16-black?logo=next.js) ![TypeScript](https://img.shields.io/badge/TypeScript-6.0-blue?logo=typescript) ![Tailwind](https://img.shields.io/badge/Tailwind-4.3-38bdf8?logo=tailwindcss) ![React](https://img.shields.io/badge/React-19-61dafb?logo=react)
 
-Githubster is a free, open-source tool that helps you understand your GitHub social graph. Instantly see who doesn't follow you back, discover followers you haven't followed yet, and get a clear overview of your connections — all without signing in or sharing any personal data.
+Githubster is a free, open-source tool that helps you understand your public GitHub social graph. It requests profile data directly from the GitHub API in your browser, without requiring a Githubster account.
 
 ## Features
 
@@ -24,8 +24,8 @@ Githubster is a free, open-source tool that helps you understand your GitHub soc
 - Optional GitHub token for higher rate limits
 - Dark/Light theme
 - 17 languages supported (i18n with RTL)
-- PWA — installable as a standalone app
-- Fully client-side — no data stored on any server
+- Web app manifest for standalone installation (GitHub data still requires a network connection)
+- Browser-based profile analysis — usernames and optional tokens are sent directly to GitHub, not to a Githubster API
 - SEO optimized with structured data (JSON-LD)
 
 ## Getting Started
@@ -42,12 +42,15 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## GitHub Token (Optional)
 
-Without a token, the GitHub API allows 60 requests per hour. With a personal access token, you get 5,000 requests per hour.
+Without a token, GitHub normally allows 60 REST API requests per hour per IP address. An authenticated personal account normally gets 5,000 requests per hour, but GitHub can apply different limits in some situations.
 
 To create a token:
-1. Go to [GitHub Settings → Developer settings → Personal access tokens](https://github.com/settings/tokens)
-2. Generate a new token (classic) — no scopes needed for public data
-3. Paste it in the token field in the app
+
+1. Open [GitHub Settings → Developer settings → Fine-grained tokens](https://github.com/settings/personal-access-tokens/new).
+2. Create a fine-grained token with an expiration date and grant only the minimum access GitHub requires for the public endpoints you use.
+3. Paste it into the optional token field. The value stays in the current page state, is used only for direct requests to `api.github.com`, and is cleared when the page is reloaded or closed.
+
+GitHub recommends fine-grained tokens, limited permissions, and expiration dates. See [Keeping your API credentials secure](https://docs.github.com/en/rest/authentication/keeping-your-api-credentials-secure) and [permissions required for fine-grained tokens](https://docs.github.com/en/rest/authentication/permissions-required-for-fine-grained-personal-access-tokens).
 
 ## Tech Stack
 
@@ -64,7 +67,30 @@ To create a token:
 - Strict-Transport-Security (HSTS)
 - X-Content-Type-Options, X-Frame-Options
 - Permissions-Policy
-- All data stays in the browser — zero server-side storage
+- Profile analysis runs in the browser; Githubster does not persist usernames, GitHub responses, or optional tokens
+- The optional token is a masked password field and can be revealed or cleared explicitly
+- If Umami is configured, the site loads the configured analytics script; Githubster does not send GitHub tokens to it
+- IndexNow submission requires a separate server-side bearer secret
+
+## Environment variables
+
+Copy `.env.example` to `.env.local` and set only the integrations you use.
+
+| Variable | Purpose |
+| --- | --- |
+| `INDEXNOW_KEY` | Public IndexNow verification key, also served at `/{INDEXNOW_KEY}.txt` |
+| `INDEXNOW_SECRET` | Private bearer secret required by `POST /api/indexnow`; use a random value of at least 32 characters, different from the public key |
+| `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | Optional Umami website identifier |
+| `NEXT_PUBLIC_UMAMI_URL` | Optional analytics script URL |
+
+Trigger IndexNow from a trusted deployment workflow or server environment:
+
+```bash
+curl --request POST https://www.githubster.com/api/indexnow \
+  --header "Authorization: Bearer $INDEXNOW_SECRET"
+```
+
+`GET /api/indexnow` is intentionally unsupported, and the secret must never use a `NEXT_PUBLIC_` prefix.
 
 ## Contributing
 

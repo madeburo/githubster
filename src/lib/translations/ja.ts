@@ -20,7 +20,11 @@ export const ja: Translations = {
     loading: "読み込み中...",
     tokenToggle: "トークンを追加（任意、レート制限を増加）",
     tokenHide: "トークンを非表示（任意、レート制限を増加）",
-    tokenPlaceholder: "ghp_xxxxxxxxxxxxxxxxxxxx",
+    tokenPlaceholder: "github_pat_xxxxxxxxxxxx",
+    tokenShow: "トークンを表示",
+    tokenMask: "トークンを隠す",
+    tokenClear: "トークンを消去",
+    tokenPrivacy: "GitHub API への直接リクエストにのみ使用されます。保存も Githubster への送信もされません。",
   },
   tabs: {
     unfollowers: "フォロバなし",
@@ -77,6 +81,7 @@ export const ja: Translations = {
     repositories: "リポジトリ",
     totalStars: "合計スター",
     topLanguages: "スター数別の言語",
+    repositoriesUnavailable: "リポジトリデータを取得できません",
   },
   banner: {
     text: "Githubsterは無料のオープンソースです。GitHubでスターを付けて応援してください。",

@@ -48,6 +48,7 @@ function getLanguageColor(language: string): string {
 
 export function ProfileOverviewCard({ overview, username, avatarUrl }: ProfileOverviewProps) {
   const { t } = useLocale();
+  const stats = overview.repositoryStats;
 
   return (
     <div
@@ -74,17 +75,19 @@ export function ProfileOverviewCard({ overview, username, avatarUrl }: ProfileOv
             @{username}
           </p>
           <p className="text-xs" style={{ color: "var(--text-subtle)" }}>
-            {overview.publicRepos} {t.profileOverview.repositories} · ★ {overview.totalStars}
+            {stats
+              ? `${stats.publicRepos} ${t.profileOverview.repositories} · ★ ${stats.totalStars}`
+              : t.profileOverview.repositoriesUnavailable}
           </p>
         </div>
       </a>
 
       {/* Languages */}
-      {overview.topLanguages.length > 0 && (
+      {stats && stats.topLanguages.length > 0 && (
         <div className="flex flex-1 flex-col gap-2 sm:border-l sm:pl-5" style={{ borderColor: "var(--border)" }}>
           {/* Language bar */}
           <div className="flex h-2.5 overflow-hidden rounded-full" style={{ background: "var(--border)" }}>
-            {overview.topLanguages.map((lang, i) => (
+            {stats.topLanguages.map((lang, i) => (
               <div
                 key={lang.language}
                 style={{
@@ -99,7 +102,7 @@ export function ProfileOverviewCard({ overview, username, avatarUrl }: ProfileOv
 
           {/* Language labels */}
           <div className="flex flex-wrap gap-x-3 gap-y-1">
-            {overview.topLanguages.map((lang) => (
+            {stats.topLanguages.map((lang) => (
               <div key={lang.language} className="flex items-center gap-1">
                 <span
                   className="inline-block h-2 w-2 rounded-full"

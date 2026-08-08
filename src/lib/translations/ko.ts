@@ -20,7 +20,11 @@ export const ko: Translations = {
     loading: "로딩 중...",
     tokenToggle: "토큰 추가 (선택사항, 요청 제한 증가)",
     tokenHide: "토큰 숨기기 (선택사항, 요청 제한 증가)",
-    tokenPlaceholder: "ghp_xxxxxxxxxxxxxxxxxxxx",
+    tokenPlaceholder: "github_pat_xxxxxxxxxxxx",
+    tokenShow: "토큰 표시",
+    tokenMask: "토큰 숨기기",
+    tokenClear: "토큰 지우기",
+    tokenPrivacy: "GitHub API에 직접 요청할 때만 사용됩니다. 저장되거나 Githubster로 전송되지 않습니다.",
   },
   tabs: {
     unfollowers: "맞팔 안 함",
@@ -77,6 +81,7 @@ export const ko: Translations = {
     repositories: "개 저장소",
     totalStars: "총 스타",
     topLanguages: "스타 기준 상위 언어",
+    repositoriesUnavailable: "저장소 데이터를 사용할 수 없습니다",
   },
   banner: {
     text: "Githubster는 무료 오픈소스입니다. GitHub 스타로 프로젝트를 응원해주세요.",

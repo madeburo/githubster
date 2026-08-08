@@ -20,7 +20,11 @@ export const kk: Translations = {
     loading: "Жүктелуде...",
     tokenToggle: "Токен қосу (міндетті емес, лимитті арттырады)",
     tokenHide: "Токенді жасыру (міндетті емес, лимитті арттырады)",
-    tokenPlaceholder: "ghp_xxxxxxxxxxxxxxxxxxxx",
+    tokenPlaceholder: "github_pat_xxxxxxxxxxxx",
+    tokenShow: "Токенді көрсету",
+    tokenMask: "Токенді жасыру",
+    tokenClear: "Токенді тазалау",
+    tokenPrivacy: "Тек GitHub API-ге тікелей сұраулар үшін қолданылады. Сақталмайды және Githubster-ге жіберілмейді.",
   },
   tabs: {
     unfollowers: "Жауап бермейді",
@@ -77,6 +81,7 @@ export const kk: Translations = {
     repositories: "репозиторий",
     totalStars: "Барлық жұлдыздар",
     topLanguages: "Жұлдыздар бойынша тілдер",
+    repositoriesUnavailable: "Репозиторий деректері қолжетімсіз",
   },
   banner: {
     text: "Githubster — тегін және ашық бастапқы код. GitHub-та жұлдыз қойып қолдаңыз.",

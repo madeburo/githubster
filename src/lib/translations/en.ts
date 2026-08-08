@@ -19,7 +19,11 @@ export const en = {
     loading: "Loading...",
     tokenToggle: "Add token (optional, increases rate limit)",
     tokenHide: "Hide token (optional, increases rate limit)",
-    tokenPlaceholder: "ghp_xxxxxxxxxxxxxxxxxxxx",
+    tokenPlaceholder: "github_pat_xxxxxxxxxxxx",
+    tokenShow: "Show token",
+    tokenMask: "Mask token",
+    tokenClear: "Clear token",
+    tokenPrivacy: "Used only for direct GitHub API requests. It is not saved or sent to Githubster.",
   },
   tabs: {
     unfollowers: "Not Following Back",
@@ -76,6 +80,7 @@ export const en = {
     repositories: "repositories",
     totalStars: "Total Stars",
     topLanguages: "Top Languages by Stars",
+    repositoriesUnavailable: "Repository data unavailable",
   },
   banner: {
     text: "Githubster is 100% free and open-source. If it helped you, a GitHub star keeps it alive.",

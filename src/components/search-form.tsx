@@ -12,7 +12,8 @@ export function SearchForm({ onSearch, isLoading }: SearchFormProps) {
   const { t } = useLocale();
   const [username, setUsername] = useState("");
   const [token, setToken] = useState("");
-  const [showToken, setShowToken] = useState(false);
+  const [showTokenField, setShowTokenField] = useState(false);
+  const [tokenVisible, setTokenVisible] = useState(false);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -83,7 +84,7 @@ export function SearchForm({ onSearch, isLoading }: SearchFormProps) {
       <div className="px-1">
         <button
           type="button"
-          onClick={() => setShowToken(!showToken)}
+          onClick={() => setShowTokenField(!showTokenField)}
           className="flex items-center gap-1 text-xs transition-colors"
           style={{ color: "var(--text-muted)" }}
         >
@@ -91,28 +92,68 @@ export function SearchForm({ onSearch, isLoading }: SearchFormProps) {
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
             <path d="M7 11V7a5 5 0 0 1 10 0v4" />
           </svg>
-          {showToken ? t.search.tokenHide : t.search.tokenToggle}
+          {showTokenField ? t.search.tokenHide : t.search.tokenToggle}
         </button>
-        {showToken && (
-          <div
-            className="mt-2 overflow-hidden rounded-xl border"
-            style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
-          >
-            <input
-              type="text"
-              placeholder={t.search.tokenPlaceholder}
-              value={token}
-              onChange={(e) => setToken(e.target.value)}
-              className="w-full bg-transparent px-4 py-2.5 text-sm outline-none placeholder:opacity-40"
-              style={{
-                color: "var(--text)",
-                WebkitTextSecurity: "disc",
-              } as React.CSSProperties}
-              disabled={isLoading}
-              autoComplete="off"
-              spellCheck={false}
-              name="github-token-input"
-            />
+        {showTokenField && (
+          <div className="mt-2 space-y-2">
+            <div
+              className="flex items-center overflow-hidden rounded-xl border"
+              style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
+            >
+              <input
+                type={tokenVisible ? "text" : "password"}
+                placeholder={t.search.tokenPlaceholder}
+                value={token}
+                onChange={(e) => setToken(e.target.value)}
+                className="min-w-0 flex-1 bg-transparent px-4 py-2.5 text-sm outline-none placeholder:opacity-40"
+                style={{ color: "var(--text)" }}
+                disabled={isLoading}
+                autoComplete="off"
+                spellCheck={false}
+                aria-describedby="github-token-privacy"
+                name="github-token-input"
+              />
+              <button
+                type="button"
+                onClick={() => setTokenVisible(!tokenVisible)}
+                className="cursor-pointer px-3 py-2.5 text-xs transition-opacity hover:opacity-70"
+                style={{ color: "var(--text-muted)" }}
+                aria-label={tokenVisible ? t.search.tokenMask : t.search.tokenShow}
+                title={tokenVisible ? t.search.tokenMask : t.search.tokenShow}
+              >
+                {tokenVisible ? (
+                  <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="m3 3 18 18" />
+                    <path d="M10.6 10.6a2 2 0 0 0 2.8 2.8" />
+                    <path d="M9.9 4.2A10.8 10.8 0 0 1 12 4c5.5 0 9 8 9 8a18 18 0 0 1-2.1 3.2" />
+                    <path d="M6.6 6.6C4.4 8.1 3 12 3 12s3.5 8 9 8a9.8 9.8 0 0 0 4.1-.9" />
+                  </svg>
+                ) : (
+                  <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                )}
+              </button>
+              {token && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setToken("");
+                    setTokenVisible(false);
+                  }}
+                  className="cursor-pointer px-3 py-2.5 text-sm transition-opacity hover:opacity-70"
+                  style={{ color: "var(--text-muted)" }}
+                  aria-label={t.search.tokenClear}
+                  title={t.search.tokenClear}
+                >
+                  ×
+                </button>
+              )}
+            </div>
+            <p id="github-token-privacy" className="px-1 text-left text-[11px] leading-relaxed" style={{ color: "var(--text-subtle)" }}>
+              {t.search.tokenPrivacy}
+            </p>
           </div>
         )}
       </div>

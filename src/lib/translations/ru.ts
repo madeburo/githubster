@@ -21,7 +21,11 @@ export const ru: Translations = {
     loading: "Загрузка...",
     tokenToggle: "Добавить токен (увеличивает лимит)",
     tokenHide: "Скрыть токен (увеличивает лимит)",
-    tokenPlaceholder: "ghp_xxxxxxxxxxxxxxxxxxxx",
+    tokenPlaceholder: "github_pat_xxxxxxxxxxxx",
+    tokenShow: "Показать токен",
+    tokenMask: "Скрыть токен",
+    tokenClear: "Очистить токен",
+    tokenPrivacy: "Используется только для прямых запросов к GitHub API. Не сохраняется и не отправляется на серверы Githubster.",
   },
   tabs: {
     unfollowers: "Не подписаны в ответ",
@@ -78,6 +82,7 @@ export const ru: Translations = {
     repositories: "репозиториев",
     totalStars: "Всего звёзд",
     topLanguages: "Языки по звёздам",
+    repositoriesUnavailable: "Данные репозиториев недоступны",
   },
   banner: {
     text: "Githubster — опенсорс проект. Поддержите звездой на GitHub.",
