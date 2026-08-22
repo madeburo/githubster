@@ -1,17 +1,12 @@
-import Link from "next/link";
 import { isRtl, type Locale } from "@/lib/i18n";
 import { privacyContent } from "@/lib/privacy-content";
 
 export function PrivacyPageContent({ locale }: { locale: Locale }) {
   const content = privacyContent[locale];
-  const prefix = locale === "en" ? "" : `/${locale}`;
 
   return (
     <main dir={isRtl(locale) ? "rtl" : "ltr"} className="mx-auto max-w-3xl px-4 py-12 sm:py-20">
-      <Link href={prefix || "/"} className="text-sm hover:underline" style={{ color: "var(--gradient-start)" }}>
-        <span aria-hidden="true">{isRtl(locale) ? "→" : "←"}</span> Githubster
-      </Link>
-      <h1 className="mt-5 text-3xl font-bold sm:text-5xl" style={{ color: "var(--text)" }}>{content.title}</h1>
+      <h1 className="text-3xl font-bold sm:text-5xl" style={{ color: "var(--text)" }}>{content.title}</h1>
       <p className="mt-4 text-sm" style={{ color: "var(--text-muted)" }}>{content.updated}</p>
       <div className="mt-10 space-y-8">
         {content.sections.map((section) => (
