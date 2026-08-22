@@ -1,6 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import { useLocale } from "@/lib/locale-context";
 
 const THEME_CHANGE_EVENT = "githubster:theme-change";
 
@@ -18,6 +19,7 @@ function getServerThemeSnapshot() {
 }
 
 export function ThemeToggle() {
+  const { t } = useLocale();
   const dark = useSyncExternalStore(
     subscribeToTheme,
     getThemeSnapshot,
@@ -53,7 +55,7 @@ export function ThemeToggle() {
           boxShadow: !dark ? "var(--shadow)" : "none",
         }}
       >
-        Light
+        {t.theme.light}
       </button>
       <button
         type="button"
@@ -65,7 +67,7 @@ export function ThemeToggle() {
           boxShadow: dark ? "var(--shadow)" : "none",
         }}
       >
-        Dark
+        {t.theme.dark}
       </button>
     </div>
   );

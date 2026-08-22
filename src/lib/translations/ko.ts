@@ -83,6 +83,7 @@ export const ko: Translations = {
     paypal: "PayPal",
     star: "GitHub에서 스타 주기",
   },
+  theme: { light: "라이트", dark: "다크" },
   profileOverview: {
     title: "프로필 개요",
     ownProjects: "내 프로젝트",

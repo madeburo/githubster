@@ -82,6 +82,10 @@ export const en = {
     paypal: "PayPal",
     star: "Star on GitHub",
   },
+  theme: {
+    light: "Light",
+    dark: "Dark",
+  },
   profileOverview: {
     title: "Profile Overview",
     ownProjects: "Own Projects",

@@ -83,6 +83,7 @@ export const uk: Translations = {
     paypal: "PayPal",
     star: "Поставити зірку на GitHub",
   },
+  theme: { light: "Світла", dark: "Темна" },
   profileOverview: {
     title: "Огляд профілю",
     ownProjects: "Власні проєкти",

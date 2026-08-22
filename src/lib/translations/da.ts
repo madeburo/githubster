@@ -37,6 +37,7 @@ export const da: Translations = {
     feature3Title: "Browserbaseret", feature3Desc: "Profilanalysen kører i din browser. Valgfrie adgangstokens gemmes aldrig.",
   },
   support: { nav: "Støt", title: "Støt Githubster", description: "Githubster er gratis og open source. Hvis du finder det nyttigt, kan du støtte udviklingen.", kofi: "Støt på Ko-fi", paypal: "PayPal", star: "Giv en stjerne på GitHub" },
+  theme: { light: "Lys", dark: "Mørk" },
   profileOverview: { title: "Profiloversigt", ownProjects: "Egne projekter", repositories: "repos", totalStars: "Samlede stjerner", topLanguages: "Topprogrammeringssprog efter stjerner", repositoriesUnavailable: "Repositorydata er ikke tilgængelige" },
   banner: { text: "Githubster er 100 % gratis og open source. Hvis det hjalp dig, holder en GitHub-stjerne det i live.", cta: "Giv en stjerne på GitHub" },
   footer: { openSource: "Open source på", madeWith: "Lavet med ♥ i" },

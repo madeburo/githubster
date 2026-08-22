@@ -37,6 +37,7 @@ export const nl: Translations = {
     feature3Title: "In de browser", feature3Desc: "Profielanalyse gebeurt in je browser. Optionele toegangstokens worden nooit opgeslagen.",
   },
   support: { nav: "Steunen", title: "Steun Githubster", description: "Githubster is gratis en open source. Als je het nuttig vindt, kun je de ontwikkeling steunen.", kofi: "Steun op Ko-fi", paypal: "PayPal", star: "Geef een ster op GitHub" },
+  theme: { light: "Licht", dark: "Donker" },
   profileOverview: { title: "Profieloverzicht", ownProjects: "Eigen projecten", repositories: "repositories", totalStars: "Totaal aantal sterren", topLanguages: "Toptalen op basis van sterren", repositoriesUnavailable: "Repositorygegevens niet beschikbaar" },
   banner: { text: "Githubster is 100% gratis en open source. Als het je heeft geholpen, houdt een GitHub-ster het in leven.", cta: "Geef een ster op GitHub" },
   footer: { openSource: "Open source op", madeWith: "Gemaakt met ♥ in" },

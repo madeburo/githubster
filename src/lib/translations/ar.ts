@@ -83,6 +83,7 @@ export const ar: Translations = {
     paypal: "PayPal",
     star: "ضع نجمة على GitHub",
   },
+  theme: { light: "فاتح", dark: "داكن" },
   profileOverview: {
     title: "نظرة عامة على الملف الشخصي",
     ownProjects: "المشاريع الخاصة",

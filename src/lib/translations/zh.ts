@@ -83,6 +83,7 @@ export const zh: Translations = {
     paypal: "PayPal",
     star: "在 GitHub 上点星",
   },
+  theme: { light: "浅色", dark: "深色" },
   profileOverview: {
     title: "个人概览",
     ownProjects: "个人项目",

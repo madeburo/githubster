@@ -37,6 +37,7 @@ export const he: Translations = {
     feature3Title: "מבוסס דפדפן", feature3Desc: "ניתוח הפרופיל פועל בדפדפן שלכם. אסימוני גישה אופציונליים לעולם אינם נשמרים.",
   },
   support: { nav: "תמכו", title: "תמכו ב-Githubster", description: "Githubster הוא חינמי ובקוד פתוח. אם הוא שימושי עבורכם, תוכלו לתמוך בפיתוחו.", kofi: "תמכו ב-Ko-fi", paypal: "PayPal", star: "תנו כוכב ב-GitHub" },
+  theme: { light: "בהיר", dark: "כהה" },
   profileOverview: { title: "סקירת פרופיל", ownProjects: "פרויקטים אישיים", repositories: "מאגרים", totalStars: "סך הכוכבים", topLanguages: "שפות מובילות לפי כוכבים", repositoriesUnavailable: "נתוני המאגרים אינם זמינים" },
   banner: { text: "Githubster חינמי לחלוטין ובקוד פתוח. אם הוא עזר לכם, כוכב ב-GitHub שומר עליו פעיל.", cta: "תנו כוכב ב-GitHub" },
   footer: { openSource: "קוד פתוח ב-", madeWith: "נוצר עם ♥ ב-" },

@@ -83,6 +83,7 @@ export const ja: Translations = {
     paypal: "PayPal",
     star: "GitHubでスターを付ける",
   },
+  theme: { light: "ライト", dark: "ダーク" },
   profileOverview: {
     title: "プロフィール概要",
     ownProjects: "自分のプロジェクト",

@@ -83,6 +83,7 @@ export const tr: Translations = {
     paypal: "PayPal",
     star: "GitHub'da yıldız ver",
   },
+  theme: { light: "Açık", dark: "Koyu" },
   profileOverview: {
     title: "Profil Özeti",
     ownProjects: "Kendi Projeleri",

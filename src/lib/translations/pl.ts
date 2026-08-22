@@ -37,6 +37,7 @@ export const pl: Translations = {
     feature3Title: "W przeglądarce", feature3Desc: "Analiza profilu odbywa się w Twojej przeglądarce. Opcjonalne tokeny dostępu nigdy nie są zapisywane.",
   },
   support: { nav: "Wesprzyj", title: "Wesprzyj Githubster", description: "Githubster jest bezpłatny i otwartoźródłowy. Jeśli jest dla Ciebie przydatny, możesz wesprzeć jego rozwój.", kofi: "Wesprzyj na Ko-fi", paypal: "PayPal", star: "Daj gwiazdkę na GitHubie" },
+  theme: { light: "Jasny", dark: "Ciemny" },
   profileOverview: { title: "Przegląd profilu", ownProjects: "Własne projekty", repositories: "repozytoriów", totalStars: "Łącznie gwiazdek", topLanguages: "Najpopularniejsze języki według gwiazdek", repositoriesUnavailable: "Dane repozytoriów niedostępne" },
   banner: { text: "Githubster jest w 100% darmowy i otwartoźródłowy. Jeśli Ci pomógł, gwiazdka na GitHubie utrzymuje go przy życiu.", cta: "Daj gwiazdkę na GitHubie" },
   footer: { openSource: "Open source na", madeWith: "Stworzone z ♥ w" },

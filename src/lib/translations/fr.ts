@@ -83,6 +83,7 @@ export const fr: Translations = {
     paypal: "PayPal",
     star: "Mettre une étoile sur GitHub",
   },
+  theme: { light: "Clair", dark: "Sombre" },
   profileOverview: {
     title: "Aperçu du profil",
     ownProjects: "Projets personnels",
