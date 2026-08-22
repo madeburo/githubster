@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from "react";
 import { useLocale } from "@/lib/locale-context";
 import { locales, localeNames, type Locale } from "@/lib/i18n";
 
+const languageNameCollator = new Intl.Collator("en", { sensitivity: "base" });
+
 export function LanguageSelector() {
   const { locale, setLocale } = useLocale();
   const [open, setOpen] = useState(false);
@@ -45,7 +47,7 @@ export function LanguageSelector() {
           <line x1="2" y1="12" x2="22" y2="12" />
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
         </svg>
-        {locale === "kk" ? "KZ" : locale.toUpperCase()}
+        {locale.toUpperCase()}
       </button>
 
       {open && (
@@ -57,7 +59,7 @@ export function LanguageSelector() {
             boxShadow: "var(--shadow-lg)",
           }}
         >
-          {[...locales].sort((a, b) => localeNames[a].localeCompare(localeNames[b])).map((loc) => (
+          {[...locales].sort((a, b) => languageNameCollator.compare(localeNames[a], localeNames[b])).map((loc) => (
             <button
               key={loc}
               onClick={() => {

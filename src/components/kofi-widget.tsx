@@ -21,7 +21,7 @@ function resizeWidget(attempt = 0) {
   }
 
   widgets.forEach((widget) => {
-    widget.style.setProperty("transform", "scale(0.5)", "important");
+    widget.style.setProperty("transform", "scale(0.7)", "important");
     widget.style.setProperty("transform-origin", "bottom left", "important");
   });
 }

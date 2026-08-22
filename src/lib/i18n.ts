@@ -1,5 +1,5 @@
 export const locales = [
-  "en", "zh", "ko", "ja", "pt", "es", "de", "fr", "it", "uk", "kk", "tr", "ar", "pl", "nl", "da",
+  "en", "zh", "ko", "ja", "pt", "es", "de", "fr", "it", "uk", "he", "tr", "ar", "pl", "nl", "da",
 ] as const;
 
 export type Locale = (typeof locales)[number];
@@ -15,7 +15,7 @@ export const localeNames: Record<Locale, string> = {
   fr: "Français",
   it: "Italiano",
   uk: "Українська",
-  kk: "Қазақша",
+  he: "עברית",
   tr: "Türkçe",
   ar: "العربية",
   pl: "Polski",
@@ -23,7 +23,7 @@ export const localeNames: Record<Locale, string> = {
   da: "Dansk",
 };
 
-export const rtlLocales: Locale[] = ["ar"];
+export const rtlLocales: Locale[] = ["ar", "he"];
 
 export function isRtl(locale: Locale): boolean {
   return rtlLocales.includes(locale);
