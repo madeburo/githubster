@@ -11,17 +11,19 @@ declare global {
 }
 
 function resizeWidget(attempt = 0) {
-  const widget = document.querySelector<HTMLIFrameElement>(
-    'iframe#kofi-widget-overlay, iframe[src*="ko-fi.com"]'
+  const widgets = document.querySelectorAll<HTMLElement>(
+    ".floatingchat-container-wrap, .floatingchat-container-wrap-mobi"
   );
 
-  if (!widget) {
+  if (widgets.length === 0) {
     if (attempt < 10) window.setTimeout(() => resizeWidget(attempt + 1), 150);
     return;
   }
 
-  widget.style.transform = "scale(0.5)";
-  widget.style.transformOrigin = "bottom left";
+  widgets.forEach((widget) => {
+    widget.style.setProperty("transform", "scale(0.5)", "important");
+    widget.style.setProperty("transform-origin", "bottom left", "important");
+  });
 }
 
 export function KofiWidget() {

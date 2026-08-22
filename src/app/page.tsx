@@ -216,7 +216,7 @@ function HomeContent() {
 
   return (
     <>
-      <main className="mx-auto max-w-5xl px-4 py-8 sm:py-12">
+      <main className={`mx-auto max-w-5xl px-4 pb-8 pt-8 sm:pb-12 ${data ? "sm:pt-20" : "sm:pt-12"}`}>
         {/* Top bar */}
         <div className="flex items-center justify-center gap-2 sm:justify-end">
           <LanguageSelector />
@@ -235,7 +235,7 @@ function HomeContent() {
         <section className={`text-center ${data ? "mb-8" : "mb-0"}`}>
           <div className={`mx-auto max-w-2xl animate-fade-in ${data ? "" : "pt-12 sm:pt-20"}`}>
             <div className="mb-8 flex items-center justify-center">
-                <Link href={locale === "en" ? "/" : `/${locale}`} className="group relative transition-opacity hover:opacity-80">
+                <a href={locale === "en" ? "/" : `/${locale}`} className="group relative transition-opacity hover:opacity-80">
                 <Image
                   src="/githubster.svg"
                   alt="Githubster"
@@ -260,7 +260,7 @@ function HomeContent() {
                 >
                   meow
                 </span>
-              </Link>
+                </a>
             </div>
             <h1
               className="text-xl font-semibold sm:text-2xl"

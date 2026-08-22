@@ -75,6 +75,13 @@ body::before {
   z-index: -1;
 }
 
+/* Ko-fi creates these elements after hydration, outside of the React tree. */
+.floatingchat-container-wrap,
+.floatingchat-container-wrap-mobi {
+  transform: scale(0.5) !important;
+  transform-origin: bottom left !important;
+}
+
 .dark body::before {
   opacity: 0.06;
 }
