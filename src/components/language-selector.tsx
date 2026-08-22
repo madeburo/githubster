@@ -64,7 +64,6 @@ export function LanguageSelector() {
           {[...locales].sort((a, b) => languageNameCollator.compare(localeNames[a], localeNames[b])).map((loc) => (
             <button
               key={loc}
-              dir="auto"
               onClick={() => {
                 setLocale(loc as Locale);
                 setOpen(false);
