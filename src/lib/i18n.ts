@@ -1,5 +1,5 @@
 export const locales = [
-  "en", "zh", "ko", "ja", "pt", "es", "de", "fr", "it", "uk", "he", "tr", "ar", "pl", "nl", "da",
+  "en", "zh", "ko", "ja", "pt", "es", "de", "fr", "it", "uk", "he", "tr", "ar", "pl", "nl", "da", "sv", "no",
 ] as const;
 
 export type Locale = (typeof locales)[number];
@@ -21,6 +21,8 @@ export const localeNames: Record<Locale, string> = {
   pl: "Polski",
   nl: "Nederlands",
   da: "Dansk",
+  sv: "Svenska",
+  no: "Norsk",
 };
 
 export const rtlLocales: Locale[] = ["ar", "he"];

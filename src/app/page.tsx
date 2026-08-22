@@ -39,6 +39,8 @@ const searchShortcut: Record<Locale, { before: string; after: string }> = {
   pl: { before: "Naciśnij ", after: ", aby przejść do wyszukiwania" },
   nl: { before: "Druk op ", after: " om de zoekbalk te activeren" },
   da: { before: "Tryk på ", after: " for at fokusere søgningen" },
+  sv: { before: "Tryck på ", after: " för att fokusera sökfältet" },
+  no: { before: "Trykk på ", after: " for å fokusere søkefeltet" },
 };
 
 export default function Home() {
@@ -66,7 +68,10 @@ function BrowserLocaleRedirect({ initialLocale }: { initialLocale: Locale }) {
     const preferredLocale =
       (storedLocale && locales.includes(storedLocale as Locale) ? storedLocale : undefined) ??
       browserLocales
-        .map((language) => language.split("-")[0].toLowerCase())
+        .map((language) => {
+          const languageCode = language.split("-")[0].toLowerCase();
+          return languageCode === "nb" || languageCode === "nn" ? "no" : languageCode;
+        })
         .find((language) => locales.includes(language as Locale));
 
     if (!preferredLocale || preferredLocale === "en") return;

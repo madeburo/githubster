@@ -95,6 +95,24 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
       { heading: "Ko-fi og e-mail", text: "Ko-fi håndterer interaktioner med supportwidgetten efter sine egne privatlivsregler. Hvis du skriver til os, bruger vi kun beskeden og kontaktoplysningerne til at svare og gemmer korrespondancen, når det med rimelighed er nødvendigt." },
     ], questions: "Spørgsmål?", linkLabel: "Privatliv",
   },
+  sv: {
+    title: "Integritetspolicy", description: "Så hanterar Githubster offentliga GitHub-data, valfria token, inställningar, analys och supportwidgetar.", updated: "Senast uppdaterad: 22 augusti 2026",
+    sections: [
+      { heading: "Bearbetning i webbläsaren", text: "Githubster bearbetar offentliga GitHub-profildata och en eventuell åtkomsttoken i din webbläsare. Informationen skickas inte till Githubsters applikationsservrar." },
+      { heading: "GitHub-anrop och token", text: "Din webbläsare gör de begärda API-anropen direkt till GitHub. En valfri token sparas inte i localStorage och rensas när sidan stängs eller laddas om." },
+      { heading: "Inställningar och analys", text: "Tema- och språkinställningar sparas lokalt i din webbläsare. Githubster använder integritetsvänlig analys för att förstå den samlade användningen av webbplatsen. Analysen använder inga cookies, spårar inte personer mellan webbplatser och samlar inte in personuppgifter. Den följer GDPR." },
+      { heading: "Ko-fi och e-post", text: "Ko-fi hanterar interaktioner med supportwidgeten enligt sina egna integritetsrutiner. Om du mejlar oss använder vi endast ditt meddelande och dina kontaktuppgifter för att svara och sparar korrespondensen när det rimligen behövs." },
+    ], questions: "Frågor?", linkLabel: "Integritet",
+  },
+  no: {
+    title: "Personvernerklæring", description: "Slik håndterer Githubster offentlige GitHub-data, valgfrie tokener, innstillinger, analyse og støttewidgeter.", updated: "Sist oppdatert: 22. august 2026",
+    sections: [
+      { heading: "Behandling i nettleseren", text: "Githubster behandler offentlige GitHub-profildata og et eventuelt tilgangstoken i nettleseren din. Informasjonen sendes ikke til Githubsters applikasjonsservere." },
+      { heading: "GitHub-forespørsler og tokener", text: "Nettleseren gjør de forespurte API-kallene direkte til GitHub. Et valgfritt token lagres ikke i localStorage og fjernes når siden lukkes eller lastes inn på nytt." },
+      { heading: "Innstillinger og analyse", text: "Tema- og språkinnstillinger lagres lokalt i nettleseren din. Githubster bruker personvernvennlig analyse for å forstå den samlede bruken av nettstedet. Analysen bruker ingen informasjonskapsler, sporer ikke personer på tvers av nettsteder og samler ikke inn personopplysninger. Den er i samsvar med GDPR." },
+      { heading: "Ko-fi og e-post", text: "Ko-fi håndterer interaksjoner med støttewidgeten i henhold til sin egen personvernpraksis. Hvis du sender oss e-post, bruker vi bare meldingen og kontaktopplysningene dine til å svare og beholder korrespondansen når det er rimelig nødvendig." },
+    ], questions: "Spørsmål?", linkLabel: "Personvern",
+  },
   tr: {
     title: "Gizlilik Politikası", description: "Githubster'ın herkese açık GitHub verilerini, isteğe bağlı tokenları, tercihleri, analizleri ve destek bileşenlerini nasıl işlediği.", updated: "Son güncelleme: 22 Ağustos 2026",
     sections: [

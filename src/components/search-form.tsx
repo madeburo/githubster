@@ -14,6 +14,8 @@ const onboarding: Record<Locale, string> = {
   nl: "Voer een GitHub-gebruikersnaam in — de gegevens zijn openbaar en een token is optioneel.",
   pl: "Wpisz nazwę użytkownika GitHub — dane są publiczne, a token jest opcjonalny.",
   da: "Indtast et GitHub-brugernavn — dataene er offentlige, og et token er valgfrit.",
+  sv: "Ange ett GitHub-användarnamn — uppgifterna är offentliga och en token är valfri.",
+  no: "Skriv inn et GitHub-brukernavn — dataene er offentlige, og et token er valgfritt.",
   tr: "Bir GitHub kullanıcı adı girin — veriler herkese açıktır ve token isteğe bağlıdır.",
   uk: "Введіть ім’я користувача GitHub — дані публічні, а токен необов’язковий.",
   zh: "输入 GitHub 用户名 — 数据是公开的，令牌可选。",

@@ -16,7 +16,9 @@ import { ar } from "./ar";
 import { pl } from "./pl";
 import { nl } from "./nl";
 import { da } from "./da";
+import { sv } from "./sv";
+import { no } from "./no";
 
 export const translations: Record<Locale, Translations> = {
-  en, zh, ko, ja, pt, es, de, fr, it, uk, he, tr, ar, pl, nl, da,
+  en, zh, ko, ja, pt, es, de, fr, it, uk, he, tr, ar, pl, nl, da, sv, no,
 };
