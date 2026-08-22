@@ -1,25 +1,29 @@
 import Link from "next/link";
+import { isRtl, type Locale } from "@/lib/i18n";
+import { seoLabels } from "@/lib/localized-seo-content";
 import type { SeoPage } from "@/lib/seo-content";
 
 interface SeoPageProps {
   page: SeoPage;
   kind: "tools" | "guides";
+  locale?: string;
 }
 
-export function SeoPage({ page, kind }: SeoPageProps) {
-  const path = `/${kind}/${page.slug}`;
+export function SeoPage({ page, kind, locale }: SeoPageProps) {
+  const activeLocale = (locale || "en") as Locale;
+  const labels = seoLabels[activeLocale];
+  const prefix = activeLocale !== "en" ? `/${activeLocale}` : "";
+  const path = `${prefix}/${kind}/${page.slug}`;
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-12 sm:py-20">
+    <main dir={isRtl(activeLocale) ? "rtl" : "ltr"} className="mx-auto max-w-3xl px-4 py-12 sm:py-20">
       <nav className="mb-8 text-sm" aria-label="Breadcrumb" style={{ color: "var(--text-muted)" }}>
-        <Link href="/" className="hover:underline">Githubster</Link>
-        <span aria-hidden="true"> / </span>
-        <span>{kind === "tools" ? "Tools" : "Guides"}</span>
+        <Link href={prefix || "/"} className="hover:underline">Githubster</Link>
       </nav>
 
       <article>
         <p className="text-sm font-medium" style={{ color: "var(--gradient-start)" }}>
-          {kind === "tools" ? "Free GitHub tool" : "Githubster guide"}
+          Githubster
         </p>
         <h1 className="mt-3 text-3xl font-bold tracking-tight sm:text-5xl" style={{ color: "var(--text)" }}>
           {page.h1}
@@ -37,10 +41,10 @@ export function SeoPage({ page, kind }: SeoPageProps) {
         </ul>
 
         <div className="mt-8 rounded-2xl border p-6" style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}>
-          <h2 className="text-lg font-semibold" style={{ color: "var(--text)" }}>Try Githubster</h2>
-          <p className="mt-2 text-sm" style={{ color: "var(--text-muted)" }}>Enter a public GitHub username to compare followers, following, and mutual connections.</p>
-          <Link href="/" className="mt-4 inline-flex rounded-lg px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90" style={{ background: "var(--gradient-start)" }}>
-            Open Githubster
+          <h2 className="text-lg font-semibold" style={{ color: "var(--text)" }}>Githubster</h2>
+          <p className="mt-2 text-sm" style={{ color: "var(--text-muted)" }}>{page.intro}</p>
+          <Link href={prefix || "/"} className="mt-4 inline-flex rounded-lg px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90" style={{ background: "var(--gradient-start)" }}>
+            Githubster
           </Link>
         </div>
 
@@ -56,7 +60,7 @@ export function SeoPage({ page, kind }: SeoPageProps) {
         </div>
 
         <section className="mt-12 border-t pt-10" style={{ borderColor: "var(--border)" }}>
-          <h2 className="text-2xl font-semibold" style={{ color: "var(--text)" }}>Frequently asked questions</h2>
+          <h2 className="text-2xl font-semibold" style={{ color: "var(--text)" }}>{labels.faq}</h2>
           <div className="mt-5 space-y-5">
             {page.faqs.map((faq) => (
               <div key={faq.question}>
@@ -78,7 +82,7 @@ export function SeoPage({ page, kind }: SeoPageProps) {
                 "@type": "BreadcrumbList",
                 itemListElement: [
                   { "@type": "ListItem", position: 1, name: "Githubster", item: "https://www.githubster.com" },
-                  { "@type": "ListItem", position: 2, name: kind === "tools" ? "Tools" : "Guides", item: `https://www.githubster.com/${kind}` },
+                  { "@type": "ListItem", position: 2, name: labels[kind], item: `https://www.githubster.com${prefix}/${kind}` },
                   { "@type": "ListItem", position: 3, name: page.h1, item: `https://www.githubster.com${path}` },
                 ],
               },

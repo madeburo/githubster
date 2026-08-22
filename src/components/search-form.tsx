@@ -2,6 +2,26 @@
 
 import { useState } from "react";
 import { useLocale } from "@/lib/locale-context";
+import type { Locale } from "@/lib/i18n";
+
+const onboarding: Record<Locale, string> = {
+  en: "Enter a GitHub username — the data is public and a token is optional.",
+  de: "Gib einen GitHub-Benutzernamen ein — die Daten sind öffentlich und ein Token ist optional.",
+  fr: "Saisissez un nom d’utilisateur GitHub — les données sont publiques et le jeton est facultatif.",
+  es: "Introduce un nombre de usuario de GitHub — los datos son públicos y el token es opcional.",
+  it: "Inserisci un nome utente GitHub — i dati sono pubblici e il token è facoltativo.",
+  pt: "Insira um nome de usuário do GitHub — os dados são públicos e o token é opcional.",
+  nl: "Voer een GitHub-gebruikersnaam in — de gegevens zijn openbaar en een token is optioneel.",
+  pl: "Wpisz nazwę użytkownika GitHub — dane są publiczne, a token jest opcjonalny.",
+  da: "Indtast et GitHub-brugernavn — dataene er offentlige, og et token er valgfrit.",
+  tr: "Bir GitHub kullanıcı adı girin — veriler herkese açıktır ve token isteğe bağlıdır.",
+  uk: "Введіть ім’я користувача GitHub — дані публічні, а токен необов’язковий.",
+  zh: "输入 GitHub 用户名 — 数据是公开的，令牌可选。",
+  ja: "GitHub ユーザー名を入力してください。データは公開情報で、トークンは任意です。",
+  ko: "GitHub 사용자 이름을 입력하세요. 데이터는 공개 정보이며 토큰은 선택 사항입니다.",
+  he: "הזינו שם משתמש ב-GitHub — הנתונים ציבוריים והאסימון אופציונלי.",
+  ar: "أدخل اسم مستخدم GitHub — البيانات عامة والرمز اختياري.",
+};
 
 interface SearchFormProps {
   onSearch: (username: string, token?: string) => void;
@@ -9,7 +29,7 @@ interface SearchFormProps {
 }
 
 export function SearchForm({ onSearch, isLoading }: SearchFormProps) {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const [username, setUsername] = useState("");
   const [token, setToken] = useState("");
   const [showTokenField, setShowTokenField] = useState(false);
@@ -85,6 +105,7 @@ export function SearchForm({ onSearch, isLoading }: SearchFormProps) {
         <button
           type="button"
           onClick={() => setShowTokenField(!showTokenField)}
+          data-token-toggle
           className="flex items-center gap-1 text-xs transition-colors"
           style={{ color: "var(--text-muted)" }}
         >
@@ -157,6 +178,9 @@ export function SearchForm({ onSearch, isLoading }: SearchFormProps) {
           </div>
         )}
       </div>
+      <p className="px-1 text-center text-[11px] leading-relaxed" style={{ color: "var(--text-subtle)" }}>
+        {onboarding[locale]}
+      </p>
     </form>
   );
 }

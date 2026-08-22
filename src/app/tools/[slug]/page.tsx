@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SeoPage } from "@/components/seo-page";
 import { getSeoPage, toolPages } from "@/lib/seo-content";
+import { seoLanguageAlternates } from "@/lib/localized-seo-content";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: page.title,
     description: page.description,
-    alternates: { canonical: `/tools/${page.slug}` },
+    alternates: { canonical: `/tools/${page.slug}`, languages: seoLanguageAlternates(`/tools/${page.slug}`) },
     openGraph: { title: page.title, description: page.description, url: `/tools/${page.slug}` },
   };
 }

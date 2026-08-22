@@ -20,8 +20,28 @@ import { LocaleProvider } from "@/lib/locale-context";
 import { locales, type Locale } from "@/lib/i18n";
 import { getFollowData, getProfileOverview, type FollowData, type ProfileOverview, type RateLimitInfo, type LoadingProgress } from "@/lib/github";
 import { guidePages, toolPages } from "@/lib/seo-content";
+import { privacyContent } from "@/lib/privacy-content";
 
 type TabId = "unfollowers" | "notFollowingBack" | "mutuals" | "following" | "followers";
+
+const searchShortcut: Record<Locale, { before: string; after: string }> = {
+  en: { before: "Press ", after: " to focus search" },
+  zh: { before: "按 ", after: " 聚焦搜索框" },
+  ko: { before: "", after: " 키를 눌러 검색창에 포커스" },
+  ja: { before: "", after: " キーで検索欄にフォーカス" },
+  pt: { before: "Pressione ", after: " para focar na busca" },
+  es: { before: "Pulsa ", after: " para enfocar la búsqueda" },
+  de: { before: "Drücke ", after: ", um die Suche zu fokussieren" },
+  fr: { before: "Appuyez sur ", after: " pour activer la recherche" },
+  it: { before: "Premi ", after: " per attivare la ricerca" },
+  uk: { before: "Натисніть ", after: ", щоб перейти до пошуку" },
+  he: { before: "לחצו על ", after: " כדי להתמקד בחיפוש" },
+  tr: { before: "Aramaya odaklanmak için ", after: " tuşuna basın" },
+  ar: { before: "اضغط على ", after: " للتركيز على البحث" },
+  pl: { before: "Naciśnij ", after: ", aby przejść do wyszukiwania" },
+  nl: { before: "Druk op ", after: " om de zoekbalk te activeren" },
+  da: { before: "Tryk på ", after: " for at fokusere søgningen" },
+};
 
 export default function Home() {
   return <HomePage initialLocale="en" />;
@@ -67,7 +87,6 @@ function HomeContent() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [username, setUsername] = useState<string | null>(null);
-  const [showPrivacy, setShowPrivacy] = useState(false);
   const [rateLimit, setRateLimit] = useState<RateLimitInfo | null>(null);
   const [lastSearch, setLastSearch] = useState<{ user: string; token?: string } | null>(null);
   const [progress, setProgress] = useState<LoadingProgress | null>(null);
@@ -144,15 +163,6 @@ function HomeContent() {
 
     return () => window.clearTimeout(timeoutId);
   }, [handleSearch]);
-
-  useEffect(() => {
-    if (!showPrivacy) return;
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setShowPrivacy(false);
-    };
-    document.addEventListener("keydown", handleKey);
-    return () => document.removeEventListener("keydown", handleKey);
-  }, [showPrivacy]);
 
   function handleRetry() {
     if (lastSearch) {
@@ -304,7 +314,9 @@ function HomeContent() {
               <SearchForm onSearch={handleSearch} isLoading={isLoading} />
               {!data && !isLoading && (
                 <p className="mt-2 text-[11px]" style={{ color: "var(--text-subtle)" }}>
-                  Press <kbd className="rounded border px-1 py-0.5 text-[10px]" style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}>/</kbd> to focus search
+                  {searchShortcut[locale].before}
+                  <kbd dir="ltr" className="rounded border px-1 py-0.5 text-[10px]" style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}>/</kbd>
+                  {searchShortcut[locale].after}
                 </p>
               )}
             </div>
@@ -385,6 +397,19 @@ function HomeContent() {
                 {t.error.retry}
               </span>
             </button>
+            {(error.includes("Rate limit") || error.includes("rate limit")) && (
+              <button
+                type="button"
+                onClick={() => {
+                  document.querySelector<HTMLButtonElement>("[data-token-toggle]")?.click();
+                  document.querySelector<HTMLInputElement>("[name='github-token-input']")?.focus();
+                }}
+                className="shrink-0 cursor-pointer rounded-xl px-5 py-2 text-xs font-medium text-white transition-opacity hover:opacity-90"
+                style={{ background: "var(--gradient-start)" }}
+              >
+                {t.search.tokenToggle}
+              </button>
+            )}
           </div>
         )}
 
@@ -557,7 +582,7 @@ function HomeContent() {
               {[...toolPages, ...guidePages].map((page, index) => {
                 const kind = index < toolPages.length ? "tools" : "guides";
                 return (
-                  <Link key={page.slug} href={`/${kind}/${page.slug}`} className="hover:underline" style={{ color: "var(--text-muted)" }}>
+                  <Link key={page.slug} href={`${locale === "en" ? "" : `/${locale}`}/${kind}/${page.slug}`} className="hover:underline" style={{ color: "var(--text-muted)" }}>
                     {page.h1}
                   </Link>
                 );
@@ -587,89 +612,12 @@ function HomeContent() {
             hi@githubster.com
           </a>
           {" · "}
-          <button
-            type="button"
-            onClick={() => setShowPrivacy(true)}
-            className="cursor-pointer transition-colors hover:underline"
-            style={{ color: "var(--text-muted)" }}
-          >
-            Privacy
-          </button>
+          <Link href={`${locale === "en" ? "" : `/${locale}`}/privacy`} className="transition-colors hover:underline" style={{ color: "var(--text-muted)" }}>
+            {privacyContent[locale].linkLabel}
+          </Link>
         </p>
       </footer>
 
-      {/* Privacy popup */}
-      {showPrivacy && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="privacy-title"
-          onClick={() => setShowPrivacy(false)}
-        >
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
-          <div
-            className="relative max-h-[80vh] w-full max-w-lg overflow-y-auto rounded-2xl p-6 sm:p-8"
-            style={{ background: "var(--bg-card)", border: "1px solid var(--border)", boxShadow: "var(--shadow-lg)" }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              type="button"
-              onClick={() => setShowPrivacy(false)}
-              className="absolute right-4 top-4 cursor-pointer rounded-full p-1 transition-colors"
-              style={{ color: "var(--text-muted)" }}
-              aria-label="Close"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </button>
-            <h2 id="privacy-title" className="mb-4 text-lg font-semibold" style={{ color: "var(--text)" }}>Privacy Policy</h2>
-            <div className="space-y-3 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-              <p>
-                <strong style={{ color: "var(--text)" }}>Browser-based processing.</strong> Githubster processes GitHub profile data and any access token you provide in your browser. The app does not send that information to Githubster application servers.
-              </p>
-              <p>
-                <strong style={{ color: "var(--text)" }}>GitHub requests.</strong> Your browser communicates directly with the GitHub API. GitHub receives and handles those requests under its own{" "}
-                <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: "var(--text)" }}>
-                  privacy statement
-                </a>
-                .
-              </p>
-              <p>
-                <strong style={{ color: "var(--text)" }}>Access tokens.</strong> A token is kept only in the current page session so the app can make your requested GitHub API calls. It is not saved to localStorage and is cleared when you close or reload the page.
-              </p>
-              <p>
-                <strong style={{ color: "var(--text)" }}>Local preferences.</strong> We save your theme and language preferences in localStorage. Githubster does not set application cookies or use browser fingerprinting.
-              </p>
-              <p>
-                <strong style={{ color: "var(--text)" }}>Analytics.</strong> When analytics is enabled, we use a configured Umami instance to understand aggregate usage such as page views, referrers, device types, and approximate country. Analytics requests are sent to that Umami endpoint. We do not use this information to create advertising profiles.
-              </p>
-              <p>
-                <strong style={{ color: "var(--text)" }}>Ko-fi widget.</strong> We load Ko-fi&apos;s floating support widget from Ko-fi after the page becomes interactive. Ko-fi handles interactions with the widget under its own privacy practices.
-              </p>
-              <p>
-                <strong style={{ color: "var(--text)" }}>Email communication.</strong> If you contact us by email, we use your contact details and message to reply and retain the correspondence as reasonably needed. We do not use it for marketing without your consent.
-              </p>
-              <p>
-                <strong style={{ color: "var(--text)" }}>Fully open source.</strong> Every line of code is publicly available on{" "}
-                <a href="https://github.com/madeburo/githubster" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: "var(--text)" }}>
-                  GitHub
-                </a>
-                . You can verify exactly how the app works.
-              </p>
-              <p>
-                <strong style={{ color: "var(--text)" }}>Questions?</strong> Reach out at{" "}
-                <a href="mailto:hi@githubster.com" className="underline" style={{ color: "var(--text)" }}>
-                  hi@githubster.com
-                </a>
-                . This notice was last updated on July 26, 2026.
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
 
     </>
   );

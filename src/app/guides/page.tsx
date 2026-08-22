@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { guidePages } from "@/lib/seo-content";
+import { seoLanguageAlternates } from "@/lib/localized-seo-content";
 
 export const metadata: Metadata = {
   title: "GitHub Followers Guides | Githubster",
   description: "Practical guides to GitHub followers, following, mutuals, and API rate limits.",
-  alternates: { canonical: "/guides" },
+  alternates: { canonical: "/guides", languages: seoLanguageAlternates("/guides") },
 };
 
 export default function GuidesIndexPage() {

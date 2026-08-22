@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { toolPages } from "@/lib/seo-content";
+import { seoLanguageAlternates } from "@/lib/localized-seo-content";
 
 export const metadata: Metadata = {
   title: "Free GitHub Tools — Followers, Mutuals & Profile Overview | Githubster",
   description: "Free tools to compare public GitHub followers and following lists, find mutuals, and view repository profile insights.",
-  alternates: { canonical: "/tools" },
+  alternates: { canonical: "/tools", languages: seoLanguageAlternates("/tools") },
 };
 
 export default function ToolsIndexPage() {

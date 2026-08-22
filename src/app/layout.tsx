@@ -3,6 +3,7 @@ import { Google_Sans_Flex, Manrope } from "next/font/google";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { JsonLd } from "@/components/json-ld";
 import { KofiWidget } from "@/components/kofi-widget";
+import { PwaRegistration } from "@/components/pwa-registration";
 import { locales } from "@/lib/i18n";
 import "./globals.css";
 
@@ -99,6 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </ErrorBoundary>
         <KofiWidget />
+        <PwaRegistration />
       </body>
     </html>
   );
