@@ -233,7 +233,7 @@ function HomeContent() {
 
         {/* Hero section - centered */}
         <section className={`text-center ${data ? "mb-8" : "mb-0"}`}>
-          <div className={`mx-auto max-w-2xl animate-fade-in ${data ? "" : "pt-12 sm:pt-20"}`}>
+          <div className={`mx-auto max-w-2xl animate-fade-in ${data ? "pt-12 sm:pt-16" : "pt-12 sm:pt-20"}`}>
             <div className="mb-8 flex items-center justify-center">
                 <a href={locale === "en" ? "/" : `/${locale}`} className="group relative transition-opacity hover:opacity-80">
                 <Image

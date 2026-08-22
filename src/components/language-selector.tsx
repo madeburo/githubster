@@ -2,12 +2,13 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useLocale } from "@/lib/locale-context";
-import { locales, localeNames, type Locale } from "@/lib/i18n";
+import { isRtl, locales, localeNames, type Locale } from "@/lib/i18n";
 
 const languageNameCollator = new Intl.Collator("en", { sensitivity: "base" });
 
 export function LanguageSelector() {
   const { locale, setLocale } = useLocale();
+  const currentLocaleIsRtl = isRtl(locale);
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -52,7 +53,8 @@ export function LanguageSelector() {
 
       {open && (
         <div
-          className="absolute left-0 top-full z-50 mt-2 grid w-72 grid-cols-2 overflow-visible rounded-xl border p-1 sm:left-auto sm:right-0 sm:w-80"
+          dir="ltr"
+          className={`absolute top-full z-50 mt-2 grid w-72 grid-cols-2 overflow-visible rounded-xl border p-1 sm:left-auto sm:right-0 sm:w-80 ${currentLocaleIsRtl ? "right-0" : "left-0"}`}
           style={{
             borderColor: "var(--border)",
             background: "var(--bg-card)",
@@ -62,6 +64,7 @@ export function LanguageSelector() {
           {[...locales].sort((a, b) => languageNameCollator.compare(localeNames[a], localeNames[b])).map((loc) => (
             <button
               key={loc}
+              dir="auto"
               onClick={() => {
                 setLocale(loc as Locale);
                 setOpen(false);
