@@ -18,7 +18,7 @@ export function KofiWidget() {
       onLoad={() => {
         window.kofiWidgetOverlay?.draw("githubster", {
           type: "floating-chat",
-          "floating-chat.donateButton.text": "Support me",
+          "floating-chat.donateButton.text": "Support",
           "floating-chat.donateButton.background-color": "#00b9fe",
           "floating-chat.donateButton.text-color": "#fff",
         });

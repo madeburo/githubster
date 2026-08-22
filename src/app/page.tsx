@@ -474,8 +474,7 @@ export default function Home() {
         className="border-t px-4 py-12"
         style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
       >
-        <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,3fr)] lg:items-center">
-          <div className="space-y-6 text-center">
+        <div className="mx-auto max-w-5xl space-y-6 text-center">
             <h2 className="text-lg font-semibold" style={{ color: "var(--text)" }}>
               {t.seo.title}
             </h2>
@@ -527,7 +526,11 @@ export default function Home() {
                 );
               })}
             </nav>
-          </div>
+        </div>
+      </section>
+
+      <section className="border-t px-4 py-14 sm:py-16" style={{ borderColor: "#25283d", background: "#0d0e1b" }}>
+        <div className="mx-auto max-w-5xl">
           <ProjectSupport />
         </div>
       </section>
