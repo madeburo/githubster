@@ -50,7 +50,7 @@ export function LanguageSelector() {
 
       {open && (
         <div
-          className="absolute left-0 top-full z-50 mt-2 max-h-80 w-40 overflow-y-auto rounded-xl border p-1 sm:left-auto sm:right-0 sm:grid sm:max-h-none sm:w-80 sm:grid-cols-2 sm:overflow-visible"
+          className="absolute left-0 top-full z-50 mt-2 grid w-72 grid-cols-2 overflow-visible rounded-xl border p-1 sm:left-auto sm:right-0 sm:w-80"
           style={{
             borderColor: "var(--border)",
             background: "var(--bg-card)",
