@@ -10,6 +10,7 @@ import { StatsBar } from "@/components/stats-bar";
 import { ProfileOverviewCard } from "@/components/profile-overview";
 import { OpenSourceBanner } from "@/components/open-source-banner";
 import { GitHubStarButton } from "@/components/github-star-button";
+import { ProjectSupport } from "@/components/project-support";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageSelector } from "@/components/language-selector";
 import { RateLimit } from "@/components/rate-limit";
@@ -206,6 +207,13 @@ export default function Home() {
         <div className="flex items-center justify-center gap-2 sm:justify-end">
           <LanguageSelector />
           <ThemeToggle />
+          <a
+            href="#support"
+            className="rounded-lg border px-3 py-1.5 text-xs font-medium transition-all hover:scale-[1.02] active:scale-[0.98]"
+            style={{ borderColor: "var(--border)", background: "var(--bg-card)", color: "var(--text-muted)" }}
+          >
+            💙 Support
+          </a>
           <GitHubStarButton />
         </div>
 
@@ -422,6 +430,7 @@ export default function Home() {
                 </svg>
               }
             />
+
           </div>
         )}
 
@@ -464,14 +473,15 @@ export default function Home() {
         className="border-t px-4 py-12"
         style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
       >
-        <div className="mx-auto max-w-3xl space-y-6 text-center">
-          <h2 className="text-lg font-semibold" style={{ color: "var(--text)" }}>
-            {t.seo.title}
-          </h2>
-          <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-            {t.seo.description}
-          </p>
-          <div className="stagger-children grid gap-6 pt-4 sm:grid-cols-3">
+        <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,3fr)] lg:items-center">
+          <div className="space-y-6 text-center">
+            <h2 className="text-lg font-semibold" style={{ color: "var(--text)" }}>
+              {t.seo.title}
+            </h2>
+            <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+              {t.seo.description}
+            </p>
+            <div className="stagger-children grid gap-6 pt-4 sm:grid-cols-3">
             <div className="space-y-2">
               <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full" style={{ background: "rgba(99, 102, 241, 0.1)" }}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gradient-start)" strokeWidth="2">
@@ -505,7 +515,9 @@ export default function Home() {
               <h3 className="text-sm font-medium" style={{ color: "var(--text)" }}>{t.seo.feature3Title}</h3>
               <p className="text-xs" style={{ color: "var(--text-muted)" }}>{t.seo.feature3Desc}</p>
             </div>
+            </div>
           </div>
+          <ProjectSupport />
         </div>
       </section>
 
@@ -582,6 +594,9 @@ export default function Home() {
               </p>
               <p>
                 <strong style={{ color: "var(--text)" }}>Analytics.</strong> When analytics is enabled, we use a configured Umami instance to understand aggregate usage such as page views, referrers, device types, and approximate country. Analytics requests are sent to that Umami endpoint. We do not use this information to create advertising profiles.
+              </p>
+              <p>
+                <strong style={{ color: "var(--text)" }}>Ko-fi widget.</strong> We load Ko-fi&apos;s floating support widget from Ko-fi after the page becomes interactive. Ko-fi handles interactions with the widget under its own privacy practices.
               </p>
               <p>
                 <strong style={{ color: "var(--text)" }}>Email communication.</strong> If you contact us by email, we use your contact details and message to reply and retain the correspondence as reasonably needed. We do not use it for marketing without your consent.

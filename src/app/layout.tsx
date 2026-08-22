@@ -3,6 +3,7 @@ import { Google_Sans_Flex, Manrope } from "next/font/google";
 import { LocaleProvider } from "@/lib/locale-context";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { JsonLd } from "@/components/json-ld";
+import { KofiWidget } from "@/components/kofi-widget";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -96,6 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ErrorBoundary>
           <LocaleProvider>{children}</LocaleProvider>
         </ErrorBoundary>
+        <KofiWidget />
       </body>
     </html>
   );

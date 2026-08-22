@@ -92,6 +92,10 @@ curl --request POST https://www.githubster.com/api/indexnow \
 
 `GET /api/indexnow` is intentionally unsupported, and the secret must never use a `NEXT_PUBLIC_` prefix.
 
+## Supporting Githubster
+
+The support section links to [Ko-fi](https://ko-fi.com/githubster), [PayPal](https://paypal.me/UmidM), and GitHub. The Ko-fi floating-chat widget is loaded after page hydration from `storage.ko-fi.com`.
+
 ## Contributing
 
 1. Fork the repository
