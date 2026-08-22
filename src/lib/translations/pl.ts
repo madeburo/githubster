@@ -8,7 +8,7 @@ export const pl: Translations = {
   notFound: { title: "Nie znaleziono strony", description: "Strona, której szukasz, nie istnieje lub została przeniesiona.", button: "Wróć na stronę główną" },
   hero: {
     title: "Poznaj swoją sieć GitHub",
-    description: "Sprawdzaj obserwujących, wspólne połączenia, brak wzajemnego obserwowania i publiczne informacje o profilu. Konto Githubster nie jest wymagane. Opcjonalny token pozostaje w tej karcie.",
+    description: "Sprawdzaj obserwujących, wspólne połączenia, brak wzajemnego obserwowania i publiczne informacje o profilu. Opcjonalny token pozostaje w tej karcie.",
   },
   search: {
     placeholder: "Wpisz nazwę użytkownika GitHub", button: "Sprawdź", loading: "Ładowanie...",

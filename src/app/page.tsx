@@ -296,7 +296,7 @@ function HomeContent() {
               {t.hero.title}
             </h1>
             <h3
-              className="mx-auto mt-4 max-w-md text-base"
+              className="mx-auto mt-4 max-w-2xl text-base"
               style={{ color: "var(--text-muted)" }}
             >
               {t.hero.description}

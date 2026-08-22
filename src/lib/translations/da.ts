@@ -8,7 +8,7 @@ export const da: Translations = {
   notFound: { title: "Siden blev ikke fundet", description: "Siden, du leder efter, findes ikke eller er blevet flyttet.", button: "Tilbage til forsiden" },
   hero: {
     title: "Udforsk dit GitHub-netværk",
-    description: "Udforsk følgere, gensidige forbindelser, dem der ikke følger tilbage og offentlige profilindsigter. Ingen Githubster-konto kræves. Dit valgfrie token bliver i denne fane.",
+    description: "Udforsk følgere, gensidige forbindelser, dem der ikke følger tilbage og offentlige profilindsigter. Dit valgfrie token bliver i denne fane.",
   },
   search: {
     placeholder: "Indtast GitHub-brugernavn", button: "Udforsk", loading: "Indlæser...",

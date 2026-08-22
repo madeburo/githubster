@@ -8,7 +8,7 @@ export const nl: Translations = {
   notFound: { title: "Pagina niet gevonden", description: "De pagina die je zoekt bestaat niet of is verplaatst.", button: "Terug naar de startpagina" },
   hero: {
     title: "Verken je GitHub-netwerk",
-    description: "Bekijk volgers, wederzijdse connecties, accounts die je niet terugvolgen en openbare profielinzichten. Geen Githubster-account nodig. Je optionele token blijft in dit tabblad.",
+    description: "Bekijk volgers, wederzijdse connecties, accounts die je niet terugvolgen en openbare profielinzichten. Je optionele token blijft in dit tabblad.",
   },
   search: {
     placeholder: "Voer GitHub-gebruikersnaam in", button: "Verkennen", loading: "Laden...",

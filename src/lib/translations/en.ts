@@ -11,7 +11,7 @@ export const en = {
   hero: {
     title: "Explore your GitHub network",
     description:
-      "Explore followers, mutuals, unfollowers and public profile insights. No Githubster account required. Your optional token stays in this tab.",
+      "Explore followers, mutuals, unfollowers and public profile insights. Your optional token stays in this tab.",
   },
   search: {
     placeholder: "Enter GitHub username",

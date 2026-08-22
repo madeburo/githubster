@@ -8,7 +8,7 @@ export const cs: Translations = {
   notFound: { title: "Stránka nebyla nalezena", description: "Hledaná stránka neexistuje nebo byla přesunuta.", button: "Zpět na hlavní stránku" },
   hero: {
     title: "Prozkoumejte svou síť na GitHubu",
-    description: "Prozkoumejte sledující, vzájemná spojení, účty, které vás nesledují zpět, a veřejné informace o profilu. Účet Githubster není potřeba. Volitelný token zůstává na této kartě.",
+    description: "Prozkoumejte sledující, vzájemná spojení, účty, které vás nesledují zpět, a veřejné informace o profilu. Volitelný token zůstává na této kartě.",
   },
   search: {
     placeholder: "Zadejte uživatelské jméno GitHub", button: "Prozkoumat", loading: "Načítání...",

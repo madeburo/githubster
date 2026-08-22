@@ -8,7 +8,7 @@ export const sv: Translations = {
   notFound: { title: "Sidan hittades inte", description: "Sidan du söker finns inte eller har flyttats.", button: "Tillbaka till startsidan" },
   hero: {
     title: "Utforska ditt GitHub-nätverk",
-    description: "Utforska följare, ömsesidiga kontakter, personer som inte följer tillbaka och offentlig profilinformation. Inget Githubster-konto krävs. Din valfria token stannar på den här fliken.",
+    description: "Utforska följare, ömsesidiga kontakter, personer som inte följer tillbaka och offentlig profilinformation. Din valfria token stannar på den här fliken.",
   },
   search: {
     placeholder: "Ange GitHub-användarnamn", button: "Utforska", loading: "Läser in...",

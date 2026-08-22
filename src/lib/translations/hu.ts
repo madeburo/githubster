@@ -8,7 +8,7 @@ export const hu: Translations = {
   notFound: { title: "Az oldal nem található", description: "A keresett oldal nem létezik vagy áthelyezték.", button: "Vissza a főoldalra" },
   hero: {
     title: "Fedezd fel GitHub-hálózatodat",
-    description: "Fedezd fel követőidet, kölcsönös kapcsolataidat, a vissza nem követőket és a nyilvános profiladatokat. Githubster-fiók nem szükséges. Az opcionális token ezen a lapon marad.",
+    description: "Fedezd fel követőidet, kölcsönös kapcsolataidat, a vissza nem követőket és a nyilvános profiladatokat. Az opcionális token ezen a lapon marad.",
   },
   search: {
     placeholder: "Add meg a GitHub-felhasználónevet", button: "Felfedezés", loading: "Betöltés...",
