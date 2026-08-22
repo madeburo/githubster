@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PrivacyPageContent } from "@/components/privacy-page";
+import { PrivacyPageShell } from "@/components/privacy-page-shell";
 import { privacyContent, privacyLanguageAlternates } from "@/lib/privacy-content";
 
 const content = privacyContent.en;
@@ -12,5 +12,5 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPage() {
-  return <PrivacyPageContent locale="en" />;
+  return <PrivacyPageShell locale="en" />;
 }

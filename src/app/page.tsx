@@ -8,10 +8,8 @@ import { Tabs } from "@/components/tabs";
 import { UserGrid } from "@/components/user-grid";
 import { StatsBar } from "@/components/stats-bar";
 import { ProfileOverviewCard } from "@/components/profile-overview";
-import { GitHubStarButton } from "@/components/github-star-button";
-import { ProjectSupport } from "@/components/project-support";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { LanguageSelector } from "@/components/language-selector";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import { RateLimit } from "@/components/rate-limit";
 import { ShareButton } from "@/components/share-button";
 import { SkeletonLoader } from "@/components/skeleton-loader";
@@ -20,7 +18,7 @@ import { LocaleProvider } from "@/lib/locale-context";
 import { locales, type Locale } from "@/lib/i18n";
 import { getFollowData, getProfileOverview, type FollowData, type ProfileOverview, type RateLimitInfo, type LoadingProgress } from "@/lib/github";
 import { guidePages, toolPages } from "@/lib/seo-content";
-import { privacyContent } from "@/lib/privacy-content";
+import { getLocalizedSeoPage } from "@/lib/localized-seo-content";
 
 type TabId = "unfollowers" | "notFollowingBack" | "mutuals" | "following" | "followers";
 
@@ -251,19 +249,7 @@ function HomeContent() {
   return (
     <>
       <main className={`mx-auto max-w-5xl px-4 pb-8 pt-8 sm:pb-12 ${data ? "sm:pt-20" : "sm:pt-12"}`}>
-        {/* Top bar */}
-        <div className="flex items-center justify-center gap-2 sm:justify-end">
-          <LanguageSelector />
-          <ThemeToggle />
-          <a
-            href="#support"
-            className="rounded-lg border px-3 py-1.5 text-xs font-medium transition-all hover:scale-[1.02] active:scale-[0.98]"
-            style={{ borderColor: "var(--border)", background: "var(--bg-card)", color: "var(--text-muted)" }}
-          >
-            {t.support.nav}
-          </a>
-          <GitHubStarButton />
-        </div>
+        <SiteHeader showLogo={false} />
 
         {/* Hero section - centered */}
         <section className={`text-center ${data ? "mb-8" : "mb-0"}`}>
@@ -579,8 +565,9 @@ function HomeContent() {
             </div>
             </div>
             <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 pt-2 text-xs" aria-label="Githubster tools and guides">
-              {[...toolPages, ...guidePages].map((page, index) => {
+              {[...toolPages, ...guidePages].map((sourcePage, index) => {
                 const kind = index < toolPages.length ? "tools" : "guides";
+                const page = getLocalizedSeoPage(locale, sourcePage);
                 return (
                   <Link key={page.slug} href={`${locale === "en" ? "" : `/${locale}`}/${kind}/${page.slug}`} className="hover:underline" style={{ color: "var(--text-muted)" }}>
                     {page.h1}
@@ -591,32 +578,7 @@ function HomeContent() {
         </div>
       </section>
 
-      <section className="border-t px-4 py-14 sm:py-16" style={{ borderColor: "#25283d", background: "#0d0e1b" }}>
-        <div className="mx-auto max-w-5xl">
-          <ProjectSupport />
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer
-        className="border-t px-4 py-6 text-center text-xs"
-        style={{ borderColor: "var(--border)", color: "var(--text-subtle)" }}
-      >
-        <p>
-          {t.footer.openSource}{" "}
-          <a href="https://github.com/madeburo/githubster" target="_blank" rel="noopener noreferrer" className="transition-colors hover:underline" style={{ color: "var(--text-muted)" }}>
-            GitHub
-          </a>
-          {" · "}© 2026{" · "}
-          <a href="mailto:hi@githubster.com" className="transition-colors hover:underline" style={{ color: "var(--text-muted)" }}>
-            hi@githubster.com
-          </a>
-          {" · "}
-          <Link href={`${locale === "en" ? "" : `/${locale}`}/privacy`} className="transition-colors hover:underline" style={{ color: "var(--text-muted)" }}>
-            {privacyContent[locale].linkLabel}
-          </Link>
-        </p>
-      </footer>
+      <SiteFooter />
 
 
     </>

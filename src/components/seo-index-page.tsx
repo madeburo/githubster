@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SitePageChrome } from "@/components/site-page-chrome";
 import { isRtl, type Locale } from "@/lib/i18n";
 import { getLocalizedSeoPage, seoLabels } from "@/lib/localized-seo-content";
 import { guidePages, toolPages } from "@/lib/seo-content";
@@ -11,9 +12,9 @@ export function SeoIndexPage({ locale, kind }: { locale: Locale; kind: "tools" |
   const prefix = locale === "en" ? "" : `/${locale}`;
 
   return (
-    <main dir={isRtl(locale) ? "rtl" : "ltr"} className="mx-auto max-w-3xl px-4 py-12 sm:py-20">
-      <Link href={prefix || "/"} className="text-sm font-medium hover:underline" style={{ color: "var(--gradient-start)" }}>Githubster</Link>
-      <h1 className="mt-3 text-3xl font-bold sm:text-5xl" style={{ color: "var(--text)" }}>{labels[kind]}</h1>
+    <SitePageChrome locale={locale}>
+    <main dir={isRtl(locale) ? "rtl" : "ltr"} className="mx-auto max-w-3xl px-4 py-12 sm:py-16">
+      <h1 className="text-3xl font-bold sm:text-5xl" style={{ color: "var(--text)" }}>{labels[kind]}</h1>
       <p className="mt-5 text-lg leading-relaxed" style={{ color: "var(--text-muted)" }}>{t.seo.description}</p>
       <div className={`mt-10 ${kind === "tools" ? "grid gap-4 sm:grid-cols-2" : "space-y-4"}`}>
         {pages.map((page) => (
@@ -24,5 +25,6 @@ export function SeoIndexPage({ locale, kind }: { locale: Locale; kind: "tools" |
         ))}
       </div>
     </main>
+    </SitePageChrome>
   );
 }

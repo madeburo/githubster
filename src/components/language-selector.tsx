@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useLocale } from "@/lib/locale-context";
 import { isRtl, locales, localeNames, type Locale } from "@/lib/i18n";
 
 const languageNameCollator = new Intl.Collator("en", { sensitivity: "base" });
 
 export function LanguageSelector() {
+  const router = useRouter();
   const { locale, setLocale } = useLocale();
   const currentLocaleIsRtl = isRtl(locale);
   const [open, setOpen] = useState(false);
@@ -67,8 +69,13 @@ export function LanguageSelector() {
               onClick={() => {
                 setLocale(loc as Locale);
                 setOpen(false);
+                const segments = window.location.pathname.split("/").filter(Boolean);
+                const pathHasLocale = segments.length > 0 && locales.includes(segments[0] as Locale);
+                const routeSegments = pathHasLocale ? segments.slice(1) : segments;
+                const routePath = routeSegments.length > 0 ? `/${routeSegments.join("/")}` : "/";
+                const localizedPath = loc === "en" ? routePath : `/${loc}${routePath === "/" ? "" : routePath}`;
                 const suffix = `${window.location.search}${window.location.hash}`;
-                window.location.assign(loc === "en" ? `/${suffix}` : `/${loc}${suffix}`);
+                router.push(`${localizedPath}${suffix}`);
               }}
               className="flex w-full items-center rounded-lg px-3 py-2 text-xs transition-colors"
               style={{

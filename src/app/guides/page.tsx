@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SitePageChrome } from "@/components/site-page-chrome";
 import { guidePages } from "@/lib/seo-content";
 import { seoLanguageAlternates } from "@/lib/localized-seo-content";
 
@@ -11,9 +12,9 @@ export const metadata: Metadata = {
 
 export default function GuidesIndexPage() {
   return (
-    <main className="mx-auto max-w-3xl px-4 py-12 sm:py-20">
-      <p className="text-sm font-medium" style={{ color: "var(--gradient-start)" }}>Githubster guides</p>
-      <h1 className="mt-3 text-3xl font-bold sm:text-5xl" style={{ color: "var(--text)" }}>Understand public GitHub relationships</h1>
+    <SitePageChrome locale="en">
+    <main className="mx-auto max-w-3xl px-4 py-12 sm:py-16">
+      <h1 className="text-3xl font-bold sm:text-5xl" style={{ color: "var(--text)" }}>Understand public GitHub relationships</h1>
       <p className="mt-5 text-lg leading-relaxed" style={{ color: "var(--text-muted)" }}>Short, practical explanations of GitHub followers, following, mutuals, and API limits.</p>
       <div className="mt-10 space-y-4">
         {guidePages.map((page) => (
@@ -24,5 +25,6 @@ export default function GuidesIndexPage() {
         ))}
       </div>
     </main>
+    </SitePageChrome>
   );
 }

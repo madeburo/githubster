@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SitePageChrome } from "@/components/site-page-chrome";
 import { isRtl, type Locale } from "@/lib/i18n";
 import { seoLabels } from "@/lib/localized-seo-content";
 import type { SeoPage } from "@/lib/seo-content";
@@ -16,16 +17,10 @@ export function SeoPage({ page, kind, locale }: SeoPageProps) {
   const path = `${prefix}/${kind}/${page.slug}`;
 
   return (
-    <main dir={isRtl(activeLocale) ? "rtl" : "ltr"} className="mx-auto max-w-3xl px-4 py-12 sm:py-20">
-      <nav className="mb-8 text-sm" aria-label="Breadcrumb" style={{ color: "var(--text-muted)" }}>
-        <Link href={prefix || "/"} className="hover:underline">Githubster</Link>
-      </nav>
-
-      <article>
-        <p className="text-sm font-medium" style={{ color: "var(--gradient-start)" }}>
-          Githubster
-        </p>
-        <h1 className="mt-3 text-3xl font-bold tracking-tight sm:text-5xl" style={{ color: "var(--text)" }}>
+    <SitePageChrome locale={activeLocale}>
+      <main dir={isRtl(activeLocale) ? "rtl" : "ltr"} className="mx-auto max-w-3xl px-4 py-12 sm:py-16">
+        <article>
+        <h1 className="text-3xl font-bold tracking-tight sm:text-5xl" style={{ color: "var(--text)" }}>
           {page.h1}
         </h1>
         <p className="mt-5 text-lg leading-relaxed" style={{ color: "var(--text-muted)" }}>
@@ -70,7 +65,7 @@ export function SeoPage({ page, kind, locale }: SeoPageProps) {
             ))}
           </div>
         </section>
-      </article>
+        </article>
 
       <script
         type="application/ld+json"
@@ -98,6 +93,7 @@ export function SeoPage({ page, kind, locale }: SeoPageProps) {
           }),
         }}
       />
-    </main>
+      </main>
+    </SitePageChrome>
   );
 }

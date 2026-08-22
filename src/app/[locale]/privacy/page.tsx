@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PrivacyPageContent } from "@/components/privacy-page";
+import { PrivacyPageShell } from "@/components/privacy-page-shell";
 import { locales, type Locale } from "@/lib/i18n";
 import { privacyContent, privacyLanguageAlternates } from "@/lib/privacy-content";
 
@@ -26,5 +26,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function LocalizedPrivacyPage({ params }: Props) {
   const { locale } = await params;
   if (!locales.includes(locale as Locale) || locale === "en") notFound();
-  return <PrivacyPageContent locale={locale as Locale} />;
+  return <PrivacyPageShell locale={locale as Locale} />;
 }
