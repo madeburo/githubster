@@ -20,14 +20,9 @@ const googleSansFlex = Google_Sans_Flex({
 });
 
 export const metadata: Metadata = {
-  title: "Githubster — Track Your GitHub Followers & Unfollowers",
+  title: "GitHub Followers Checker — Find Who Doesn’t Follow Back | Githubster",
   description:
-    "Free open-source tool to see who doesn't follow you back on GitHub, discover your fans, and manage your following list.",
-  keywords: [
-    "github", "followers", "unfollowers", "github tracker",
-    "who unfollowed me", "github following", "not following back",
-    "github tool", "open source",
-  ],
+    "Compare public GitHub followers and following lists to find people who do not follow back, mutuals, and profile insights. Free and no Githubster account required.",
   authors: [{ name: "Made Büro", url: "https://github.com/madeburo" }],
   creator: "Made Büro",
   metadataBase: new URL("https://www.githubster.com"),
@@ -36,16 +31,16 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.githubster.com",
     siteName: "Githubster",
-    title: "Githubster — Track Your GitHub Followers & Unfollowers",
+    title: "GitHub Followers Checker — Find Who Doesn’t Follow Back | Githubster",
     description:
-      "Free open-source tool to see who doesn't follow you back on GitHub, discover your fans, and manage your following list.",
+      "Compare public GitHub followers and following lists to find people who do not follow back, mutuals, and profile insights.",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Githubster" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Githubster — Track Your GitHub Followers & Unfollowers",
+    title: "GitHub Followers Checker — Find Who Doesn’t Follow Back | Githubster",
     description:
-      "Free open-source tool to see who doesn't follow you back on GitHub. No login required.",
+      "Compare public GitHub followers and following lists. No Githubster account required.",
     images: ["/og-image.png"],
   },
   icons: {

@@ -18,6 +18,7 @@ import { ShareButton } from "@/components/share-button";
 import { SkeletonLoader } from "@/components/skeleton-loader";
 import { useLocale } from "@/lib/locale-context";
 import { getFollowData, getProfileOverview, type FollowData, type ProfileOverview, type RateLimitInfo, type LoadingProgress } from "@/lib/github";
+import { guidePages, toolPages } from "@/lib/seo-content";
 
 type TabId = "unfollowers" | "notFollowingBack" | "mutuals" | "following" | "followers";
 
@@ -516,6 +517,16 @@ export default function Home() {
               <p className="text-xs" style={{ color: "var(--text-muted)" }}>{t.seo.feature3Desc}</p>
             </div>
             </div>
+            <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 pt-2 text-xs" aria-label="Githubster tools and guides">
+              {[...toolPages, ...guidePages].map((page, index) => {
+                const kind = index < toolPages.length ? "tools" : "guides";
+                return (
+                  <Link key={page.slug} href={`/${kind}/${page.slug}`} className="hover:underline" style={{ color: "var(--text-muted)" }}>
+                    {page.h1}
+                  </Link>
+                );
+              })}
+            </nav>
           </div>
           <ProjectSupport />
         </div>

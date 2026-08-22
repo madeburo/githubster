@@ -40,6 +40,16 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+## Deployment
+
+`npm run build` creates a complete standalone deployment in `.next/standalone`. The post-build step copies both `.next/static` and `public` into that directory, so deploy the **entire** `.next/standalone` directory and start it with:
+
+```bash
+node server.js
+```
+
+Deploying only `server.js` or only the standalone JavaScript files will cause `/_next/static/*` assets to return `404`, leaving the site without styles and client-side behavior.
+
 ## GitHub Token (Optional)
 
 Without a token, GitHub normally allows 60 REST API requests per hour per IP address. An authenticated personal account normally gets 5,000 requests per hour, but GitHub can apply different limits in some situations.
@@ -95,6 +105,16 @@ curl --request POST https://www.githubster.com/api/indexnow \
 ## Supporting Githubster
 
 The support section links to [Ko-fi](https://ko-fi.com/githubster), [PayPal](https://paypal.me/UmidM), and GitHub. The Ko-fi floating-chat widget is loaded after page hydration from `storage.ko-fi.com`.
+
+## SEO release checklist
+
+After deploying a release that changes public pages:
+
+1. Verify `https://www.githubster.com/_next/static/` assets return `200` in browser DevTools.
+2. Add and verify the `https://www.githubster.com/` property in Google Search Console and Bing Webmaster Tools.
+3. Submit `https://www.githubster.com/sitemap.xml`, then request indexing for the homepage and the new `/tools/` and `/guides/` pages.
+4. Trigger the protected IndexNow endpoint from a trusted deployment workflow after setting `INDEXNOW_KEY` and `INDEXNOW_SECRET`.
+5. Review Search Console queries, pages, and CTR weekly; improve existing pages with impressions before adding new ones.
 
 ## Contributing
 
