@@ -16,11 +16,6 @@ export function PrivacyPageContent({ locale }: { locale: Locale }) {
           </section>
         ))}
       </div>
-      {locale !== "en" && (
-        <p className="mt-10 rounded-xl border p-4 text-sm leading-relaxed" style={{ borderColor: "var(--border)", background: "var(--bg-card)", color: "var(--text-muted)" }}>
-          {content.precedence}
-        </p>
-      )}
       <p className="mt-12 text-sm" style={{ color: "var(--text-muted)" }}>
         {content.questions} <a href="mailto:hi@githubster.com" className="underline">hi@githubster.com</a>
       </p>
