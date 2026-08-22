@@ -41,6 +41,8 @@ const searchShortcut: Record<Locale, { before: string; after: string }> = {
   da: { before: "Tryk på ", after: " for at fokusere søgningen" },
   sv: { before: "Tryck på ", after: " för att fokusera sökfältet" },
   no: { before: "Trykk på ", after: " for å fokusere søkefeltet" },
+  cs: { before: "Stiskněte ", after: " pro přechod do vyhledávání" },
+  hu: { before: "Nyomd meg a ", after: " billentyűt a kereséshez" },
 };
 
 export default function Home() {

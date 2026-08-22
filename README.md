@@ -23,7 +23,7 @@ Githubster is a free, open-source tool that helps you understand your public Git
 - Loading progress with skeleton animation
 - Optional GitHub token for higher rate limits
 - Dark/Light theme
-- 18 languages supported (i18n with RTL)
+- 20 languages supported (i18n with RTL)
 - Web app manifest for standalone installation (GitHub data still requires a network connection)
 - Browser-based profile analysis — usernames and optional tokens are sent directly to GitHub, not to a Githubster API
 - SEO optimized with structured data (JSON-LD)

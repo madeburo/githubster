@@ -9,7 +9,7 @@ const copyLabels: Record<Locale, string> = {
   it: "Copia link del profilo", pt: "Copiar link do perfil", nl: "Profiellink kopiëren", pl: "Kopiuj link do profilu",
   da: "Kopiér profillink", tr: "Profil bağlantısını kopyala", uk: "Копіювати посилання профілю", zh: "复制个人资料链接",
   ja: "プロフィールリンクをコピー", ko: "프로필 링크 복사", he: "העתקת קישור לפרופיל", ar: "نسخ رابط الملف الشخصي",
-  sv: "Kopiera profillänk", no: "Kopier profillenke",
+  sv: "Kopiera profillänk", no: "Kopier profillenke", cs: "Kopírovat odkaz na profil", hu: "Profilhivatkozás másolása",
 };
 
 interface ShareButtonProps {

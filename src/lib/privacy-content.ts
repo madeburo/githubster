@@ -113,6 +113,24 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
       { heading: "Ko-fi og e-post", text: "Ko-fi håndterer interaksjoner med støttewidgeten i henhold til sin egen personvernpraksis. Hvis du sender oss e-post, bruker vi bare meldingen og kontaktopplysningene dine til å svare og beholder korrespondansen når det er rimelig nødvendig." },
     ], questions: "Spørsmål?", linkLabel: "Personvern",
   },
+  cs: {
+    title: "Zásady ochrany osobních údajů", description: "Jak Githubster zpracovává veřejná data GitHubu, volitelné tokeny, nastavení, analytiku a prvky podpory.", updated: "Poslední aktualizace: 22. srpna 2026",
+    sections: [
+      { heading: "Zpracování v prohlížeči", text: "Githubster zpracovává veřejná data profilu GitHub a případný přístupový token ve vašem prohlížeči. Tyto informace se neposílají na aplikační servery Githubsteru." },
+      { heading: "Požadavky na GitHub a tokeny", text: "Váš prohlížeč odesílá požadované API požadavky přímo na GitHub. Volitelný token se neukládá do localStorage a po zavření nebo opětovném načtení stránky se odstraní." },
+      { heading: "Nastavení a analytika", text: "Nastavení motivu a jazyka se ukládají místně ve vašem prohlížeči. Githubster používá analytiku šetrnou k soukromí, aby porozuměl souhrnnému používání webu. Analytika nepoužívá cookies, nesleduje osoby napříč weby a neshromažďuje osobní údaje. Je v souladu s GDPR." },
+      { heading: "Ko-fi a e-mail", text: "Ko-fi zpracovává interakce s prvkem podpory podle vlastních zásad ochrany soukromí. Pokud nám napíšete e-mail, použijeme vaši zprávu a kontaktní údaje pouze k odpovědi a korespondenci uchováme jen po přiměřeně nutnou dobu." },
+    ], questions: "Dotazy?", linkLabel: "Soukromí",
+  },
+  hu: {
+    title: "Adatvédelmi irányelvek", description: "Hogyan kezeli a Githubster a nyilvános GitHub-adatokat, az opcionális tokeneket, a beállításokat, az elemzést és a támogatási widgeteket.", updated: "Utolsó frissítés: 2026. augusztus 22.",
+    sections: [
+      { heading: "Böngészőben történő feldolgozás", text: "A Githubster a nyilvános GitHub-profiladatokat és az opcionális hozzáférési tokent a böngésződben dolgozza fel. Ezek az adatok nem kerülnek a Githubster alkalmazásszervereire." },
+      { heading: "GitHub-kérések és tokenek", text: "A böngésződ közvetlenül a GitHubnak küldi a kért API-hívásokat. Az opcionális tokent nem mentjük a localStorage-ba, és az oldal bezárásakor vagy újratöltésekor törlődik." },
+      { heading: "Beállítások és elemzés", text: "A téma- és nyelvi beállításokat a böngésző helyben tárolja. A Githubster adatvédelmi szempontú elemzést használ a webhely összesített használatának megértéséhez. Az elemzés nem használ cookie-kat, nem követ személyeket webhelyek között, és nem gyűjt személyes adatokat. Megfelel a GDPR-nak." },
+      { heading: "Ko-fi és e-mail", text: "A Ko-fi a saját adatvédelmi gyakorlatának megfelelően kezeli a támogatási widgettel végzett műveleteket. Ha e-mailt küldesz nekünk, az üzenetet és az elérhetőségeidet csak a válaszadáshoz használjuk, a levelezést pedig csak észszerűen szükséges ideig őrizzük meg." },
+    ], questions: "Kérdésed van?", linkLabel: "Adatvédelem",
+  },
   tr: {
     title: "Gizlilik Politikası", description: "Githubster'ın herkese açık GitHub verilerini, isteğe bağlı tokenları, tercihleri, analizleri ve destek bileşenlerini nasıl işlediği.", updated: "Son güncelleme: 22 Ağustos 2026",
     sections: [

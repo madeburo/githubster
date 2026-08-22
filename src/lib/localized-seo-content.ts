@@ -17,6 +17,8 @@ export const seoLabels: Record<Locale, { tools: string; guides: string; faq: str
   da: { tools: "Værktøjer", guides: "Vejledninger", faq: "Ofte stillede spørgsmål" },
   sv: { tools: "Verktyg", guides: "Guider", faq: "Vanliga frågor" },
   no: { tools: "Verktøy", guides: "Veiledninger", faq: "Vanlige spørsmål" },
+  cs: { tools: "Nástroje", guides: "Průvodci", faq: "Časté otázky" },
+  hu: { tools: "Eszközök", guides: "Útmutatók", faq: "Gyakori kérdések" },
   tr: { tools: "Araçlar", guides: "Rehberler", faq: "Sık sorulan sorular" },
   uk: { tools: "Інструменти", guides: "Посібники", faq: "Поширені запитання" },
   zh: { tools: "工具", guides: "指南", faq: "常见问题" },
@@ -119,6 +121,22 @@ const copy: Record<Exclude<Locale, "en">, CopyBySlug> = {
     "github-followers-vs-following": ["GitHub-følgere og fulgte kontoer: Hva er forskjellen?", "Følgere følger en profil, mens fulgte kontoer er kontoene profilen følger. Kontoer i begge listene er gjensidige forbindelser."],
     "github-api-rate-limits-for-followers": ["GitHub API-grenser for følgerlister", "Store lister krever flere sideinndelte API-kall. Et valgfritt token kan øke grensen og blir bare i den gjeldende økten."],
   },
+  cs: {
+    "github-followers-checker": ["Kontrola sledujících na GitHubu", "Porovnejte veřejné seznamy sledujících a sledovaných účtů. Githubster rozdělí aktuální data na vzájemná spojení, účty bez zpětného sledování a sledující, které zatím nesledujete."],
+    "github-not-following-back": ["Kdo vás na GitHubu nesleduje zpět?", "Podívejte se, které veřejné účty sledujete, ale které vás právě nesledují zpět. Výsledek je aktuální snímek, nikoli historie zrušených sledování."],
+    "github-mutual-followers": ["Kontrola vzájemných sledujících na GitHubu", "Najděte účty v obou veřejných seznamech a objevte správce, přispěvatele a kolegy, se kterými máte vzájemné spojení."],
+    "github-profile-overview": ["Přehled profilu GitHub", "Zobrazte veřejné repozitáře, hvězdy, hlavní jazyky a vztahy sledujících. Neúplná data se zobrazí jako nedostupná, nikdy jako zavádějící nuly."],
+    "github-followers-vs-following": ["Sledující a sledované účty na GitHubu: Jaký je rozdíl?", "Sledující sledují profil, zatímco sledované účty jsou ty, které sleduje profil. Účty v obou seznamech jsou vzájemná spojení."],
+    "github-api-rate-limits-for-followers": ["Limity GitHub API pro seznamy sledujících", "Velké seznamy vyžadují několik stránkovaných API požadavků. Volitelný token může limit zvýšit a zůstává pouze v aktuální relaci."],
+  },
+  hu: {
+    "github-followers-checker": ["GitHub-követők ellenőrzése", "Hasonlítsd össze a nyilvános követő- és követési listákat. A Githubster kölcsönös kapcsolatokra, vissza nem követő fiókokra és általad még nem követett követőkre bontja az aktuális adatokat."],
+    "github-not-following-back": ["Ki nem követ vissza a GitHubon?", "Nézd meg, mely nyilvános fiókokat követed, amelyek jelenleg nem követnek vissza. Az eredmény aktuális pillanatkép, nem a kikövetések előzménye."],
+    "github-mutual-followers": ["Kölcsönös GitHub-követők ellenőrzése", "Keresd meg a mindkét nyilvános listában szereplő fiókokat, valamint azokat a karbantartókat, közreműködőket és kollégákat, akikkel kölcsönös kapcsolatod van."],
+    "github-profile-overview": ["GitHub-profil áttekintése", "Tekintsd meg a nyilvános adattárakat, csillagokat, fő nyelveket és követői kapcsolatokat. A hiányos adatok nem elérhetőként, nem pedig félrevezető nullaként jelennek meg."],
+    "github-followers-vs-following": ["GitHub-követők és követések: Mi a különbség?", "A követők egy profilt követnek, a követések pedig azok a fiókok, amelyeket a profil követ. A mindkét listában szereplő fiókok kölcsönös kapcsolatok."],
+    "github-api-rate-limits-for-followers": ["GitHub API-korlátok a követői listákhoz", "A nagy listák több lapozott API-kérést igényelnek. Egy opcionális token növelheti a korlátot, és csak az aktuális munkamenetben marad meg."],
+  },
   tr: {
     "github-followers-checker": ["GitHub takipçi kontrolü", "Herkese açık takipçi ve takip edilen listelerini karşılaştırın. Githubster güncel verileri karşılıklı bağlantılar, geri takip etmeyenler ve henüz takip etmedikleriniz olarak ayırır."],
     "github-not-following-back": ["GitHub’da sizi kim geri takip etmiyor?", "Takip ettiğiniz ancak şu anda sizi takip etmeyen herkese açık hesapları görün. Sonuç güncel bir anlık görüntüdür, geçmiş kaydı değildir."],
@@ -177,8 +195,31 @@ const copy: Record<Exclude<Locale, "en">, CopyBySlug> = {
   },
 };
 
+const whatIsGithubCopy: Record<Exclude<Locale, "en">, Copy> = {
+  de: ["Was ist GitHub?", "GitHub ist eine Online-Plattform zum Hosten von Git-Repositories und zur Zusammenarbeit an Software. Sie verbindet Versionskontrolle mit Code-Reviews, Issues, Pull Requests, Projektverwaltung, Open Source und öffentlichen Entwicklerprofilen."],
+  fr: ["Qu’est-ce que GitHub ?", "GitHub est une plateforme en ligne qui héberge des dépôts Git et facilite la collaboration logicielle. Elle associe le contrôle de version aux revues de code, issues, pull requests, outils de projet, projets open source et profils publics."],
+  es: ["¿Qué es GitHub?", "GitHub es una plataforma en línea para alojar repositorios Git y colaborar en software. Combina el control de versiones con revisiones de código, incidencias, pull requests, gestión de proyectos, código abierto y perfiles públicos de desarrolladores."],
+  it: ["Che cos’è GitHub?", "GitHub è una piattaforma online per ospitare repository Git e collaborare allo sviluppo software. Unisce il controllo di versione a revisioni del codice, issue, pull request, gestione dei progetti, open source e profili pubblici."],
+  pt: ["O que é o GitHub?", "O GitHub é uma plataforma online para hospedar repositórios Git e colaborar em software. Ele combina controle de versão com revisão de código, issues, pull requests, gestão de projetos, código aberto e perfis públicos de desenvolvedores."],
+  nl: ["Wat is GitHub?", "GitHub is een online platform voor het hosten van Git-repositories en samenwerken aan software. Het combineert versiebeheer met codereviews, issues, pull requests, projectbeheer, open source en openbare ontwikkelaarsprofielen."],
+  pl: ["Czym jest GitHub?", "GitHub to internetowa platforma do hostowania repozytoriów Git i współpracy nad oprogramowaniem. Łączy kontrolę wersji z przeglądami kodu, zgłoszeniami, pull requestami, zarządzaniem projektami, open source i publicznymi profilami programistów."],
+  da: ["Hvad er GitHub?", "GitHub er en onlineplatform til hosting af Git-repositories og samarbejde om software. Den kombinerer versionsstyring med kodegennemgang, issues, pull requests, projektstyring, open source og offentlige udviklerprofiler."],
+  sv: ["Vad är GitHub?", "GitHub är en onlineplattform för att lagra Git-repositories och samarbeta kring programvara. Den kombinerar versionshantering med kodgranskning, issues, pull requests, projekthantering, öppen källkod och offentliga utvecklarprofiler."],
+  no: ["Hva er GitHub?", "GitHub er en nettplattform for lagring av Git-repositories og samarbeid om programvare. Den kombinerer versjonskontroll med kodegjennomgang, issues, pull requests, prosjektstyring, åpen kildekode og offentlige utviklerprofiler."],
+  cs: ["Co je GitHub?", "GitHub je online platforma pro hostování Git repozitářů a spolupráci na softwaru. Spojuje správu verzí s kontrolou kódu, issues, pull requesty, řízením projektů, open source a veřejnými profily vývojářů."],
+  hu: ["Mi az a GitHub?", "A GitHub egy online platform Git-adattárak tárolására és szoftveres együttműködésre. A verziókezelést kódellenőrzéssel, issue-kkal, pull requestekkel, projektkezeléssel, nyílt forráskódú munkával és nyilvános fejlesztői profilokkal egészíti ki."],
+  tr: ["GitHub nedir?", "GitHub, Git depolarını barındırmak ve yazılım üzerinde birlikte çalışmak için kullanılan çevrimiçi bir platformdur. Sürüm kontrolünü kod incelemeleri, issue’lar, pull request’ler, proje yönetimi, açık kaynak ve herkese açık geliştirici profilleriyle birleştirir."],
+  uk: ["Що таке GitHub?", "GitHub — це онлайн-платформа для розміщення Git-репозиторіїв і спільної роботи над програмним забезпеченням. Вона поєднує контроль версій із перевіркою коду, issues, pull requests, керуванням проєктами, відкритим кодом і публічними профілями розробників."],
+  zh: ["什么是 GitHub？", "GitHub 是一个用于托管 Git 仓库和协作开发软件的在线平台。它将版本控制与代码审查、Issue、Pull Request、项目管理、开源协作和公开开发者资料结合在一起。"],
+  ja: ["GitHub とは？", "GitHub は Git リポジトリのホスティングとソフトウェア共同開発のためのオンラインプラットフォームです。バージョン管理にコードレビュー、Issue、Pull Request、プロジェクト管理、オープンソース、公開プロフィールを組み合わせています。"],
+  ko: ["GitHub이란 무엇인가요?", "GitHub은 Git 저장소를 호스팅하고 소프트웨어를 공동 개발하는 온라인 플랫폼입니다. 버전 관리에 코드 리뷰, 이슈, 풀 리퀘스트, 프로젝트 관리, 오픈 소스와 공개 개발자 프로필을 결합합니다."],
+  he: ["מהו GitHub?", "GitHub היא פלטפורמה מקוונת לאחסון מאגרי Git ולשיתוף פעולה בפיתוח תוכנה. היא משלבת ניהול גרסאות עם סקירת קוד, Issues, Pull Requests, ניהול פרויקטים, קוד פתוח ופרופילי מפתחים ציבוריים."],
+  ar: ["ما هو GitHub؟", "GitHub منصة عبر الإنترنت لاستضافة مستودعات Git والتعاون في تطوير البرمجيات. تجمع بين التحكم في الإصدارات ومراجعة الكود وIssues وPull Requests وإدارة المشاريع والمصدر المفتوح وملفات المطورين العامة."],
+};
+
 function highlights(locale: Locale, slug: string): string[] {
   const t = translations[locale];
+  if (slug === "what-is-github") return [t.profileOverview.repositories, t.profileOverview.ownProjects, t.stats.followers];
   if (slug === "github-followers-checker" || slug === "github-followers-vs-following") return [t.stats.followers, t.stats.following, t.stats.mutuals];
   if (slug === "github-not-following-back") return [t.seo.feature1Title, t.tabs.following, t.seo.feature3Title];
   if (slug === "github-mutual-followers") return [t.tabs.mutuals, t.stats.followers, t.stats.following];
@@ -188,7 +229,7 @@ function highlights(locale: Locale, slug: string): string[] {
 
 export function getLocalizedSeoPage(locale: Locale, page: SeoPage): SeoPage {
   if (locale === "en") return page;
-  const localized = copy[locale][page.slug];
+  const localized = page.slug === "what-is-github" ? whatIsGithubCopy[locale] : copy[locale][page.slug];
   if (!localized) return page;
   const [h1, body] = localized;
   const t = translations[locale];
@@ -200,7 +241,7 @@ export function getLocalizedSeoPage(locale: Locale, page: SeoPage): SeoPage {
     intro: body,
     highlights: highlights(locale, page.slug),
     sections: [{ heading: h1, paragraphs: [body] }],
-    faqs: [
+    faqs: page.slug === "what-is-github" ? [] : [
       { question: t.search.tokenToggle, answer: t.search.tokenPrivacy },
       { question: t.error.rateLimit, answer: t.error.rateLimitDesc },
     ],

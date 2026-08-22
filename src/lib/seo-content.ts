@@ -83,6 +83,23 @@ export const toolPages: SeoPage[] = [
 
 export const guidePages: SeoPage[] = [
   {
+    slug: "what-is-github",
+    title: "What Is GitHub? Repositories, Collaboration & Open Source | Githubster",
+    description: "Learn what GitHub is, how it relates to Git, and how repositories, pull requests, issues, stars, followers, and open-source collaboration work.",
+    h1: "What Is GitHub?",
+    intro: "GitHub is an online platform for hosting Git repositories and collaborating on software. It combines version control with tools for reviewing code, managing projects, publishing open-source work, and building a public developer profile.",
+    highlights: ["Host and manage Git repositories", "Collaborate with issues and pull requests", "Discover developers and open-source projects"],
+    sections: [
+      { heading: "Git and GitHub are different", paragraphs: ["Git is a distributed version control system that records changes to files. GitHub is a service built around Git that hosts repositories online and adds collaboration, discovery, security, and project-management features."] },
+      { heading: "Repositories and collaboration", paragraphs: ["A repository can contain source code, documentation, release history, issues, and contribution guidelines. Developers can copy a repository, create a branch, propose changes with a pull request, and review those changes before they are merged."] },
+      { heading: "Profiles, followers, and open source", paragraphs: ["GitHub profiles show public repositories, contributions, followers, followed accounts, and starred projects. These public signals help developers discover maintainers, collaborators, communities, and software they may want to use or contribute to."] },
+    ],
+    faqs: [
+      { question: "Is GitHub the same as Git?", answer: "No. Git is the version control system; GitHub is an online platform that hosts Git repositories and provides collaboration tools around them." },
+      { question: "Do I need to pay to use GitHub?", answer: "GitHub offers free accounts and public or private repositories, with optional paid plans for additional features and organizations." },
+    ],
+  },
+  {
     slug: "github-followers-vs-following",
     title: "GitHub Followers vs Following: What’s the Difference? | Githubster",
     description: "Learn the difference between GitHub followers, following, mutuals, and people who do not follow back. Compare public GitHub lists with Githubster.",
