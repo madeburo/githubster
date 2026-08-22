@@ -17,7 +17,7 @@ import { ShareButton } from "@/components/share-button";
 import { SkeletonLoader } from "@/components/skeleton-loader";
 import { useLocale } from "@/lib/locale-context";
 import { LocaleProvider } from "@/lib/locale-context";
-import type { Locale } from "@/lib/i18n";
+import { locales, type Locale } from "@/lib/i18n";
 import { getFollowData, getProfileOverview, type FollowData, type ProfileOverview, type RateLimitInfo, type LoadingProgress } from "@/lib/github";
 import { guidePages, toolPages } from "@/lib/seo-content";
 
@@ -30,9 +30,33 @@ export default function Home() {
 export function HomePage({ initialLocale }: { initialLocale: Locale }) {
   return (
     <LocaleProvider key={initialLocale} initialLocale={initialLocale}>
+      <BrowserLocaleRedirect initialLocale={initialLocale} />
       <HomeContent />
     </LocaleProvider>
   );
+}
+
+function BrowserLocaleRedirect({ initialLocale }: { initialLocale: Locale }) {
+  useEffect(() => {
+    if (initialLocale !== "en" || window.location.pathname !== "/") return;
+
+    // Keep crawlers on the canonical English URL; this redirect is only a convenience for people.
+    if (/bot|crawler|spider|crawling|slurp|facebookexternalhit|preview/i.test(navigator.userAgent)) return;
+
+    const storedLocale = localStorage.getItem("locale");
+    const browserLocales = navigator.languages || [navigator.language];
+    const preferredLocale =
+      (storedLocale && locales.includes(storedLocale as Locale) ? storedLocale : undefined) ??
+      browserLocales
+        .map((language) => language.split("-")[0].toLowerCase())
+        .find((language) => locales.includes(language as Locale));
+
+    if (!preferredLocale || preferredLocale === "en") return;
+
+    window.location.replace(`/${preferredLocale}${window.location.search}${window.location.hash}`);
+  }, [initialLocale]);
+
+  return null;
 }
 
 function HomeContent() {
