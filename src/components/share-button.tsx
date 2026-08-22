@@ -8,11 +8,12 @@ interface ShareButtonProps {
 }
 
 export function ShareButton({ username }: ShareButtonProps) {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const [copied, setCopied] = useState(false);
 
   async function handleShare() {
-    const url = `${window.location.origin}?user=${encodeURIComponent(username)}`;
+    const localePath = locale === "en" ? "" : `/${locale}`;
+    const url = `${window.location.origin}${localePath}?user=${encodeURIComponent(username)}`;
 
     if (navigator.share) {
       try {

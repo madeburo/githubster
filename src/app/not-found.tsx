@@ -3,8 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLocale } from "@/lib/locale-context";
+import { LocaleProvider } from "@/lib/locale-context";
 
 export default function NotFound() {
+  return (
+    <LocaleProvider>
+      <NotFoundContent />
+    </LocaleProvider>
+  );
+}
+
+function NotFoundContent() {
   const { t } = useLocale();
 
   return (

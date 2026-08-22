@@ -67,13 +67,21 @@ export const tr: Translations = {
   seo: {
     title: "Githubster nedir?",
     description:
-      "Githubster, GitHub bağlantılarınızı anlamanıza yardımcı olan ücretsiz ve açık kaynaklı bir araçtır. Giriş gerektirmez, veri toplamaz.",
+      "Githubster, ücretsiz ve açık kaynaklı bir GitHub takipçi denetleyicisidir. Sizi geri takip etmeyenleri, karşılıklı bağlantıları ve profil bilgilerini görmek için herkese açık takipçi ve takip edilen listelerini karşılaştırın; Githubster hesabı gerekmez.",
     feature1Title: "Takip etmeyenler",
     feature1Desc: "Takip ettiğiniz ama sizi geri takip etmeyenleri görün.",
     feature2Title: "Takipçiler",
     feature2Desc: "Sizi takip eden ama takip etmediğiniz kişileri keşfedin.",
     feature3Title: "Gizli ve Güvenli",
     feature3Desc: "Profil analizi tarayıcınızda yapılır. İsteğe bağlı erişim jetonları kaydedilmez.",
+  },
+  support: {
+    nav: "Destekle",
+    title: "Githubster'ı destekle",
+    description: "Githubster ücretsiz ve açık kaynaklıdır. İşinize yarıyorsa geliştirilmesini destekleyebilirsiniz.",
+    kofi: "Ko-fi'de destekle",
+    paypal: "PayPal",
+    star: "GitHub'da yıldız ver",
   },
   profileOverview: {
     title: "Profil Özeti",

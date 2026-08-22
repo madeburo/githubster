@@ -13,11 +13,12 @@ import { it } from "./it";
 import { uk } from "./uk";
 import { kk } from "./kk";
 import { tr } from "./tr";
-import { id } from "./id";
 import { vi } from "./vi";
-import { hi } from "./hi";
 import { ar } from "./ar";
+import { pl } from "./pl";
+import { nl } from "./nl";
+import { da } from "./da";
 
 export const translations: Record<Locale, Translations> = {
-  en, ru, zh, ko, ja, pt, es, de, fr, it, uk, kk, tr, id, vi, hi, ar,
+  en, ru, zh, ko, ja, pt, es, de, fr, it, uk, kk, tr, vi, ar, pl, nl, da,
 };

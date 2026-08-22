@@ -67,13 +67,21 @@ export const ko: Translations = {
   seo: {
     title: "Githubster란?",
     description:
-      "Githubster는 GitHub 소셜 관계를 파악하는 무료 오픈소스 도구입니다. 로그인 없이 맞팔 여부를 확인하세요.",
+      "Githubster는 무료 오픈소스 GitHub 팔로워 확인 도구입니다. 공개 팔로워와 팔로잉 목록을 비교해 맞팔하지 않는 계정, 맞팔, 프로필 정보를 확인하세요. Githubster 계정은 필요 없습니다.",
     feature1Title: "언팔로워",
     feature1Desc: "내가 팔로우하지만 맞팔하지 않는 사람을 확인하세요.",
     feature2Title: "팔로워",
     feature2Desc: "나를 팔로우하지만 내가 팔로우하지 않는 사람을 발견하세요.",
     feature3Title: "프라이버시",
     feature3Desc: "프로필 분석은 브라우저에서 실행됩니다. 선택적 액세스 토큰은 저장되지 않습니다.",
+  },
+  support: {
+    nav: "후원",
+    title: "Githubster 후원",
+    description: "Githubster는 무료 오픈 소스입니다. 도움이 되었다면 개발을 후원해 주세요.",
+    kofi: "Ko-fi에서 후원",
+    paypal: "PayPal",
+    star: "GitHub에서 스타 주기",
   },
   profileOverview: {
     title: "프로필 개요",

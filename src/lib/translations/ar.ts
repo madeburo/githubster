@@ -67,13 +67,21 @@ export const ar: Translations = {
   seo: {
     title: "ما هو Githubster؟",
     description:
-      "Githubster أداة مجانية ومفتوحة المصدر لفهم علاقاتك على GitHub. بدون تسجيل دخول، بدون جمع بيانات.",
+      "Githubster أداة مجانية ومفتوحة المصدر للتحقق من متابعي GitHub. قارن قوائم المتابعين والمتابَعين العامة لمعرفة من لا يتابعك بالمثل، والعلاقات المتبادلة ومعلومات الملف الشخصي — دون حساب Githubster.",
     feature1Title: "غير المتابعين",
     feature1Desc: "اعرف من تتابعه ولا يتابعك.",
     feature2Title: "المتابِعون",
     feature2Desc: "اكتشف من يتابعك ولكنك لا تتابعه.",
     feature3Title: "خاص وآمن",
     feature3Desc: "يتم تحليل الملف الشخصي في متصفحك. لا يتم تخزين رمز الوصول الاختياري.",
+  },
+  support: {
+    nav: "ادعم",
+    title: "ادعم Githubster",
+    description: "Githubster مجاني ومفتوح المصدر. إذا كان مفيدًا لك، يمكنك دعم تطويره.",
+    kofi: "ادعم عبر Ko-fi",
+    paypal: "PayPal",
+    star: "ضع نجمة على GitHub",
   },
   profileOverview: {
     title: "نظرة عامة على الملف الشخصي",

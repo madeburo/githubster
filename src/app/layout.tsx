@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Google_Sans_Flex, Manrope } from "next/font/google";
-import { LocaleProvider } from "@/lib/locale-context";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { JsonLd } from "@/components/json-ld";
 import { KofiWidget } from "@/components/kofi-widget";
+import { locales } from "@/lib/i18n";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -53,6 +53,12 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://www.githubster.com",
+    languages: Object.fromEntries(
+      locales.map((locale) => [
+        locale,
+        locale === "en" ? "https://www.githubster.com" : `https://www.githubster.com/${locale}`,
+      ])
+    ),
   },
   robots: {
     index: true,
@@ -90,7 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen antialiased">
         <ErrorBoundary>
-          <LocaleProvider>{children}</LocaleProvider>
+          {children}
         </ErrorBoundary>
         <KofiWidget />
       </body>

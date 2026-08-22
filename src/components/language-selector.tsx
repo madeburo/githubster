@@ -50,7 +50,7 @@ export function LanguageSelector() {
 
       {open && (
         <div
-          className="absolute left-0 top-full z-50 mt-2 max-h-80 w-40 overflow-y-auto rounded-xl border p-1 sm:left-auto sm:right-0"
+          className="absolute left-0 top-full z-50 mt-2 max-h-80 w-40 overflow-y-auto rounded-xl border p-1 sm:left-auto sm:right-0 sm:grid sm:max-h-none sm:w-80 sm:grid-cols-2 sm:overflow-visible"
           style={{
             borderColor: "var(--border)",
             background: "var(--bg-card)",
@@ -63,6 +63,8 @@ export function LanguageSelector() {
               onClick={() => {
                 setLocale(loc as Locale);
                 setOpen(false);
+                const suffix = `${window.location.search}${window.location.hash}`;
+                window.location.assign(loc === "en" ? `/${suffix}` : `/${loc}${suffix}`);
               }}
               className="flex w-full items-center rounded-lg px-3 py-2 text-xs transition-colors"
               style={{

@@ -67,13 +67,21 @@ export const zh: Translations = {
   seo: {
     title: "什么是 Githubster？",
     description:
-      "Githubster 是一个免费开源工具，帮助你了解 GitHub 社交关系。即时查看谁没有回关你、发现你还没关注的粉丝——无需登录，不收集任何数据。",
+      "Githubster 是免费开源的 GitHub 关注关系工具。比较公开粉丝和关注列表，查看未回关、互相关注和个人资料概览，无需 Githubster 账户。",
     feature1Title: "未回关",
     feature1Desc: "查看你关注的人中谁没有回关你。",
     feature2Title: "粉丝",
     feature2Desc: "发现关注你但你还没关注的人。",
     feature3Title: "隐私安全",
     feature3Desc: "个人资料分析在浏览器中进行。可选访问令牌不会被存储。",
+  },
+  support: {
+    nav: "支持",
+    title: "支持 Githubster",
+    description: "Githubster 免费且开源。若它对你有帮助，你可以支持项目的发展。",
+    kofi: "在 Ko-fi 上支持",
+    paypal: "PayPal",
+    star: "在 GitHub 上点星",
   },
   profileOverview: {
     title: "个人概览",

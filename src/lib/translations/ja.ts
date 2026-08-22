@@ -67,13 +67,21 @@ export const ja: Translations = {
   seo: {
     title: "Githubsterとは？",
     description:
-      "Githubsterは、GitHubのソーシャルグラフを理解するための無料オープンソースツールです。ログイン不要、データ収集なし。",
+      "Githubsterは無料のオープンソースGitHubフォロワーチェッカーです。公開フォロワーとフォロー中の一覧を比較し、フォローバックしていない人、相互フォロー、プロフィール情報を確認できます。Githubsterアカウントは不要です。",
     feature1Title: "アンフォロワー",
     feature1Desc: "フォローしているのにフォロバされていない人を確認。",
     feature2Title: "フォロワー",
     feature2Desc: "フォローされているのにフォローしていない人を発見。",
     feature3Title: "プライベート＆安全",
     feature3Desc: "プロフィール分析はブラウザ内で行われます。任意のアクセストークンは保存されません。",
+  },
+  support: {
+    nav: "支援",
+    title: "Githubsterを支援",
+    description: "Githubsterは無料のオープンソースです。役に立ったら開発を支援してください。",
+    kofi: "Ko-fiで支援",
+    paypal: "PayPal",
+    star: "GitHubでスターを付ける",
   },
   profileOverview: {
     title: "プロフィール概要",

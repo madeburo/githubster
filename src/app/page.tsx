@@ -8,7 +8,6 @@ import { Tabs } from "@/components/tabs";
 import { UserGrid } from "@/components/user-grid";
 import { StatsBar } from "@/components/stats-bar";
 import { ProfileOverviewCard } from "@/components/profile-overview";
-import { OpenSourceBanner } from "@/components/open-source-banner";
 import { GitHubStarButton } from "@/components/github-star-button";
 import { ProjectSupport } from "@/components/project-support";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -17,13 +16,27 @@ import { RateLimit } from "@/components/rate-limit";
 import { ShareButton } from "@/components/share-button";
 import { SkeletonLoader } from "@/components/skeleton-loader";
 import { useLocale } from "@/lib/locale-context";
+import { LocaleProvider } from "@/lib/locale-context";
+import type { Locale } from "@/lib/i18n";
 import { getFollowData, getProfileOverview, type FollowData, type ProfileOverview, type RateLimitInfo, type LoadingProgress } from "@/lib/github";
 import { guidePages, toolPages } from "@/lib/seo-content";
 
 type TabId = "unfollowers" | "notFollowingBack" | "mutuals" | "following" | "followers";
 
 export default function Home() {
-  const { t } = useLocale();
+  return <HomePage initialLocale="en" />;
+}
+
+export function HomePage({ initialLocale }: { initialLocale: Locale }) {
+  return (
+    <LocaleProvider key={initialLocale} initialLocale={initialLocale}>
+      <HomeContent />
+    </LocaleProvider>
+  );
+}
+
+function HomeContent() {
+  const { t, locale } = useLocale();
   const [data, setData] = useState<FollowData | null>(null);
   const [profileOverview, setProfileOverview] = useState<ProfileOverview | null>(null);
   const [activeTab, setActiveTab] = useState<TabId>("unfollowers");
@@ -213,7 +226,7 @@ export default function Home() {
             className="rounded-lg border px-3 py-1.5 text-xs font-medium transition-all hover:scale-[1.02] active:scale-[0.98]"
             style={{ borderColor: "var(--border)", background: "var(--bg-card)", color: "var(--text-muted)" }}
           >
-            💙 Support
+            {t.support.nav}
           </a>
           <GitHubStarButton />
         </div>
@@ -222,7 +235,7 @@ export default function Home() {
         <section className={`text-center ${data ? "mb-8" : "mb-0"}`}>
           <div className={`mx-auto max-w-2xl animate-fade-in ${data ? "" : "pt-12 sm:pt-20"}`}>
             <div className="mb-8 flex items-center justify-center">
-              <Link href="/" className="group relative transition-opacity hover:opacity-80">
+                <Link href={locale === "en" ? "/" : `/${locale}`} className="group relative transition-opacity hover:opacity-80">
                 <Image
                   src="/githubster.svg"
                   alt="Githubster"
@@ -387,7 +400,7 @@ export default function Home() {
         )}
 
         {data && (data.followers.length > 0 || data.following.length > 0) && (
-          <div className="mt-8 space-y-6 animate-slide-up">
+          <div className="mt-14 space-y-6 animate-slide-up sm:mt-16">
             {/* Share button row */}
             {username && (
               <div className="flex justify-end">
@@ -634,7 +647,6 @@ export default function Home() {
         </div>
       )}
 
-      <OpenSourceBanner />
     </>
   );
 }

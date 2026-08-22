@@ -1,5 +1,6 @@
 import { createHash, timingSafeEqual } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
+import { locales } from "@/lib/i18n";
 
 const INDEXNOW_KEY = process.env.INDEXNOW_KEY;
 const INDEXNOW_SECRET = process.env.INDEXNOW_SECRET;
@@ -7,6 +8,9 @@ const SITE_URL = "https://www.githubster.com";
 
 const URLS_TO_INDEX = [
   SITE_URL,
+  ...locales
+    .filter((locale) => locale !== "en")
+    .map((locale) => `${SITE_URL}/${locale}`),
 ];
 
 function hasValidBearerToken(request: NextRequest, expectedToken: string): boolean {

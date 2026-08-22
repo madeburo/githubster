@@ -67,13 +67,21 @@ export const vi: Translations = {
   seo: {
     title: "Githubster là gì?",
     description:
-      "Githubster là công cụ miễn phí mã nguồn mở giúp bạn hiểu mối quan hệ trên GitHub. Không cần đăng nhập, không thu thập dữ liệu.",
+      "Githubster là công cụ mã nguồn mở miễn phí để kiểm tra người theo dõi GitHub. So sánh danh sách người theo dõi và đang theo dõi công khai để xem ai không theo dõi lại, kết nối hai chiều và thông tin hồ sơ — không cần tài khoản Githubster.",
     feature1Title: "Unfollower",
     feature1Desc: "Xem ai bạn follow mà không follow lại bạn.",
     feature2Title: "Người theo dõi",
     feature2Desc: "Khám phá người follow bạn mà bạn chưa follow lại.",
     feature3Title: "Riêng tư & An toàn",
     feature3Desc: "Phân tích hồ sơ diễn ra trong trình duyệt. Token truy cập tùy chọn không được lưu trữ.",
+  },
+  support: {
+    nav: "Ủng hộ",
+    title: "Ủng hộ Githubster",
+    description: "Githubster miễn phí và mã nguồn mở. Nếu thấy hữu ích, bạn có thể ủng hộ việc phát triển dự án.",
+    kofi: "Ủng hộ trên Ko-fi",
+    paypal: "PayPal",
+    star: "Gắn sao trên GitHub",
   },
   profileOverview: {
     title: "Tổng quan hồ sơ",

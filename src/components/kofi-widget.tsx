@@ -10,6 +10,20 @@ declare global {
   }
 }
 
+function resizeWidget(attempt = 0) {
+  const widget = document.querySelector<HTMLIFrameElement>(
+    'iframe#kofi-widget-overlay, iframe[src*="ko-fi.com"]'
+  );
+
+  if (!widget) {
+    if (attempt < 10) window.setTimeout(() => resizeWidget(attempt + 1), 150);
+    return;
+  }
+
+  widget.style.transform = "scale(0.5)";
+  widget.style.transformOrigin = "bottom left";
+}
+
 export function KofiWidget() {
   return (
     <Script
@@ -22,6 +36,7 @@ export function KofiWidget() {
           "floating-chat.donateButton.background-color": "#00b9fe",
           "floating-chat.donateButton.text-color": "#fff",
         });
+        resizeWidget();
       }}
     />
   );

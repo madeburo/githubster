@@ -66,13 +66,21 @@ export const en = {
   seo: {
     title: "What is Githubster",
     description:
-      "Githubster is a free, open-source tool that helps you understand your GitHub social graph. Instantly see who doesn't follow you back, discover followers you haven't followed yet, and get a clear overview of your connections — without creating a Githubster account.",
-    feature1Title: "Track Unfollowers",
+      "Githubster is a free, open-source GitHub followers checker. Compare public followers and following lists to find people who do not follow back, mutuals, and profile insights — no Githubster account required.",
+    feature1Title: "Not Following Back",
     feature1Desc: "See who you follow that doesn't follow you back. Clean up your following list.",
     feature2Title: "Followers",
     feature2Desc: "Discover people who follow you that you haven't followed back yet.",
     feature3Title: "Browser-based",
     feature3Desc: "Profile analysis runs in your browser. Optional access tokens are never stored.",
+  },
+  support: {
+    nav: "Support",
+    title: "Support Githubster",
+    description: "Githubster is free and open source. If you find it useful, you can support its development.",
+    kofi: "Support on Ko-fi",
+    paypal: "PayPal",
+    star: "Star on GitHub",
   },
   profileOverview: {
     title: "Profile Overview",

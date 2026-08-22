@@ -67,13 +67,21 @@ export const it: Translations = {
   seo: {
     title: "Cos'è Githubster?",
     description:
-      "Githubster è uno strumento gratuito e open-source per capire le tue connessioni su GitHub. Senza login, senza raccolta dati.",
+      "Githubster è un controllo gratuito e open source per follower GitHub. Confronta liste pubbliche di follower e account seguiti per vedere chi non ricambia, le connessioni reciproche e le informazioni del profilo, senza un account Githubster.",
     feature1Title: "Unfollower",
     feature1Desc: "Vedi chi segui che non ti segue.",
     feature2Title: "Follower",
     feature2Desc: "Scopri chi ti segue ma tu non segui.",
     feature3Title: "Privato e Sicuro",
     feature3Desc: "L’analisi del profilo avviene nel browser. I token di accesso facoltativi non vengono salvati.",
+  },
+  support: {
+    nav: "Supporta",
+    title: "Supporta Githubster",
+    description: "Githubster è gratuito e open source. Se ti è utile, puoi sostenerne lo sviluppo.",
+    kofi: "Supporta su Ko-fi",
+    paypal: "PayPal",
+    star: "Metti una stella su GitHub",
   },
   profileOverview: {
     title: "Panoramica profilo",

@@ -28,6 +28,16 @@
   --gradient-end: #a78bfa;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 .dark {
   --bg: #111118;
   --bg-card: #1a1a24;
