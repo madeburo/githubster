@@ -64,7 +64,7 @@ export const en = {
     noPublicFollowersDesc: "This profile may have limited public activity.",
   },
   seo: {
-    title: "What is Githubster",
+    title: "What is Githubster?",
     description:
       "Githubster is a free, open-source GitHub followers checker. Compare public followers and following lists to find people who do not follow back, mutuals, and profile insights — no Githubster account required.",
     feature1Title: "Not Following Back",

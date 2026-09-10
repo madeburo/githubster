@@ -2,7 +2,9 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { GlobeIcon } from "@/components/icons";
 import { useLocale } from "@/lib/locale-context";
+import { pillClass } from "@/lib/ui";
 import { isRtl, locales, localeNames, type Locale } from "@/lib/i18n";
 
 const languageNameCollator = new Intl.Collator("en", { sensitivity: "base" });
@@ -34,22 +36,14 @@ export function LanguageSelector() {
   return (
     <div className="relative" ref={ref}>
       <button
+        type="button"
         onClick={() => setOpen(!open)}
         aria-expanded={open}
         aria-haspopup="listbox"
         aria-label="Select language"
-        className="flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors"
-        style={{
-          borderColor: "var(--border)",
-          background: "var(--bg-card)",
-          color: "var(--text-muted)",
-        }}
+        className={pillClass}
       >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <circle cx="12" cy="12" r="10" />
-          <line x1="2" y1="12" x2="22" y2="12" />
-          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-        </svg>
+        <GlobeIcon size={15} />
         {locale.toUpperCase()}
       </button>
 

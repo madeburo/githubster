@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Google_Sans_Flex, Manrope } from "next/font/google";
+import { Caveat, Google_Sans_Flex, Manrope } from "next/font/google";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { JsonLd } from "@/components/json-ld";
 import { KofiWidget } from "@/components/kofi-widget";
@@ -18,6 +18,14 @@ const googleSansFlex = Google_Sans_Flex({
   variable: "--font-google-sans-flex",
   display: "swap",
   adjustFontFallback: false,
+});
+
+// Handwritten accent for the decorative desktop notes only, so it is not preloaded.
+const caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -76,12 +84,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${manrope.variable} ${googleSansFlex.variable}`}
+      className={`${manrope.variable} ${googleSansFlex.variable} ${caveat.variable}`}
       suppressHydrationWarning
     >
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#6366f1" />
+        <meta name="theme-color" content="#6d58ee" />
         {process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
           <script
             defer

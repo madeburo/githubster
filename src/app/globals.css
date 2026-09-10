@@ -12,20 +12,44 @@
   --color-warning: #f59e0b;
 }
 
+/* Semantic tokens backed by the theme variables below, so utilities follow light/dark automatically. */
+@theme inline {
+  --color-canvas: var(--bg);
+  --color-card: var(--bg-card);
+  --color-card-hover: var(--bg-card-hover);
+  --color-line: var(--border);
+  --color-fg: var(--text);
+  --color-fg-muted: var(--text-muted);
+  --color-fg-subtle: var(--text-subtle);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-window: var(--window-bg);
+  --color-window-line: var(--window-border);
+  --font-display: var(--font-google-sans-flex), var(--font-manrope), sans-serif;
+  --font-hand: var(--font-caveat), "Bradley Hand", "Comic Sans MS", cursive;
+}
+
 :root {
-  --bg: #f0f0f7;
+  --bg: #f4f3fc;
   --bg-card: #ffffff;
-  --bg-card-hover: #f5f5fa;
+  --bg-card-hover: #f6f5fe;
   --bg-input: #ffffff;
-  --border: #e0e0ea;
-  --border-focus: #6366f1;
-  --text: #111118;
-  --text-muted: #6b6b7a;
-  --text-subtle: #9c9caa;
-  --shadow: 0 1px 3px rgba(17, 17, 24, 0.06), 0 1px 2px rgba(17, 17, 24, 0.04);
-  --shadow-lg: 0 10px 15px -3px rgba(17, 17, 24, 0.08), 0 4px 6px -4px rgba(17, 17, 24, 0.04);
-  --gradient-start: #6366f1;
-  --gradient-end: #a78bfa;
+  --border: #e6e3f5;
+  --border-focus: #6d58ee;
+  --text: #17162b;
+  --text-muted: #5f5c7c;
+  --text-subtle: #9491ad;
+  --shadow: 0 1px 3px rgba(40, 32, 110, 0.06), 0 1px 2px rgba(40, 32, 110, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(40, 32, 110, 0.08), 0 4px 6px -4px rgba(40, 32, 110, 0.04);
+  --gradient-start: #6d58ee;
+  --gradient-end: #a18bfa;
+  --brand: #6d58ee;
+  --brand-soft: #efecff;
+  --cta-from: #6651ea;
+  --cta-to: #7d65f1;
+  --window-bg: rgba(255, 255, 255, 0.8);
+  --window-border: rgba(255, 255, 255, 0.95);
+  --window-shadow: 0 40px 90px -40px rgba(76, 60, 170, 0.45), 0 0 0 1px rgba(109, 88, 238, 0.07);
 }
 
 html {
@@ -39,19 +63,24 @@ html {
 }
 
 .dark {
-  --bg: #111118;
-  --bg-card: #1a1a24;
-  --bg-card-hover: #22222e;
-  --bg-input: #1a1a24;
-  --border: #2a2a38;
-  --border-focus: #818cf8;
-  --text: #f0f0f7;
-  --text-muted: #9c9caa;
-  --text-subtle: #6b6b7a;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
-  --gradient-start: #818cf8;
+  --bg: #0e0f24;
+  --bg-card: #171936;
+  --bg-card-hover: #1f2146;
+  --bg-input: #171936;
+  --border: #2a2c56;
+  --border-focus: #a594ff;
+  --text: #eeedfb;
+  --text-muted: #a7a5c9;
+  --text-subtle: #75739b;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.45), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+  --gradient-start: #8b7cf8;
   --gradient-end: #c4b5fd;
+  --brand: #a594ff;
+  --brand-soft: #25234f;
+  --window-bg: rgba(20, 21, 48, 0.84);
+  --window-border: rgba(165, 148, 255, 0.16);
+  --window-shadow: 0 40px 100px -40px rgba(0, 0, 0, 0.8), 0 0 60px -20px rgba(124, 108, 246, 0.35);
 }
 
 body {
@@ -113,6 +142,51 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--text-muted);
 }
 
+/* Desktop wallpaper — the illustrated desk on large screens, a soft gradient everywhere else. */
+.desktop-wallpaper {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(60rem 30rem at 15% -10%, rgba(196, 181, 253, 0.45), transparent 70%),
+    radial-gradient(50rem 30rem at 100% 10%, rgba(221, 214, 254, 0.6), transparent 70%),
+    linear-gradient(180deg, #f5f3ff 0%, #f1effb 55%, #eceaf8 100%);
+}
+
+.dark .desktop-wallpaper {
+  background-image:
+    radial-gradient(60rem 30rem at 10% -10%, rgba(124, 108, 246, 0.25), transparent 70%),
+    radial-gradient(50rem 30rem at 100% 20%, rgba(76, 58, 180, 0.28), transparent 70%),
+    linear-gradient(180deg, #111230 0%, #0e0f24 60%, #0b0c1d 100%);
+}
+
+.desktop-wallpaper[data-variant="desk"] {
+  background-image: url("/backgrounds/githubster-light-desk.jpg");
+  background-image: image-set(
+    url("/backgrounds/githubster-light-desk.avif") type("image/avif"),
+    url("/backgrounds/githubster-light-desk.jpg") type("image/jpeg")
+  );
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+
+.dark .desktop-wallpaper[data-variant="desk"] {
+  background-image: url("/backgrounds/githubster-dark-desk.jpg");
+  background-image: image-set(
+    url("/backgrounds/githubster-dark-desk.avif") type("image/avif"),
+    url("/backgrounds/githubster-dark-desk.jpg") type("image/jpeg")
+  );
+}
+
+/* Faint pixel "+" pattern used by the minimal variant. */
+.desktop-sparkles {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' fill='%237c6cf6'%3E%3Cpath d='M18 14h4v4h4v4h-4v4h-4v-4h-4v-4h4zM88 70h3v3h3v3h-3v3h-3v-3h-3v-3h3z'/%3E%3C/svg%3E");
+  opacity: 0.12;
+}
+
+.dark .desktop-sparkles {
+  opacity: 0.18;
+}
+
 /* Animations */
 @keyframes fade-in {
   from {
@@ -156,6 +230,15 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+@keyframes float-soft {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--float-rotate, 0deg));
+  }
+  50% {
+    transform: translateY(-4px) rotate(var(--float-rotate, 0deg));
+  }
+}
+
 .animate-fade-in {
   animation: fade-in 0.5s ease-out both;
 }
@@ -170,6 +253,21 @@ h1, h2, h3, h4, h5, h6 {
 
 .animate-pulse-soft {
   animation: pulse-soft 2s ease-in-out infinite;
+}
+
+.animate-float-soft {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-fade-in-scale,
+  .animate-slide-up,
+  .animate-float-soft,
+  .stagger-children > *,
+  .stagger-grid > * {
+    animation: none;
+  }
 }
 
 /* Staggered children animation */

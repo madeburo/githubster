@@ -35,7 +35,7 @@ export function SkeletonLoader({ progress }: SkeletonLoaderProps) {
   const { t } = useLocale();
 
   return (
-    <div className="mt-8 space-y-6 animate-fade-in">
+    <div className="space-y-6 animate-fade-in">
       {/* Progress indicator */}
       <div
         className="flex items-center gap-4 rounded-xl border px-4 py-3"
@@ -58,8 +58,8 @@ export function SkeletonLoader({ progress }: SkeletonLoaderProps) {
       </div>
 
       {/* Stats skeleton */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
-        {Array.from({ length: 5 }).map((_, i) => (
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+        {Array.from({ length: 4 }).map((_, i) => (
           <div
             key={i}
             className="rounded-xl border p-4 text-center"
