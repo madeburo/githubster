@@ -51,7 +51,7 @@ export function SkeletonLoader({ progress }: SkeletonLoaderProps) {
           </p>
           {progress && (
             <p className="text-xs mt-0.5" style={{ color: "var(--text-muted)" }}>
-              {t.loading?.followers || "Followers"}: {progress.followersLoaded} · {t.loading?.following || "Following"}: {progress.followingLoaded}
+              {t.loading?.followers || "Followers"}: {progress.followersLoaded} / {progress.followersTotal} · {t.loading?.following || "Following"}: {progress.followingLoaded} / {progress.followingTotal}
             </p>
           )}
         </div>

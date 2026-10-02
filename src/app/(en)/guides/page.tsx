@@ -3,11 +3,16 @@ import Link from "next/link";
 import { SitePageChrome } from "@/components/site-page-chrome";
 import { guidePages } from "@/lib/seo-content";
 import { seoLanguageAlternates } from "@/lib/localized-seo-content";
+import { pageSocial } from "@/lib/site";
+
+const title = "GitHub Followers Guides | Githubster";
+const description = "Practical guides to GitHub followers, following, mutuals, and API rate limits.";
 
 export const metadata: Metadata = {
-  title: "GitHub Followers Guides | Githubster",
-  description: "Practical guides to GitHub followers, following, mutuals, and API rate limits.",
+  title,
+  description,
   alternates: { canonical: "/guides", languages: seoLanguageAlternates("/guides") },
+  ...pageSocial({ title, description, path: "/guides" }),
 };
 
 export default function GuidesIndexPage() {

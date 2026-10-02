@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  getFollowData,
-  getProfileOverview,
+  getNetwork,
+  GitHubApiError,
   type FollowData,
   type LoadingProgress,
   type ProfileOverview,
@@ -9,6 +9,11 @@ import {
 } from "./github";
 
 type SearchRequest = { user: string; token?: string };
+
+function toApiError(error: unknown): GitHubApiError {
+  if (error instanceof GitHubApiError) return error;
+  return new GitHubApiError("unknown", error instanceof Error ? error.message : "Something went wrong");
+}
 
 /** Owns the GitHub network lookup: fetching, cancellation, and the `?user=` URL state. */
 export function useNetworkSearch() {
@@ -18,7 +23,7 @@ export function useNetworkSearch() {
   const [rateLimit, setRateLimit] = useState<RateLimitInfo | null>(null);
   const [progress, setProgress] = useState<LoadingProgress | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<GitHubApiError | null>(null);
   const [lastSearch, setLastSearch] = useState<SearchRequest | null>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
 
@@ -40,13 +45,10 @@ export function useNetworkSearch() {
     window.history.pushState({}, "", url.toString());
 
     try {
-      const [result, overview] = await Promise.all([
-        getFollowData(user, token, controller.signal, (p) => setProgress(p)),
-        getProfileOverview(user, token, controller.signal),
-      ]);
+      const { profile, data: result, overview } = await getNetwork(user, token, controller.signal, (p) => setProgress(p));
       setData(result);
       setProfileOverview(overview);
-      setUsername(user);
+      setUsername(profile.login);
       if (result.rateLimit) {
         setRateLimit(result.rateLimit);
       }
@@ -54,7 +56,7 @@ export function useNetworkSearch() {
       if (err instanceof DOMException && err.name === "AbortError") {
         return; // silently ignore aborted requests
       }
-      setError(err instanceof Error ? err.message : "Something went wrong");
+      setError(toApiError(err));
     } finally {
       if (abortControllerRef.current === controller) {
         setIsLoading(false);

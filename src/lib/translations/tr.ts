@@ -56,7 +56,7 @@ export const tr: Translations = {
     now: "şimdi",
   },
   error: {
-    retry: "",
+    retry: "Tekrar dene",
     userNotFound: "Kullanıcı bulunamadı",
     userNotFoundDesc: "GitHub kullanıcı adını kontrol edip tekrar deneyin.",
     rateLimit: "GitHub istek limiti aşıldı",

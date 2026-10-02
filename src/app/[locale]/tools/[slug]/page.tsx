@@ -4,6 +4,7 @@ import { SeoPage } from "@/components/seo-page";
 import { locales, type Locale } from "@/lib/i18n";
 import { getLocalizedSeoPage, seoLanguageAlternates } from "@/lib/localized-seo-content";
 import { getSeoPage, toolPages } from "@/lib/seo-content";
+import { pageSocial } from "@/lib/site";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -21,8 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: page.title,
     description: page.description,
     alternates: { canonical: `/${locale}/tools/${slug}`, languages: seoLanguageAlternates(`/tools/${slug}`) },
-    openGraph: { title: page.title, description: page.description, url: `/${locale}/tools/${slug}`, locale },
-    twitter: { card: "summary_large_image", title: page.title, description: page.description, images: ["/og-image.png"] },
+    ...pageSocial({ title: page.title, description: page.description, path: `/${locale}/tools/${slug}`, locale: locale as Locale }),
   };
 }
 

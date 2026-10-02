@@ -8,13 +8,12 @@ export function GitHubStarButton() {
   const [stars, setStars] = useState<number | null>(null);
 
   useEffect(() => {
-    fetch("https://api.github.com/repos/madeburo/githubster", {
-      headers: { Accept: "application/vnd.github.v3+json" },
-    })
+    // Served and cached by our own route so it does not spend the visitor's GitHub API quota.
+    fetch("/api/stars")
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
-        if (data?.stargazers_count != null) {
-          setStars(data.stargazers_count);
+        if (typeof data?.stars === "number") {
+          setStars(data.stars);
         }
       })
       .catch(() => {});

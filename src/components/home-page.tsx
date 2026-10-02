@@ -29,10 +29,6 @@ import { locales, type Locale } from "@/lib/i18n";
 import { LocaleProvider, useLocale } from "@/lib/locale-context";
 import { useNetworkSearch } from "@/lib/use-network-search";
 
-export default function Home() {
-  return <HomePage initialLocale="en" />;
-}
-
 export function HomePage({ initialLocale }: { initialLocale: Locale }) {
   return (
     <LocaleProvider key={initialLocale} initialLocale={initialLocale}>

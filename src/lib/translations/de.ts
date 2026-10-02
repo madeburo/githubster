@@ -56,7 +56,7 @@ export const de: Translations = {
     now: "jetzt",
   },
   error: {
-    retry: "",
+    retry: "Erneut versuchen",
     userNotFound: "Benutzer nicht gefunden",
     userNotFoundDesc: "Überprüfe den GitHub-Benutzernamen und versuche es erneut.",
     rateLimit: "GitHub-Ratenlimit erreicht",

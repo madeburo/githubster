@@ -56,7 +56,7 @@ export const uk: Translations = {
     now: "зараз",
   },
   error: {
-    retry: "",
+    retry: "Повторити",
     userNotFound: "Користувача не знайдено",
     userNotFoundDesc: "Перевірте ім'я користувача GitHub і спробуйте знову.",
     rateLimit: "Ліміт запитів GitHub вичерпано",

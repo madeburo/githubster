@@ -1,10 +1,9 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { HomePage } from "../page";
+import { HomePage } from "@/components/home-page";
 import { locales, type Locale } from "@/lib/i18n";
+import { languageAlternates, pageSocial, siteUrl } from "@/lib/site";
 import { translations } from "@/lib/translations";
-
-const siteUrl = "https://www.githubster.com";
 
 export function generateStaticParams() {
   return locales.filter((locale) => locale !== "en").map((locale) => ({ locale }));
@@ -26,19 +25,9 @@ export async function generateMetadata({
     description: t.meta.description,
     alternates: {
       canonical: url,
-      languages: Object.fromEntries(
-        locales.map((supportedLocale) => [
-          supportedLocale,
-          supportedLocale === "en" ? siteUrl : `${siteUrl}/${supportedLocale}`,
-        ])
-      ),
+      languages: languageAlternates(),
     },
-    openGraph: {
-      locale: locale.replace("-", "_"),
-      url,
-      title: t.meta.title,
-      description: t.meta.description,
-    },
+    ...pageSocial({ title: t.meta.title, description: t.meta.description, path: `/${locale}`, locale: locale as Locale }),
   };
 }
 

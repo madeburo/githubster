@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { PrivacyPageShell } from "@/components/privacy-page-shell";
 import { locales, type Locale } from "@/lib/i18n";
 import { privacyContent, privacyLanguageAlternates } from "@/lib/privacy-content";
+import { pageSocial } from "@/lib/site";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -18,8 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${content.title} | Githubster`,
     description: content.description,
     alternates: { canonical: `/${locale}/privacy`, languages: privacyLanguageAlternates() },
-    openGraph: { title: `${content.title} | Githubster`, description: content.description, url: `/${locale}/privacy`, locale },
-    twitter: { card: "summary_large_image", title: `${content.title} | Githubster`, description: content.description, images: ["/og-image.png"] },
+    ...pageSocial({ title: `${content.title} | Githubster`, description: content.description, path: `/${locale}/privacy`, locale: locale as Locale }),
   };
 }
 

@@ -4,6 +4,7 @@ import { SeoPage } from "@/components/seo-page";
 import { locales, type Locale } from "@/lib/i18n";
 import { getLocalizedSeoPage, seoLanguageAlternates } from "@/lib/localized-seo-content";
 import { getSeoPage, guidePages } from "@/lib/seo-content";
+import { pageSocial } from "@/lib/site";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 export function generateStaticParams() { return locales.filter((locale) => locale !== "en").flatMap((locale) => guidePages.map(({ slug }) => ({ locale, slug }))); }
@@ -16,8 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: page.title,
     description: page.description,
     alternates: { canonical: `/${locale}/guides/${slug}`, languages: seoLanguageAlternates(`/guides/${slug}`) },
-    openGraph: { title: page.title, description: page.description, url: `/${locale}/guides/${slug}`, locale },
-    twitter: { card: "summary_large_image", title: page.title, description: page.description, images: ["/og-image.png"] },
+    ...pageSocial({ title: page.title, description: page.description, path: `/${locale}/guides/${slug}`, locale: locale as Locale }),
   };
 }
 export default async function LocalizedGuidePage({ params }: Props) {

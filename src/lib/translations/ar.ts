@@ -56,7 +56,7 @@ export const ar: Translations = {
     now: "الآن",
   },
   error: {
-    retry: "",
+    retry: "إعادة المحاولة",
     userNotFound: "المستخدم غير موجود",
     userNotFoundDesc: "تحقق من اسم المستخدم على GitHub وحاول مرة أخرى.",
     rateLimit: "تم الوصول إلى حد طلبات GitHub",

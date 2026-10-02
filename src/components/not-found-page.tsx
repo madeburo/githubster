@@ -2,19 +2,25 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useLocale } from "@/lib/locale-context";
-import { LocaleProvider } from "@/lib/locale-context";
+import { usePathname } from "next/navigation";
+import { locales, type Locale } from "@/lib/i18n";
+import { LocaleProvider, useLocale } from "@/lib/locale-context";
 
-export default function NotFound() {
+export function NotFoundPage() {
+  // The 404 boundary gets no route params, so the language comes from the URL prefix.
+  const segment = usePathname().split("/")[1];
+  const locale: Locale = locales.includes(segment as Locale) ? (segment as Locale) : "en";
+
   return (
-    <LocaleProvider>
+    <LocaleProvider key={locale} initialLocale={locale}>
       <NotFoundContent />
     </LocaleProvider>
   );
 }
 
 function NotFoundContent() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  const homeHref = locale === "en" ? "/" : `/${locale}`;
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 text-center">
@@ -26,7 +32,7 @@ function NotFoundContent() {
 
       <div className="relative z-10 space-y-8 animate-fade-in">
         {/* Logo */}
-        <Link href="/" className="group relative inline-block transition-opacity hover:opacity-80">
+        <Link href={homeHref} className="group relative inline-block transition-opacity hover:opacity-80">
           <Image
             src="/githubster.svg"
             alt="Githubster"
@@ -75,7 +81,7 @@ function NotFoundContent() {
 
         {/* Button */}
         <Link
-          href="/"
+          href={homeHref}
           className="inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-white transition-all hover:scale-[1.02] active:scale-[0.98]"
           style={{
             background: "linear-gradient(135deg, var(--gradient-start), var(--gradient-end))",

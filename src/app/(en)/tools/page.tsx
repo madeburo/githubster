@@ -3,11 +3,16 @@ import Link from "next/link";
 import { SitePageChrome } from "@/components/site-page-chrome";
 import { toolPages } from "@/lib/seo-content";
 import { seoLanguageAlternates } from "@/lib/localized-seo-content";
+import { pageSocial } from "@/lib/site";
+
+const title = "Free GitHub Tools — Followers, Mutuals & Profile Overview | Githubster";
+const description = "Free tools to compare public GitHub followers and following lists, find mutuals, and view repository profile insights.";
 
 export const metadata: Metadata = {
-  title: "Free GitHub Tools — Followers, Mutuals & Profile Overview | Githubster",
-  description: "Free tools to compare public GitHub followers and following lists, find mutuals, and view repository profile insights.",
+  title,
+  description,
   alternates: { canonical: "/tools", languages: seoLanguageAlternates("/tools") },
+  ...pageSocial({ title, description, path: "/tools" }),
 };
 
 export default function ToolsIndexPage() {

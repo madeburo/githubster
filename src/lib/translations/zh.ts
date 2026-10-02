@@ -56,7 +56,7 @@ export const zh: Translations = {
     now: "现在",
   },
   error: {
-    retry: "",
+    retry: "重试",
     userNotFound: "用户未找到",
     userNotFoundDesc: "请检查 GitHub 用户名后重试。",
     rateLimit: "GitHub 请求限制已达到",

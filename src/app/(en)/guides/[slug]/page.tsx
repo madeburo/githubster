@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { SeoPage } from "@/components/seo-page";
 import { getSeoPage, guidePages } from "@/lib/seo-content";
 import { seoLanguageAlternates } from "@/lib/localized-seo-content";
+import { pageSocial } from "@/lib/site";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: page.title,
     description: page.description,
     alternates: { canonical: `/guides/${page.slug}`, languages: seoLanguageAlternates(`/guides/${page.slug}`) },
-    openGraph: { title: page.title, description: page.description, url: `/guides/${page.slug}` },
+    ...pageSocial({ title: page.title, description: page.description, path: `/guides/${page.slug}` }),
   };
 }
 

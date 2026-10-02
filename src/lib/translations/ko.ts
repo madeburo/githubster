@@ -56,7 +56,7 @@ export const ko: Translations = {
     now: "지금",
   },
   error: {
-    retry: "",
+    retry: "다시 시도",
     userNotFound: "사용자를 찾을 수 없습니다",
     userNotFoundDesc: "GitHub 사용자 이름을 확인하고 다시 시도하세요.",
     rateLimit: "GitHub 요청 한도 도달",

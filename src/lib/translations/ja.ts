@@ -56,7 +56,7 @@ export const ja: Translations = {
     now: "今すぐ",
   },
   error: {
-    retry: "",
+    retry: "再試行",
     userNotFound: "ユーザーが見つかりません",
     userNotFoundDesc: "GitHubユーザー名を確認して再試行してください。",
     rateLimit: "GitHubレート制限に達しました",
