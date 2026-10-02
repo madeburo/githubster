@@ -64,7 +64,7 @@ export function ThemeToggle() {
             onClick={() => handleToggle(isDark)}
             aria-pressed={active}
             className={cx(
-              "inline-flex h-7 cursor-pointer select-none items-center gap-1.5 rounded-full px-2.5 text-[13px] font-medium transition-colors",
+              "tap-target inline-flex h-7 cursor-pointer select-none items-center gap-1.5 rounded-full px-2.5 text-[13px] font-medium transition-colors",
               focusRing,
               active ? "bg-brand-soft text-fg shadow-sm dark:bg-white/10" : "text-fg-muted hover:text-fg"
             )}

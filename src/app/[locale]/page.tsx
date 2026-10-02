@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { HomeFaqJsonLd } from "@/components/home-faq-json-ld";
 import { HomePage } from "@/components/home-page";
 import { locales, type Locale } from "@/lib/i18n";
 import { languageAlternates, pageSocial, siteUrl } from "@/lib/site";
@@ -39,5 +40,10 @@ export default async function LocalizedHome({
   const { locale } = await params;
   if (!locales.includes(locale as Locale) || locale === "en") notFound();
 
-  return <HomePage initialLocale={locale as Locale} />;
+  return (
+    <>
+      <HomeFaqJsonLd locale={locale as Locale} />
+      <HomePage initialLocale={locale as Locale} />
+    </>
+  );
 }

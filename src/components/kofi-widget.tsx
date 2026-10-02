@@ -1,6 +1,7 @@
 "use client";
 
 import Script from "next/script";
+import { useSyncExternalStore } from "react";
 
 declare global {
   interface Window {
@@ -26,7 +27,24 @@ function resizeWidget(attempt = 0) {
   });
 }
 
+// The floating button covers results on phones, where the header and footer already offer support links.
+const WIDE_SCREEN = "(min-width: 768px)";
+
+function subscribeToWidth(onChange: () => void) {
+  const query = window.matchMedia(WIDE_SCREEN);
+  query.addEventListener("change", onChange);
+  return () => query.removeEventListener("change", onChange);
+}
+
 export function KofiWidget() {
+  const wide = useSyncExternalStore(
+    subscribeToWidth,
+    () => window.matchMedia(WIDE_SCREEN).matches,
+    () => false
+  );
+
+  if (!wide) return null;
+
   return (
     <Script
       src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"

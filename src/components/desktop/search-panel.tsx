@@ -39,14 +39,21 @@ interface SearchPanelProps {
   ref?: Ref<SearchPanelHandle>;
   onSearch: (username: string, token?: string) => void;
   isLoading: boolean;
+  /** Username of the lookup on screen; the field follows it (shared `?user=` links, Home reset). */
+  searchedUser?: string | null;
 }
 
-export function SearchPanel({ ref, onSearch, isLoading }: SearchPanelProps) {
+export function SearchPanel({ ref, onSearch, isLoading, searchedUser = null }: SearchPanelProps) {
   const { t, locale } = useLocale();
   const [username, setUsername] = useState("");
   const [token, setToken] = useState("");
   const [showTokenField, setShowTokenField] = useState(false);
   const [tokenVisible, setTokenVisible] = useState(false);
+  const [syncedUser, setSyncedUser] = useState(searchedUser);
+  if (searchedUser !== syncedUser) {
+    setSyncedUser(searchedUser);
+    setUsername(searchedUser ?? "");
+  }
   const usernameRef = useRef<HTMLInputElement>(null);
   const tokenRef = useRef<HTMLInputElement>(null);
   const inputId = useId();
@@ -147,7 +154,7 @@ export function SearchPanel({ ref, onSearch, isLoading }: SearchPanelProps) {
           onClick={() => setShowTokenField(!showTokenField)}
           aria-expanded={showTokenField}
           aria-controls={tokenId}
-          className={cx("inline-flex cursor-pointer items-center gap-1.5 rounded text-xs text-fg-muted transition-colors hover:text-fg", focusRing)}
+          className={cx("tap-target inline-flex cursor-pointer items-center gap-1.5 rounded text-xs text-fg-muted transition-colors hover:text-fg", focusRing)}
         >
           <LockIcon size={13} />
           {showTokenField ? t.search.tokenHide : t.search.tokenToggle}

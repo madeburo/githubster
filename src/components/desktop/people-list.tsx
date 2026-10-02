@@ -30,7 +30,7 @@ export function PeopleList({ title, people, openLabel, viewAllLabel, onViewAll, 
           <button
             type="button"
             onClick={onViewAll}
-            className={cx("inline-flex shrink-0 cursor-pointer items-center gap-1 rounded text-[13px] font-medium text-brand hover:underline", focusRing)}
+            className={cx("tap-target inline-flex shrink-0 cursor-pointer items-center gap-1 rounded text-[13px] font-medium text-brand hover:underline", focusRing)}
           >
             {viewAllLabel}
             <ArrowRightIcon size={14} className="rtl:rotate-180" />

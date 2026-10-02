@@ -142,6 +142,30 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--text-muted);
 }
 
+/* Touch screens: grow a small control's hit area to 44px without changing how it looks. */
+@media (pointer: coarse) {
+  .tap-target {
+    position: relative;
+  }
+
+  .tap-target::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 50%;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+}
+
+/* Hide the widget if a phone-sized viewport is reached after it loaded (e.g. rotation). */
+@media (max-width: 767px) {
+  .floatingchat-container-wrap,
+  .floatingchat-container-wrap-mobi {
+    display: none !important;
+  }
+}
+
 /* Desktop wallpaper — the illustrated desk on large screens, a soft gradient everywhere else. */
 .desktop-wallpaper {
   background-color: var(--bg);

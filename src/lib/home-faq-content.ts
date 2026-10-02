@@ -1,0 +1,150 @@
+import type { Locale } from "./i18n";
+
+export type FaqItem = { question: string; answer: string };
+
+/**
+ * Homepage FAQ. The same items feed the visible accordion and the FAQPage structured data,
+ * so both always say the same thing.
+ */
+export const homeFaq: Record<Locale, FaqItem[]> = {
+  en: [
+    { question: "How do I see who doesn’t follow me back on GitHub?", answer: "Enter your GitHub username and open the “Not Following Back” tab. It lists the accounts you follow that do not follow you. The “You Don’t Follow” tab shows the opposite: followers you have not followed back." },
+    { question: "Is Githubster free, and do I need an account?", answer: "Githubster is free and open source. You do not need a Githubster account or a GitHub login: it only reads public follower and following lists." },
+    { question: "Can Githubster show who unfollowed me?", answer: "No. Githubster compares the current public lists and keeps no history, so it shows who does not follow you back right now, not who unfollowed you or when." },
+    { question: "Do I need a GitHub token, and is it safe?", answer: "A token is optional. It only raises GitHub’s API limit from 60 to 5,000 requests per hour, which helps with large profiles. The token is sent directly to GitHub and is not saved or sent to Githubster." },
+    { question: "Why can’t a very large profile be loaded?", answer: "Without a token GitHub allows 60 API requests per hour, and each request returns up to 100 accounts. Githubster checks the profile size first and tells you if the limit is too low; adding a token solves it for most profiles." },
+  ],
+  de: [
+    { question: "Wie sehe ich, wer mir auf GitHub nicht zurückfolgt?", answer: "Gib deinen GitHub-Benutzernamen ein und öffne den Tab für Konten, die nicht zurückfolgen. Er listet die Konten auf, denen du folgst, die dir aber nicht folgen. Ein weiterer Tab zeigt das Gegenteil: Follower, denen du nicht zurückfolgst." },
+    { question: "Ist Githubster kostenlos und brauche ich ein Konto?", answer: "Githubster ist kostenlos und Open Source. Du brauchst weder ein Githubster-Konto noch eine GitHub-Anmeldung: Es werden nur öffentliche Follower- und Following-Listen gelesen." },
+    { question: "Kann Githubster zeigen, wer mir entfolgt ist?", answer: "Nein. Githubster vergleicht die aktuellen öffentlichen Listen und speichert keinen Verlauf. Es zeigt also, wer dir jetzt nicht zurückfolgt, aber nicht, wer dir wann entfolgt ist." },
+    { question: "Brauche ich ein GitHub-Token und ist das sicher?", answer: "Ein Token ist optional. Es erhöht nur das API-Limit von GitHub von 60 auf 5.000 Anfragen pro Stunde, was bei großen Profilen hilft. Das Token wird direkt an GitHub gesendet und weder gespeichert noch an Githubster übertragen." },
+    { question: "Warum lässt sich ein sehr großes Profil nicht laden?", answer: "Ohne Token erlaubt GitHub 60 API-Anfragen pro Stunde, und jede Anfrage liefert höchstens 100 Konten. Githubster prüft zuerst die Profilgröße und meldet, wenn das Limit nicht reicht; mit einem Token klappt es bei den meisten Profilen." },
+  ],
+  fr: [
+    { question: "Comment voir qui ne me suit pas en retour sur GitHub ?", answer: "Saisissez votre nom d’utilisateur GitHub et ouvrez l’onglet des comptes qui ne vous suivent pas en retour. Il liste les comptes que vous suivez et qui ne vous suivent pas. Un autre onglet montre l’inverse : les abonnés que vous ne suivez pas." },
+    { question: "Githubster est-il gratuit et faut-il un compte ?", answer: "Githubster est gratuit et open source. Aucun compte Githubster ni connexion GitHub n’est nécessaire : seules les listes publiques d’abonnés et d’abonnements sont lues." },
+    { question: "Githubster peut-il montrer qui s’est désabonné ?", answer: "Non. Githubster compare les listes publiques actuelles et ne conserve aucun historique. Il montre donc qui ne vous suit pas en retour maintenant, pas qui s’est désabonné ni quand." },
+    { question: "Ai-je besoin d’un jeton GitHub et est-ce sûr ?", answer: "Le jeton est facultatif. Il fait seulement passer la limite de l’API GitHub de 60 à 5 000 requêtes par heure, ce qui aide pour les grands profils. Il est envoyé directement à GitHub et n’est ni enregistré ni transmis à Githubster." },
+    { question: "Pourquoi un très grand profil ne se charge-t-il pas ?", answer: "Sans jeton, GitHub autorise 60 requêtes d’API par heure, et chaque requête renvoie au plus 100 comptes. Githubster vérifie d’abord la taille du profil et vous prévient si la limite est insuffisante ; un jeton règle le problème pour la plupart des profils." },
+  ],
+  es: [
+    { question: "¿Cómo veo quién no me sigue de vuelta en GitHub?", answer: "Introduce tu nombre de usuario de GitHub y abre la pestaña de cuentas que no te siguen de vuelta. Muestra las cuentas que sigues y que no te siguen. Otra pestaña muestra lo contrario: seguidores a los que tú no sigues." },
+    { question: "¿Githubster es gratis y necesito una cuenta?", answer: "Githubster es gratuito y de código abierto. No necesitas una cuenta de Githubster ni iniciar sesión en GitHub: solo lee las listas públicas de seguidores y seguidos." },
+    { question: "¿Puede Githubster mostrar quién dejó de seguirme?", answer: "No. Githubster compara las listas públicas actuales y no guarda historial, así que muestra quién no te sigue de vuelta ahora, no quién dejó de seguirte ni cuándo." },
+    { question: "¿Necesito un token de GitHub y es seguro?", answer: "El token es opcional. Solo eleva el límite de la API de GitHub de 60 a 5.000 solicitudes por hora, lo que ayuda con perfiles grandes. Se envía directamente a GitHub y no se guarda ni se envía a Githubster." },
+    { question: "¿Por qué no se puede cargar un perfil muy grande?", answer: "Sin token, GitHub permite 60 solicitudes a la API por hora y cada una devuelve como máximo 100 cuentas. Githubster comprueba primero el tamaño del perfil y te avisa si el límite no alcanza; con un token se resuelve para la mayoría de los perfiles." },
+  ],
+  it: [
+    { question: "Come vedo chi non ricambia il follow su GitHub?", answer: "Inserisci il tuo nome utente GitHub e apri la scheda degli account che non ricambiano. Elenca gli account che segui e che non ti seguono. Un’altra scheda mostra il contrario: i follower che tu non segui." },
+    { question: "Githubster è gratuito e serve un account?", answer: "Githubster è gratuito e open source. Non serve un account Githubster né l’accesso a GitHub: legge solo gli elenchi pubblici di follower e seguiti." },
+    { question: "Githubster può mostrare chi ha smesso di seguirmi?", answer: "No. Githubster confronta gli elenchi pubblici attuali e non conserva una cronologia: mostra chi non ti segue ora, non chi ha smesso di seguirti né quando." },
+    { question: "Mi serve un token GitHub ed è sicuro?", answer: "Il token è facoltativo. Aumenta solo il limite dell’API di GitHub da 60 a 5.000 richieste all’ora, utile per i profili grandi. Viene inviato direttamente a GitHub e non viene salvato né inviato a Githubster." },
+    { question: "Perché un profilo molto grande non si carica?", answer: "Senza token GitHub consente 60 richieste API all’ora e ogni richiesta restituisce al massimo 100 account. Githubster controlla prima la dimensione del profilo e ti avvisa se il limite non basta; con un token si risolve per la maggior parte dei profili." },
+  ],
+  pt: [
+    { question: "Como vejo quem não me segue de volta no GitHub?", answer: "Digite seu nome de usuário do GitHub e abra a aba de contas que não seguem de volta. Ela lista as contas que você segue e que não seguem você. Outra aba mostra o contrário: seguidores que você não segue." },
+    { question: "O Githubster é gratuito e preciso de uma conta?", answer: "O Githubster é gratuito e de código aberto. Não é preciso ter conta no Githubster nem fazer login no GitHub: ele lê apenas as listas públicas de seguidores e seguidos." },
+    { question: "O Githubster mostra quem deixou de me seguir?", answer: "Não. O Githubster compara as listas públicas atuais e não guarda histórico. Ele mostra quem não segue você de volta agora, não quem deixou de seguir nem quando." },
+    { question: "Preciso de um token do GitHub e isso é seguro?", answer: "O token é opcional. Ele apenas aumenta o limite da API do GitHub de 60 para 5.000 requisições por hora, o que ajuda em perfis grandes. O token é enviado diretamente ao GitHub e não é salvo nem enviado ao Githubster." },
+    { question: "Por que um perfil muito grande não carrega?", answer: "Sem token, o GitHub permite 60 requisições à API por hora, e cada uma retorna no máximo 100 contas. O Githubster verifica primeiro o tamanho do perfil e avisa se o limite não é suficiente; com um token isso se resolve para a maioria dos perfis." },
+  ],
+  nl: [
+    { question: "Hoe zie ik wie mij niet terugvolgt op GitHub?", answer: "Voer je GitHub-gebruikersnaam in en open het tabblad met accounts die niet terugvolgen. Daar staan de accounts die jij volgt maar die jou niet volgen. Een ander tabblad toont het omgekeerde: volgers die jij niet terugvolgt." },
+    { question: "Is Githubster gratis en heb ik een account nodig?", answer: "Githubster is gratis en open source. Je hebt geen Githubster-account of GitHub-login nodig: alleen openbare lijsten met volgers en gevolgde accounts worden gelezen." },
+    { question: "Kan Githubster laten zien wie mij ontvolgd heeft?", answer: "Nee. Githubster vergelijkt de huidige openbare lijsten en bewaart geen geschiedenis. Je ziet dus wie je nu niet terugvolgt, niet wie je ontvolgd heeft of wanneer." },
+    { question: "Heb ik een GitHub-token nodig en is dat veilig?", answer: "Een token is optioneel. Het verhoogt alleen de API-limiet van GitHub van 60 naar 5.000 verzoeken per uur, wat helpt bij grote profielen. Het token gaat rechtstreeks naar GitHub en wordt niet opgeslagen of naar Githubster gestuurd." },
+    { question: "Waarom kan een heel groot profiel niet worden geladen?", answer: "Zonder token staat GitHub 60 API-verzoeken per uur toe, en elk verzoek levert hooguit 100 accounts op. Githubster controleert eerst de grootte van het profiel en meldt het als de limiet te laag is; met een token lukt het bij de meeste profielen." },
+  ],
+  pl: [
+    { question: "Jak sprawdzić, kto nie obserwuje mnie na GitHubie?", answer: "Wpisz swoją nazwę użytkownika GitHub i otwórz kartę kont, które nie odwzajemniają obserwowania. Zawiera konta, które obserwujesz, a które nie obserwują ciebie. Inna karta pokazuje sytuację odwrotną: obserwujących, których ty nie obserwujesz." },
+    { question: "Czy Githubster jest darmowy i czy potrzebuję konta?", answer: "Githubster jest darmowy i ma otwarty kod. Nie potrzebujesz konta w Githubsterze ani logowania do GitHuba: narzędzie czyta tylko publiczne listy obserwujących i obserwowanych." },
+    { question: "Czy Githubster pokaże, kto przestał mnie obserwować?", answer: "Nie. Githubster porównuje aktualne publiczne listy i nie przechowuje historii. Pokazuje więc, kto nie obserwuje cię teraz, a nie kto i kiedy przestał cię obserwować." },
+    { question: "Czy potrzebuję tokenu GitHub i czy to bezpieczne?", answer: "Token jest opcjonalny. Podnosi jedynie limit API GitHuba z 60 do 5000 zapytań na godzinę, co pomaga przy dużych profilach. Token trafia bezpośrednio do GitHuba i nie jest zapisywany ani wysyłany do Githubstera." },
+    { question: "Dlaczego nie da się wczytać bardzo dużego profilu?", answer: "Bez tokenu GitHub pozwala na 60 zapytań do API na godzinę, a każde zwraca najwyżej 100 kont. Githubster najpierw sprawdza rozmiar profilu i informuje, jeśli limit nie wystarczy; token rozwiązuje problem dla większości profili." },
+  ],
+  da: [
+    { question: "Hvordan ser jeg, hvem der ikke følger mig tilbage på GitHub?", answer: "Indtast dit GitHub-brugernavn, og åbn fanen med konti, der ikke følger tilbage. Den viser de konti, du følger, som ikke følger dig. En anden fane viser det modsatte: følgere, du ikke følger tilbage." },
+    { question: "Er Githubster gratis, og skal jeg have en konto?", answer: "Githubster er gratis og open source. Du behøver hverken en Githubster-konto eller et GitHub-login: der læses kun offentlige lister over følgere og fulgte." },
+    { question: "Kan Githubster vise, hvem der er holdt op med at følge mig?", answer: "Nej. Githubster sammenligner de aktuelle offentlige lister og gemmer ingen historik. Du ser altså, hvem der ikke følger dig tilbage lige nu, ikke hvem der holdt op eller hvornår." },
+    { question: "Skal jeg bruge et GitHub-token, og er det sikkert?", answer: "Et token er valgfrit. Det hæver kun GitHubs API-grænse fra 60 til 5.000 forespørgsler i timen, hvilket hjælper ved store profiler. Tokenet sendes direkte til GitHub og gemmes ikke eller sendes til Githubster." },
+    { question: "Hvorfor kan en meget stor profil ikke indlæses?", answer: "Uden token tillader GitHub 60 API-forespørgsler i timen, og hver forespørgsel returnerer højst 100 konti. Githubster tjekker først profilens størrelse og siger til, hvis grænsen er for lav; et token løser det for de fleste profiler." },
+  ],
+  sv: [
+    { question: "Hur ser jag vem som inte följer mig tillbaka på GitHub?", answer: "Ange ditt GitHub-användarnamn och öppna fliken med konton som inte följer tillbaka. Den listar konton du följer som inte följer dig. En annan flik visar det omvända: följare som du inte följer tillbaka." },
+    { question: "Är Githubster gratis och behöver jag ett konto?", answer: "Githubster är gratis och har öppen källkod. Du behöver varken ett Githubster-konto eller logga in på GitHub: bara offentliga listor över följare och följda läses." },
+    { question: "Kan Githubster visa vem som har slutat följa mig?", answer: "Nej. Githubster jämför de aktuella offentliga listorna och sparar ingen historik. Du ser alltså vem som inte följer dig tillbaka just nu, inte vem som slutade eller när." },
+    { question: "Behöver jag en GitHub-token och är det säkert?", answer: "En token är valfri. Den höjer bara GitHubs API-gräns från 60 till 5 000 anrop per timme, vilket hjälper för stora profiler. Token skickas direkt till GitHub och sparas inte och skickas inte till Githubster." },
+    { question: "Varför går det inte att läsa in en mycket stor profil?", answer: "Utan token tillåter GitHub 60 API-anrop per timme, och varje anrop returnerar högst 100 konton. Githubster kontrollerar först profilens storlek och säger till om gränsen är för låg; med en token fungerar det för de flesta profiler." },
+  ],
+  no: [
+    { question: "Hvordan ser jeg hvem som ikke følger meg tilbake på GitHub?", answer: "Skriv inn GitHub-brukernavnet ditt og åpne fanen med kontoer som ikke følger tilbake. Den viser kontoene du følger som ikke følger deg. En annen fane viser det motsatte: følgere du ikke følger tilbake." },
+    { question: "Er Githubster gratis, og trenger jeg en konto?", answer: "Githubster er gratis og åpen kildekode. Du trenger verken en Githubster-konto eller GitHub-innlogging: bare offentlige lister over følgere og fulgte blir lest." },
+    { question: "Kan Githubster vise hvem som har sluttet å følge meg?", answer: "Nei. Githubster sammenligner de gjeldende offentlige listene og lagrer ingen historikk. Du ser altså hvem som ikke følger deg tilbake nå, ikke hvem som sluttet eller når." },
+    { question: "Trenger jeg et GitHub-token, og er det trygt?", answer: "Et token er valgfritt. Det øker bare GitHubs API-grense fra 60 til 5000 forespørsler per time, noe som hjelper for store profiler. Tokenet sendes direkte til GitHub og blir ikke lagret eller sendt til Githubster." },
+    { question: "Hvorfor kan ikke en veldig stor profil lastes inn?", answer: "Uten token tillater GitHub 60 API-forespørsler per time, og hver forespørsel returnerer høyst 100 kontoer. Githubster sjekker først størrelsen på profilen og sier fra hvis grensen er for lav; et token løser det for de fleste profiler." },
+  ],
+  cs: [
+    { question: "Jak zjistím, kdo mě na GitHubu nesleduje zpět?", answer: "Zadejte své uživatelské jméno na GitHubu a otevřete kartu účtů, které vás nesledují zpět. Uvidíte účty, které sledujete, ale ony nesledují vás. Další karta ukazuje opak: sledující, které nesledujete vy." },
+    { question: "Je Githubster zdarma a potřebuji účet?", answer: "Githubster je zdarma a má otevřený kód. Nepotřebujete účet v Githubsteru ani přihlášení na GitHub: čtou se jen veřejné seznamy sledujících a sledovaných." },
+    { question: "Ukáže Githubster, kdo mě přestal sledovat?", answer: "Ne. Githubster porovnává aktuální veřejné seznamy a neukládá historii. Ukazuje tedy, kdo vás nesleduje zpět právě teď, ne kdo a kdy vás přestal sledovat." },
+    { question: "Potřebuji token GitHubu a je to bezpečné?", answer: "Token je volitelný. Pouze zvyšuje limit GitHub API z 60 na 5 000 požadavků za hodinu, což pomáhá u velkých profilů. Token se odesílá přímo na GitHub a neukládá se ani neposílá do Githubsteru." },
+    { question: "Proč nejde načíst velmi velký profil?", answer: "Bez tokenu GitHub povoluje 60 požadavků na API za hodinu a každý vrátí nejvýše 100 účtů. Githubster nejprve zkontroluje velikost profilu a upozorní, pokud limit nestačí; s tokenem to u většiny profilů projde." },
+  ],
+  hu: [
+    { question: "Hogyan látom, ki nem követ vissza a GitHubon?", answer: "Add meg a GitHub-felhasználónevedet, és nyisd meg a vissza nem követők lapját. Itt azok a fiókok szerepelnek, amelyeket követsz, de ők nem követnek téged. Egy másik lap a fordítottját mutatja: azokat a követőket, akiket te nem követsz." },
+    { question: "Ingyenes a Githubster, és kell hozzá fiók?", answer: "A Githubster ingyenes és nyílt forráskódú. Nem kell Githubster-fiók és GitHub-bejelentkezés sem: csak a nyilvános követői és követési listákat olvassa." },
+    { question: "Megmutatja a Githubster, ki követett ki?", answer: "Nem. A Githubster az aktuális nyilvános listákat hasonlítja össze, és nem tárol előzményeket. Azt mutatja, ki nem követ vissza most, nem azt, hogy ki és mikor követett ki." },
+    { question: "Kell GitHub-token, és biztonságos?", answer: "A token nem kötelező. Csak a GitHub API-korlátját emeli óránként 60-ról 5000 kérésre, ami nagy profiloknál segít. A token közvetlenül a GitHubhoz kerül, nem mentjük, és nem jut el a Githubsterhez." },
+    { question: "Miért nem tölthető be egy nagyon nagy profil?", answer: "Token nélkül a GitHub óránként 60 API-kérést engedélyez, és egy kérés legfeljebb 100 fiókot ad vissza. A Githubster először ellenőrzi a profil méretét, és jelzi, ha a korlát kevés; tokennel a legtöbb profil betölthető." },
+  ],
+  tr: [
+    { question: "GitHub'da beni kimin geri takip etmediğini nasıl görürüm?", answer: "GitHub kullanıcı adınızı girin ve geri takip etmeyenler sekmesini açın. Takip ettiğiniz ama sizi takip etmeyen hesapları listeler. Başka bir sekme tersini gösterir: sizin takip etmediğiniz takipçiler." },
+    { question: "Githubster ücretsiz mi, hesap gerekiyor mu?", answer: "Githubster ücretsiz ve açık kaynaklıdır. Githubster hesabına da GitHub girişine de gerek yoktur: yalnızca herkese açık takipçi ve takip listeleri okunur." },
+    { question: "Githubster beni takipten çıkanları gösterebilir mi?", answer: "Hayır. Githubster güncel herkese açık listeleri karşılaştırır ve geçmiş tutmaz. Yani şu anda sizi geri takip etmeyenleri gösterir; kimin ne zaman takipten çıktığını göstermez." },
+    { question: "GitHub token'ına ihtiyacım var mı, güvenli mi?", answer: "Token isteğe bağlıdır. Yalnızca GitHub API sınırını saatte 60 istekten 5.000 isteğe çıkarır; bu, büyük profillerde işe yarar. Token doğrudan GitHub'a gönderilir, kaydedilmez ve Githubster'a iletilmez." },
+    { question: "Çok büyük bir profil neden yüklenemiyor?", answer: "Token olmadan GitHub saatte 60 API isteğine izin verir ve her istek en fazla 100 hesap döndürür. Githubster önce profilin boyutunu kontrol eder ve sınır yetmiyorsa bildirir; token çoğu profil için sorunu çözer." },
+  ],
+  uk: [
+    { question: "Як побачити, хто не підписаний на мене у відповідь на GitHub?", answer: "Введіть своє ім’я користувача GitHub і відкрийте вкладку з тими, хто не підписаний у відповідь. Там перелічені акаунти, на які підписані ви, але які не підписані на вас. Інша вкладка показує зворотне: підписників, на яких не підписані ви." },
+    { question: "Чи безкоштовний Githubster і чи потрібен акаунт?", answer: "Githubster безкоштовний і має відкритий код. Не потрібен ні акаунт Githubster, ні вхід у GitHub: сервіс читає лише публічні списки підписників і підписок." },
+    { question: "Чи покаже Githubster, хто від мене відписався?", answer: "Ні. Githubster порівнює поточні публічні списки й не зберігає історію. Він показує, хто не підписаний на вас зараз, а не хто і коли відписався." },
+    { question: "Чи потрібен токен GitHub і чи це безпечно?", answer: "Токен необов’язковий. Він лише підвищує ліміт GitHub API з 60 до 5000 запитів на годину, що допомагає з великими профілями. Токен надсилається безпосередньо до GitHub, не зберігається і не передається Githubster." },
+    { question: "Чому не завантажується дуже великий профіль?", answer: "Без токена GitHub дозволяє 60 запитів до API на годину, і кожен запит повертає щонайбільше 100 акаунтів. Githubster спершу перевіряє розмір профілю й повідомляє, якщо ліміту не вистачить; токен вирішує це для більшості профілів." },
+  ],
+  zh: [
+    { question: "如何查看 GitHub 上谁没有回关我？", answer: "输入你的 GitHub 用户名，打开“未回关”标签页。它会列出你关注了但没有关注你的账号。另一个标签页显示相反的情况：关注了你但你没有回关的人。" },
+    { question: "Githubster 免费吗？需要注册账号吗？", answer: "Githubster 免费且开源。不需要 Githubster 账号，也不需要登录 GitHub：它只读取公开的关注者和关注列表。" },
+    { question: "Githubster 能显示谁取消关注了我吗？", answer: "不能。Githubster 只比较当前的公开列表，不保存历史记录，所以它显示的是现在谁没有回关你，而不是谁在何时取消了关注。" },
+    { question: "我需要 GitHub 令牌吗？安全吗？", answer: "令牌是可选的。它只是把 GitHub API 限额从每小时 60 次提高到 5,000 次，适合较大的账号。令牌直接发送给 GitHub，不会被保存，也不会发送给 Githubster。" },
+    { question: "为什么特别大的账号无法加载？", answer: "没有令牌时，GitHub 每小时只允许 60 次 API 请求，每次请求最多返回 100 个账号。Githubster 会先检查账号规模，并在限额不足时提示你；添加令牌后大多数账号都能加载。" },
+  ],
+  ja: [
+    { question: "GitHub でフォローバックしていない人を確認するには？", answer: "GitHub のユーザー名を入力し、フォローバックしていないアカウントのタブを開きます。あなたがフォローしているのに、あなたをフォローしていないアカウントが一覧表示されます。別のタブでは逆に、あなたがフォローバックしていないフォロワーを確認できます。" },
+    { question: "Githubster は無料ですか？アカウントは必要ですか？", answer: "Githubster は無料のオープンソースです。Githubster のアカウントも GitHub へのログインも不要で、公開されているフォロワーとフォロー中の一覧だけを読み取ります。" },
+    { question: "誰がフォローを解除したか分かりますか？", answer: "いいえ。Githubster は現在の公開リストを比較するだけで履歴を保存しません。そのため、今フォローバックしていない人は分かりますが、誰がいつ解除したかは分かりません。" },
+    { question: "GitHub トークンは必要ですか？安全ですか？", answer: "トークンは任意です。GitHub API の上限を 1 時間あたり 60 回から 5,000 回に引き上げるだけで、大きなプロフィールに役立ちます。トークンは GitHub に直接送信され、保存されず、Githubster にも送られません。" },
+    { question: "非常に大きなプロフィールを読み込めないのはなぜ？", answer: "トークンがない場合、GitHub が許可する API リクエストは 1 時間あたり 60 回で、1 回につき最大 100 アカウントしか返りません。Githubster は最初にプロフィールの規模を確認し、上限が足りない場合はお知らせします。トークンを追加すれば、ほとんどのプロフィールを読み込めます。" },
+  ],
+  ko: [
+    { question: "GitHub에서 나를 맞팔로우하지 않는 사람은 어떻게 확인하나요?", answer: "GitHub 사용자 이름을 입력하고 맞팔로우하지 않는 계정 탭을 여세요. 내가 팔로우하지만 나를 팔로우하지 않는 계정이 표시됩니다. 다른 탭에서는 반대로 내가 맞팔로우하지 않은 팔로워를 볼 수 있습니다." },
+    { question: "Githubster는 무료인가요? 계정이 필요한가요?", answer: "Githubster는 무료 오픈 소스입니다. Githubster 계정도 GitHub 로그인도 필요 없으며, 공개된 팔로워와 팔로잉 목록만 읽습니다." },
+    { question: "누가 언팔로우했는지 알 수 있나요?", answer: "아니요. Githubster는 현재의 공개 목록만 비교하고 기록을 저장하지 않습니다. 지금 맞팔로우하지 않는 사람은 보여 주지만, 누가 언제 언팔로우했는지는 알 수 없습니다." },
+    { question: "GitHub 토큰이 필요한가요? 안전한가요?", answer: "토큰은 선택 사항입니다. GitHub API 한도를 시간당 60회에서 5,000회로 높여 줄 뿐이며, 큰 프로필에 도움이 됩니다. 토큰은 GitHub로 직접 전송되고 저장되거나 Githubster로 전송되지 않습니다." },
+    { question: "매우 큰 프로필은 왜 불러올 수 없나요?", answer: "토큰이 없으면 GitHub는 시간당 60회의 API 요청만 허용하고, 요청 한 번에 최대 100개 계정만 반환합니다. Githubster는 먼저 프로필 크기를 확인해 한도가 부족하면 알려 주며, 토큰을 추가하면 대부분의 프로필을 불러올 수 있습니다." },
+  ],
+  he: [
+    { question: "איך רואים מי לא עוקב אחריי בחזרה ב-GitHub?", answer: "הזינו את שם המשתמש שלכם ב-GitHub ופתחו את הלשונית של חשבונות שלא עוקבים בחזרה. היא מציגה חשבונות שאתם עוקבים אחריהם והם לא עוקבים אחריכם. לשונית אחרת מציגה את ההפך: עוקבים שאתם לא עוקבים אחריהם." },
+    { question: "האם Githubster חינמי והאם צריך חשבון?", answer: "Githubster חינמי ובקוד פתוח. אין צורך בחשבון Githubster או בהתחברות ל-GitHub: הכלי קורא רק רשימות ציבוריות של עוקבים ונעקבים." },
+    { question: "האם Githubster יכול להראות מי הפסיק לעקוב אחריי?", answer: "לא. Githubster משווה את הרשימות הציבוריות הנוכחיות ואינו שומר היסטוריה. הוא מראה מי לא עוקב אחריכם כעת, ולא מי הפסיק לעקוב ומתי." },
+    { question: "האם צריך אסימון GitHub והאם זה בטוח?", answer: "האסימון אופציונלי. הוא רק מעלה את מגבלת ה-API של GitHub מ-60 ל-5,000 בקשות בשעה, וזה עוזר בפרופילים גדולים. האסימון נשלח ישירות ל-GitHub, אינו נשמר ואינו נשלח ל-Githubster." },
+    { question: "למה אי אפשר לטעון פרופיל גדול מאוד?", answer: "בלי אסימון GitHub מאפשר 60 בקשות API בשעה, וכל בקשה מחזירה עד 100 חשבונות. Githubster בודק קודם את גודל הפרופיל ומודיע אם המגבלה אינה מספיקה; אסימון פותר זאת ברוב הפרופילים." },
+  ],
+  ar: [
+    { question: "كيف أعرف من لا يتابعني بالمقابل على GitHub؟", answer: "أدخل اسم المستخدم الخاص بك على GitHub وافتح تبويب الحسابات التي لا تتابعك بالمقابل. يعرض الحسابات التي تتابعها ولا تتابعك. ويعرض تبويب آخر العكس: المتابعين الذين لا تتابعهم أنت." },
+    { question: "هل Githubster مجاني وهل أحتاج إلى حساب؟", answer: "Githubster مجاني ومفتوح المصدر. لا تحتاج إلى حساب في Githubster ولا إلى تسجيل الدخول إلى GitHub: يقرأ فقط قوائم المتابعين والمتابَعين العامة." },
+    { question: "هل يعرض Githubster من ألغى متابعتي؟", answer: "لا. يقارن Githubster القوائم العامة الحالية ولا يحتفظ بأي سجل، فهو يعرض من لا يتابعك بالمقابل الآن، لا من ألغى المتابعة أو متى." },
+    { question: "هل أحتاج إلى رمز GitHub وهل هو آمن؟", answer: "الرمز اختياري. يرفع فقط حد واجهة GitHub من 60 إلى 5,000 طلب في الساعة، وهذا مفيد للحسابات الكبيرة. يُرسل الرمز مباشرة إلى GitHub ولا يُحفظ ولا يُرسل إلى Githubster." },
+    { question: "لماذا لا يمكن تحميل ملف شخصي كبير جدًا؟", answer: "من دون رمز يسمح GitHub بـ 60 طلبًا في الساعة، ويعيد كل طلب 100 حساب على الأكثر. يتحقق Githubster أولًا من حجم الملف الشخصي ويخبرك إن كان الحد غير كافٍ؛ وإضافة رمز تحل المشكلة لمعظم الحسابات." },
+  ],
+};

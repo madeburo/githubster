@@ -27,7 +27,7 @@ export function ProjectSupport() {
           href={KOFI_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-opacity hover:opacity-80"
+          className="tap-target flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-opacity hover:opacity-80"
           style={{ color: "white", background: "#29abe0" }}
         >
           <Image src="/kofi.svg" alt="" width={15} height={15} className="h-3.5 w-3.5" />
@@ -37,7 +37,7 @@ export function ProjectSupport() {
           href={PAYPAL_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors hover:bg-white/10"
+          className="tap-target flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors hover:bg-white/10"
           style={{ borderColor: "#3a3d55", color: "#e2e8f0" }}
         >
           <Image src="/paypal.svg" alt="" width={15} height={15} className="h-3.5 w-3.5" />
@@ -47,7 +47,7 @@ export function ProjectSupport() {
           href={GITHUB_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors hover:bg-white/10"
+          className="tap-target rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors hover:bg-white/10"
           style={{ borderColor: "#3a3d55", color: "#e2e8f0" }}
         >
           ★ {t.support.star}

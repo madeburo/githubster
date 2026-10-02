@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
  * App-window chrome for the explorer. The title bar and stickers are decorative, so on phones the
  * window collapses into a plain card instead of simulating a desktop.
  */
-export function ExplorerWindow({ title, children }: { title: string; children: ReactNode }) {
+export function ExplorerWindow({ title, decorated = true, children }: { title: string; decorated?: boolean; children: ReactNode }) {
   return (
     <section
       aria-label={title}
@@ -30,7 +30,7 @@ export function ExplorerWindow({ title, children }: { title: string; children: R
         </span>
       </div>
       <div className="relative">
-        <WindowDecorations />
+        {decorated && <WindowDecorations />}
         {children}
       </div>
     </section>

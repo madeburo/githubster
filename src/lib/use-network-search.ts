@@ -79,6 +79,7 @@ export function useNetworkSearch() {
     setProfileOverview(null);
     setUsername(null);
     setProgress(null);
+    setLastSearch(null);
 
     const url = new URL(window.location.href);
     if (url.searchParams.has("user")) {
@@ -99,5 +100,5 @@ export function useNetworkSearch() {
     return () => window.clearTimeout(timeoutId);
   }, [search]);
 
-  return { data, profileOverview, username, rateLimit, progress, isLoading, error, search, retry, reset };
+  return { data, profileOverview, username, rateLimit, progress, isLoading, error, searchedUser: lastSearch?.user ?? null, search, retry, reset };
 }

@@ -59,7 +59,7 @@ export function ExplorerTabs<T extends string>({ items, active, onChange, idPref
             tabIndex={selected ? 0 : -1}
             onClick={() => onChange(item.id)}
             className={cx(
-              "inline-flex h-8 shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 text-[13px] font-medium transition-colors",
+              "inline-flex h-8 shrink-0 cursor-pointer pointer-coarse:h-11 items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 text-[13px] font-medium transition-colors",
               focusRing,
               selected
                 ? "bg-(--cta-from) text-white shadow-[0_6px_16px_-8px_var(--cta-from)]"

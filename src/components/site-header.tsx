@@ -24,7 +24,7 @@ export function SiteHeader({ onLogoClick }: { onLogoClick?: () => void }) {
             onLogoClick();
           })
         }
-        className={cx("rounded-lg transition-opacity hover:opacity-80", focusRing)}
+        className={cx("tap-target rounded-lg transition-opacity hover:opacity-80", focusRing)}
         aria-label="Githubster"
       >
         <Image src="/githubster.svg" alt="" width={425} height={54} className="hidden h-7 w-auto dark:block sm:h-8" priority />

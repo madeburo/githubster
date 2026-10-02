@@ -17,8 +17,19 @@ function highlightGitHub(title: string) {
   );
 }
 
-export function ExplorerHero() {
+/** `compact` drops the logo and description once a lookup is on screen, so results sit above the fold. */
+export function ExplorerHero({ compact = false }: { compact?: boolean }) {
   const { t } = useLocale();
+
+  if (compact) {
+    return (
+      <div className="relative mx-auto max-w-xl text-center">
+        <h1 className="font-display text-xl font-bold leading-tight tracking-tight text-balance text-fg sm:text-2xl">
+          {highlightGitHub(t.hero.title)}
+        </h1>
+      </div>
+    );
+  }
 
   return (
     <div className="relative mx-auto max-w-xl text-center">

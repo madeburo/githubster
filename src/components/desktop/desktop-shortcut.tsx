@@ -25,7 +25,7 @@ export function DesktopShortcut({ label, icon: Icon, active = false, href, onSel
     isTile
       ? "flex w-full flex-col items-center gap-2 rounded-2xl p-1.5 text-center"
       : cx(
-          "inline-flex h-9 shrink-0 items-center gap-2 rounded-full border px-3.5 text-[13px] font-medium shadow-[var(--shadow)] backdrop-blur-md transition-[color,border-color,transform] motion-safe:hover:-translate-y-0.5",
+          "inline-flex h-9 shrink-0 items-center gap-2 rounded-full border pointer-coarse:h-11 px-3.5 text-[13px] font-medium shadow-[var(--shadow)] backdrop-blur-md transition-[color,border-color,transform] motion-safe:hover:-translate-y-0.5",
           active ? "border-brand/35 bg-brand-soft text-brand" : "border-line bg-card/85 text-fg-muted hover:text-fg"
         )
   );

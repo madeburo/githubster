@@ -59,7 +59,7 @@ export function ShareButton({ username }: ShareButtonProps) {
       <button
         type="button"
         onClick={handleShare}
-        className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-all hover:scale-[1.02] active:scale-[0.98]"
+        className="flex items-center gap-1.5 tap-target rounded-lg border px-3 py-1.5 text-xs font-medium transition-all hover:scale-[1.02] active:scale-[0.98]"
         style={{ borderColor: "var(--border)", background: "var(--bg-card)", color: "var(--text-muted)" }}
         title={t.share?.tooltip || "Share link"}
       >
@@ -83,7 +83,7 @@ export function ShareButton({ username }: ShareButtonProps) {
         </>
       )}
       </button>
-      <button type="button" onClick={handleCopy} className="rounded-lg border px-3 py-1.5 text-xs font-medium transition-all hover:scale-[1.02] active:scale-[0.98]" style={{ borderColor: "var(--border)", background: "var(--bg-card)", color: "var(--text-muted)" }}>
+      <button type="button" onClick={handleCopy} className="tap-target rounded-lg border px-3 py-1.5 text-xs font-medium transition-all hover:scale-[1.02] active:scale-[0.98]" style={{ borderColor: "var(--border)", background: "var(--bg-card)", color: "var(--text-muted)" }}>
         {copied === "copy" ? t.share?.copied || "Copied!" : copyLabels[locale]}
       </button>
     </div>

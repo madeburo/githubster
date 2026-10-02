@@ -27,6 +27,7 @@ import { SkeletonLoader } from "@/components/skeleton-loader";
 import { explorerLabels } from "@/lib/explorer-content";
 import { locales, type Locale } from "@/lib/i18n";
 import { LocaleProvider, useLocale } from "@/lib/locale-context";
+import { cx } from "@/lib/ui";
 import { useNetworkSearch } from "@/lib/use-network-search";
 
 export function HomePage({ initialLocale }: { initialLocale: Locale }) {
@@ -71,11 +72,13 @@ function scrollBehavior(): ScrollBehavior {
 function HomeContent() {
   const { t, locale } = useLocale();
   const labels = explorerLabels[locale];
-  const { data, profileOverview, username, rateLimit, progress, isLoading, error, search, retry, reset } = useNetworkSearch();
+  const { data, profileOverview, username, rateLimit, progress, isLoading, error, searchedUser, search, retry, reset } = useNetworkSearch();
   const [view, setView] = useState<ExplorerView>("overview");
   const searchRef = useRef<SearchPanelHandle>(null);
   const prefix = locale === "en" ? "" : `/${locale}`;
   const hasResults = !!data && (data.followers.length > 0 || data.following.length > 0);
+  // Once a lookup is on screen the hero shrinks so results start above the fold.
+  const isExploring = isLoading || !!error || !!data;
 
   /** Desktop shortcuts pick a view; without results they preselect it and send the user to the search box. */
   function openView(next: ExplorerView, targetId = "explorer-results") {
@@ -153,13 +156,13 @@ function HomeContent() {
             className="mb-4 hidden md:block xl:hidden"
           />
           <div className="mx-auto max-w-[66rem]">
-            <ExplorerWindow title="Githubster Explorer">
-              <div className="relative px-4 pb-4 pt-7 sm:px-8 sm:pb-8 sm:pt-12 lg:px-10">
-                <ExplorerHero />
-                <div className="mt-7">
-                  <SearchPanel ref={searchRef} onSearch={search} isLoading={isLoading} />
+            <ExplorerWindow title="Githubster Explorer" decorated={!isExploring}>
+              <div className={cx("relative px-4 pb-4 sm:px-8 sm:pb-8 lg:px-10", isExploring ? "pt-5 sm:pt-7" : "pt-7 sm:pt-12")}>
+                <ExplorerHero compact={isExploring} />
+                <div className={isExploring ? "mt-4" : "mt-7"}>
+                  <SearchPanel ref={searchRef} onSearch={search} isLoading={isLoading} searchedUser={searchedUser} />
                 </div>
-                <div id="explorer-results" className="mt-8 scroll-mt-6 sm:mt-10">
+                <div id="explorer-results" className={cx("scroll-mt-6", isExploring ? "mt-5 sm:mt-6" : "mt-8 sm:mt-10")}>
                   {explorerBody}
                 </div>
               </div>
