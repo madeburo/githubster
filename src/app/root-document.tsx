@@ -42,7 +42,7 @@ export function RootDocument({ lang, dir, children }: { lang: string; dir: "ltr"
         {process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
           <script
             defer
-            src={process.env.NEXT_PUBLIC_UMAMI_URL || "https://umami.madeburo.com/mb.js"}
+            src={process.env.NEXT_PUBLIC_UMAMI_URL || "https://umami.withnohype.com/mb.js"}
             data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
           />
         )}
