@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export function proxy(request: NextRequest) {
+  // This redirect used to live in nginx on Hetzner.
+  if (request.nextUrl.hostname === "githubster.com") {
+    const url = request.nextUrl.clone();
+    url.hostname = "www.githubster.com";
+    url.protocol = "https:";
+    url.port = "";
+    return NextResponse.redirect(url, 301);
+  }
+
   const { pathname } = request.nextUrl;
   const indexNowKey = process.env.INDEXNOW_KEY;
 

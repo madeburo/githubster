@@ -42,6 +42,64 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Deployment
 
+### Cloudflare Workers (production)
+
+The production site runs on Cloudflare Workers using OpenNext. It uses Workers KV
+for the prerendered page cache and a Durable Object queue for the hourly
+`/api/stars` revalidation. GitHub profile requests still run directly in the
+visitor's browser. No database, R2 subscription, or Hetzner connection is required.
+The same KV namespace retains the last successful repository star count if
+GitHub rate-limits a shared Workers egress IP. Each deploy seeds that snapshot
+from a successful build-time response; runtime refreshes update it when possible.
+
+Use Node.js 24 or newer and install the locked dependencies with `npm ci`.
+Authenticate with `npx wrangler login` if needed. The Worker and its bindings are
+configured in `wrangler.jsonc`.
+
+Copy `.env.example` to `.env.production.local` for production builds and fill in
+the public Umami settings. `NEXT_PUBLIC_*` values are embedded during the build,
+so changing analytics settings requires rebuilding the app. Local Worker preview
+also reads these environment files. Never commit production environment files.
+
+Set the IndexNow runtime secrets separately:
+
+```bash
+npx wrangler secret put INDEXNOW_KEY
+npx wrangler secret put INDEXNOW_SECRET
+```
+
+The verification key must stay the same as the existing public IndexNow key. Use
+a separate random secret of at least 32 characters for authenticated submissions.
+
+```bash
+npm run lint
+npm run typecheck
+npm run cf:build
+npm run cf:preview  # optional local workerd preview of the built app
+npm run cf:deploy
+npm run cf:smoke
+```
+
+`cf:deploy` deploys the existing `.open-next` build and populates the remote KV
+cache; run `cf:build` first after source or build-time environment changes.
+`public/_headers` gives hashed Next.js assets immutable browser caching.
+
+The `githubster.com/*` and `www.githubster.com/*` Worker routes keep the existing
+proxied DNS records. The apex redirects to `https://www.githubster.com` with the
+path and query intact. Both domains are served by the Worker without calling the
+Hetzner origin. Keep the old origin available during the migration rollback
+window. If its PM2 process has been stopped, run `ssh hetzner 'pm2 restart githubster && pm2 save'`
+first, then remove just these two Worker routes in Cloudflare to restore origin
+traffic. For later Worker releases, `npx wrangler rollback` restores the previous
+Worker version. Do not delete the cache namespace or Durable Object binding as
+part of a rollback.
+
+After deployment, check the main and localized pages, `/sitemap.xml`,
+`/robots.txt`, `/api/stars`, `/{INDEXNOW_KEY}.txt`, the `/jp` alias, and the CSS/JS
+assets. `POST /api/indexnow` without valid authentication must return `401`.
+
+### Node.js standalone (origin fallback)
+
 `npm run build` creates a complete standalone deployment in `.next/standalone`. The post-build step copies both `.next/static` and `public` into that directory, so deploy the **entire** `.next/standalone` directory and start it with:
 
 ```bash

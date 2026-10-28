@@ -1,0 +1,35 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "githubster",
+  "account_id": "ddf5893e0154440c11407903199bac99",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-28",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "workers_dev": true,
+  "preview_urls": false,
+  // Keep the proxied DNS records so traffic can fall back to Hetzner on rollback.
+  "routes": [
+    { "pattern": "githubster.com/*", "zone_name": "githubster.com" },
+    { "pattern": "www.githubster.com/*", "zone_name": "githubster.com" }
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    { "binding": "WORKER_SELF_REFERENCE", "service": "githubster" }
+  ],
+  "kv_namespaces": [
+    { "binding": "NEXT_INC_CACHE_KV", "id": "1caea170c1b849d2a4f2e2cb97713963" }
+  ],
+  "durable_objects": {
+    "bindings": [
+      { "name": "NEXT_CACHE_DO_QUEUE", "class_name": "DOQueueHandler" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["DOQueueHandler"] }
+  ],
+  "images": { "binding": "IMAGES" },
+  "observability": { "enabled": true }
+}

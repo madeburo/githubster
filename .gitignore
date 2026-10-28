@@ -32,6 +32,13 @@ yarn-error.log*
 
 # env files
 .env*.local
+.env
+.dev.vars*
+!.dev.vars.example
+
+# Cloudflare build output and local state
+/.open-next/
+/.wrangler/
 
 # typescript
 *.tsbuildinfo

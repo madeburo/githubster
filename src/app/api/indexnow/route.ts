@@ -2,8 +2,6 @@ import { createHash, timingSafeEqual } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { locales } from "@/lib/i18n";
 
-const INDEXNOW_KEY = process.env.INDEXNOW_KEY;
-const INDEXNOW_SECRET = process.env.INDEXNOW_SECRET;
 const SITE_URL = "https://www.githubster.com";
 
 const URLS_TO_INDEX = [
@@ -24,6 +22,9 @@ function hasValidBearerToken(request: NextRequest, expectedToken: string): boole
 }
 
 export async function POST(request: NextRequest) {
+  // Worker secrets are available in the request context, not at module initialization.
+  const INDEXNOW_KEY = process.env.INDEXNOW_KEY;
+  const INDEXNOW_SECRET = process.env.INDEXNOW_SECRET;
   if (!INDEXNOW_KEY || !INDEXNOW_SECRET || INDEXNOW_SECRET.length < 32) {
     return NextResponse.json(
       { success: false, message: "IndexNow is not configured" },
