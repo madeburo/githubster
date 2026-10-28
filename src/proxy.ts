@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export function proxy(request: NextRequest) {
   // This redirect used to live in nginx on Hetzner.
-  if (request.nextUrl.hostname === "githubster.com") {
+  if (
+    request.nextUrl.hostname === "githubster.com" ||
+    (request.nextUrl.hostname === "www.githubster.com" && request.nextUrl.protocol === "http:")
+  ) {
     const url = request.nextUrl.clone();
     url.hostname = "www.githubster.com";
     url.protocol = "https:";

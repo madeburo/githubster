@@ -68,4 +68,11 @@ if (process.env.INDEXNOW_KEY) {
   assert.equal(await (await request(`/${process.env.INDEXNOW_KEY}.txt`)).text(), process.env.INDEXNOW_KEY);
 }
 
+if (origin === "https://www.githubster.com") {
+  for (const source of ["http://www.githubster.com", "https://githubster.com"]) {
+    const redirect = await request(`${source}/ar?user=madeburo`, 301);
+    assert.equal(redirect.headers.get("location"), "https://www.githubster.com/ar?user=madeburo");
+  }
+}
+
 console.log(JSON.stringify({ origin, checks, pages: pages.length, assets: assets.length, stars: stars.stars, result: "passed" }));
