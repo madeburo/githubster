@@ -44,13 +44,17 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Cloudflare Workers (production)
 
-The production site runs on Cloudflare Workers using OpenNext. It uses Workers KV
-for the prerendered page cache and a Durable Object queue for the hourly
-`/api/stars` revalidation. GitHub profile requests still run directly in the
-visitor's browser. No database, R2 subscription, or Hetzner connection is required.
-The same KV namespace retains the last successful repository star count if
-GitHub rate-limits a shared Workers egress IP. Each deploy seeds that snapshot
-from a successful build-time response; runtime refreshes update it when possible.
+The production site runs on Cloudflare Workers using OpenNext. Prerendered pages
+ship in Workers Static Assets, with no KV reads or writes during deployment or
+page visits. GitHub profile requests still run directly in the visitor's browser.
+No database, Workers KV, R2 subscription, or Hetzner connection is required.
+
+`/api/stars` is a dynamic endpoint cached with Cloudflare's Cache API for one hour
+per edge location. It does not use Next.js ISR or a revalidation queue. The build
+fetches a public star-count snapshot and embeds it in the server bundle as a
+fallback when GitHub throttles a shared egress IP. A successful runtime request
+supersedes that snapshot while its edge cache entry exists. Cache eviction falls
+back to the build snapshot; this optional count does not require persistent data.
 
 Use Node.js 24 or newer and install the locked dependencies with `npm ci`.
 Authenticate with `npx wrangler login` if needed. The Worker and its bindings are
@@ -80,8 +84,12 @@ npm run cf:deploy
 npm run cf:smoke
 ```
 
-`cf:deploy` deploys the existing `.open-next` build and populates the remote KV
-cache; run `cf:build` first after source or build-time environment changes.
+`cf:deploy` deploys the existing `.open-next` build with its read-only cache in
+Static Assets; it performs zero Workers KV puts. Run `cf:build` first after source
+or build-time environment changes. Its `prebuild` step refreshes
+`.generated/repository-stars.json` locally without any Cloudflare storage writes.
+Deployment refuses a stale KV-based build, so a checkout update cannot silently
+repopulate Workers KV before the new configuration has been built.
 `public/_headers` gives hashed Next.js assets immutable browser caching.
 
 The `githubster.com/*` and `www.githubster.com/*` Worker routes keep the existing
@@ -91,8 +99,10 @@ Hetzner origin. Keep the old origin available during the migration rollback
 window. If its PM2 process has been stopped, run `ssh hetzner 'pm2 restart githubster && pm2 save'`
 first, then remove just these two Worker routes in Cloudflare to restore origin
 traffic. For later Worker releases, `npx wrangler rollback` restores the previous
-Worker version. Do not delete the cache namespace or Durable Object binding as
-part of a rollback.
+Worker version. The legacy KV namespace and Durable Object class from the initial
+migration are retained for rollback but have no bindings in the current Worker.
+Do not delete their historical data as part of an application rollback. Rolling
+back to a version before the Static Assets fix reintroduces the KV quota issue.
 
 After deployment, check the main and localized pages, `/sitemap.xml`,
 `/robots.txt`, `/api/stars`, `/{INDEXNOW_KEY}.txt`, the `/jp` alias, and the CSS/JS

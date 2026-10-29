@@ -52,8 +52,14 @@ for (const path of ["/backgrounds/githubster-light-desk.avif", "/backgrounds/git
   await (await request(path)).body?.cancel();
 }
 assert.match(await (await request("/robots.txt")).text(), /https:\/\/www\.githubster\.com\/sitemap.xml/);
-const stars = await (await request("/api/stars")).json();
+const starsResponse = await request("/api/stars");
+assert(["HIT", "MISS"].includes(starsResponse.headers.get("x-githubster-stars-cache")), "Missing edge-cache diagnostic");
+const stars = await starsResponse.json();
 assert.equal(typeof stars.stars, "number", "Star count was not loaded");
+
+const warmStars = await request("/api/stars");
+assert.equal(warmStars.headers.get("x-githubster-stars-cache"), "HIT", "Warm stars request must use the edge cache");
+assert.deepEqual(await warmStars.json(), stars);
 
 const alias = await request("/jp/tools/github-followers-checker?user=madeburo", 308);
 assert.equal(new URL(alias.headers.get("location"), origin).pathname, "/ja/tools/github-followers-checker");

@@ -8,15 +8,17 @@
   },
   "scripts": {
     "dev": "next dev --turbopack",
+    "prebuild": "node scripts/prepare-stars-snapshot.mjs",
     "build": "next build --webpack",
     "postbuild": "node scripts/copy-standalone-assets.mjs",
     "start": "next start",
     "clean": "rm -rf .next",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "test": "node --test scripts/*.test.mjs",
     "cf:build": "opennextjs-cloudflare build",
-    "cf:preview": "opennextjs-cloudflare preview",
-    "cf:deploy": "node scripts/seed-stars-cache.mjs && opennextjs-cloudflare deploy",
+    "cf:preview": "opennextjs-cloudflare preview --infer-origin-from-routes=false",
+    "cf:deploy": "node scripts/check-cloudflare-cache.mjs && opennextjs-cloudflare deploy",
     "cf:smoke": "node --env-file-if-exists=.env.production.local scripts/smoke-cloudflare.mjs"
   },
   "dependencies": {

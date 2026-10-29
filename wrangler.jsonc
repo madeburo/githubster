@@ -16,17 +16,7 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
-  "services": [
-    { "binding": "WORKER_SELF_REFERENCE", "service": "githubster" }
-  ],
-  "kv_namespaces": [
-    { "binding": "NEXT_INC_CACHE_KV", "id": "1caea170c1b849d2a4f2e2cb97713963" }
-  ],
-  "durable_objects": {
-    "bindings": [
-      { "name": "NEXT_CACHE_DO_QUEUE", "class_name": "DOQueueHandler" }
-    ]
-  },
+  // Retain the historical migration for rollback; the ISR queue is no longer used.
   "migrations": [
     { "tag": "v1", "new_sqlite_classes": ["DOQueueHandler"] }
   ],

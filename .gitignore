@@ -39,6 +39,7 @@ yarn-error.log*
 # Cloudflare build output and local state
 /.open-next/
 /.wrangler/
+/.generated/
 
 # typescript
 *.tsbuildinfo

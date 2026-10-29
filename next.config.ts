@@ -1,8 +1,18 @@
 import type { NextConfig } from "next";
+import { readFileSync } from "node:fs";
 
 const isDev = process.env.NODE_ENV === "development";
 
+let starsSnapshot = "unavailable";
+try {
+  const { stars } = JSON.parse(readFileSync(".generated/repository-stars.json", "utf8"));
+  if (Number.isSafeInteger(stars) && stars >= 0) starsSnapshot = String(stars);
+} catch {
+  // The counter is optional before the first build or when GitHub is unavailable.
+}
+
 const nextConfig: NextConfig = {
+  env: { GITHUBSTER_STARS_SNAPSHOT: starsSnapshot },
   output: "standalone",
   images: {
     remotePatterns: [

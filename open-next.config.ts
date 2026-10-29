@@ -1,9 +1,7 @@
 import { defineCloudflareConfig } from "@opennextjs/cloudflare";
-import kvIncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cache/kv-incremental-cache";
-import doQueue from "@opennextjs/cloudflare/overrides/queue/do-queue";
+import staticAssetsIncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cache/static-assets-incremental-cache";
 
-// Keep prerendered pages and the hourly /api/stars refresh across Worker instances.
+// Pages change only on deployment. Ship their cache without Workers KV writes.
 export default defineCloudflareConfig({
-  incrementalCache: kvIncrementalCache,
-  queue: doQueue,
+  incrementalCache: staticAssetsIncrementalCache,
 });
