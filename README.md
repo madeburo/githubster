@@ -94,11 +94,11 @@ repopulate Workers KV before the new configuration has been built.
 
 The `githubster.com/*` and `www.githubster.com/*` Worker routes keep the existing
 proxied DNS records. The apex redirects to `https://www.githubster.com` with the
-path and query intact. Both domains are served by the Worker without calling the
-Hetzner origin. Keep the old origin available during the migration rollback
-window. If its PM2 process has been stopped, run `ssh hetzner 'pm2 restart githubster && pm2 save'`
-first, then remove just these two Worker routes in Cloudflare to restore origin
-traffic. For later Worker releases, `npx wrangler rollback` restores the previous
+path and query intact. Both domains are served by the Worker without calling an
+origin server. The former Hetzner installation, PM2 entry, nginx site, and origin
+certificate were removed on 2026-10-29. The existing proxied DNS records remain
+only as route anchors; removing the Worker routes does not restore a working
+Hetzner fallback. For Worker releases, `npx wrangler rollback` restores the previous
 Worker version. The legacy KV namespace and Durable Object class from the initial
 migration are retained for rollback but have no bindings in the current Worker.
 Do not delete their historical data as part of an application rollback. Rolling
@@ -108,7 +108,7 @@ After deployment, check the main and localized pages, `/sitemap.xml`,
 `/robots.txt`, `/api/stars`, `/{INDEXNOW_KEY}.txt`, the `/jp` alias, and the CSS/JS
 assets. `POST /api/indexnow` without valid authentication must return `401`.
 
-### Node.js standalone (origin fallback)
+### Node.js standalone (optional self-hosting)
 
 `npm run build` creates a complete standalone deployment in `.next/standalone`. The post-build step copies both `.next/static` and `public` into that directory, so deploy the **entire** `.next/standalone` directory and start it with:
 

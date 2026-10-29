@@ -7,7 +7,7 @@
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "workers_dev": true,
   "preview_urls": false,
-  // Keep the proxied DNS records so traffic can fall back to Hetzner on rollback.
+  // Proxied DNS records anchor these routes; the former Hetzner origin is removed.
   "routes": [
     { "pattern": "githubster.com/*", "zone_name": "githubster.com" },
     { "pattern": "www.githubster.com/*", "zone_name": "githubster.com" }
