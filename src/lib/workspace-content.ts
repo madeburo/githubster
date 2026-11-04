@@ -1,0 +1,173 @@
+import type { Locale } from "./i18n";
+
+type WorkspaceCopy = {
+  workspace: string;
+  map: string;
+  sample: string;
+  tryProfile: string;
+  ready: string;
+  mapHint: string;
+};
+
+export const workspaceCopy: Record<Locale, WorkspaceCopy> = {
+  en: {
+    workspace: "Network workspace",
+    map: "Network map",
+    sample: "Sample data",
+    tryProfile: "Try a profile",
+    ready: "Ready to explore",
+    mapHint: "A preview of your direct connections.",
+  },
+  zh: {
+    workspace: "网络工作区",
+    map: "关系图",
+    sample: "示例数据",
+    tryProfile: "试试这个用户",
+    ready: "开始探索",
+    mapHint: "直接关系的预览。",
+  },
+  ko: {
+    workspace: "네트워크 작업 공간",
+    map: "네트워크 지도",
+    sample: "예시 데이터",
+    tryProfile: "프로필 살펴보기",
+    ready: "탐색 준비 완료",
+    mapHint: "직접 연결된 사람들을 미리 살펴보세요.",
+  },
+  ja: {
+    workspace: "ネットワークワークスペース",
+    map: "ネットワークマップ",
+    sample: "サンプルデータ",
+    tryProfile: "プロフィールを試す",
+    ready: "探索の準備完了",
+    mapHint: "直接つながっている人のプレビュー。",
+  },
+  pt: {
+    workspace: "Espaço da rede",
+    map: "Mapa da rede",
+    sample: "Dados de exemplo",
+    tryProfile: "Experimente um perfil",
+    ready: "Pronto para explorar",
+    mapHint: "Uma prévia das suas conexões diretas.",
+  },
+  es: {
+    workspace: "Espacio de tu red",
+    map: "Mapa de la red",
+    sample: "Datos de ejemplo",
+    tryProfile: "Prueba un perfil",
+    ready: "Listo para explorar",
+    mapHint: "Una vista previa de tus conexiones directas.",
+  },
+  de: {
+    workspace: "Netzwerk-Arbeitsbereich",
+    map: "Netzwerkkarte",
+    sample: "Beispieldaten",
+    tryProfile: "Profil ausprobieren",
+    ready: "Bereit zum Entdecken",
+    mapHint: "Eine Vorschau deiner direkten Verbindungen.",
+  },
+  fr: {
+    workspace: "Espace réseau",
+    map: "Carte du réseau",
+    sample: "Données d’exemple",
+    tryProfile: "Essayez un profil",
+    ready: "Prêt à explorer",
+    mapHint: "Un aperçu de vos connexions directes.",
+  },
+  it: {
+    workspace: "Spazio di rete",
+    map: "Mappa della rete",
+    sample: "Dati di esempio",
+    tryProfile: "Prova un profilo",
+    ready: "Pronto a esplorare",
+    mapHint: "Un’anteprima delle tue connessioni dirette.",
+  },
+  uk: {
+    workspace: "Робочий простір мережі",
+    map: "Карта зв’язків",
+    sample: "Приклад даних",
+    tryProfile: "Спробуйте профіль",
+    ready: "Готово до пошуку",
+    mapHint: "Попередній перегляд ваших прямих зв’язків.",
+  },
+  he: {
+    workspace: "סביבת הרשת",
+    map: "מפת קשרים",
+    sample: "נתונים לדוגמה",
+    tryProfile: "נסו פרופיל",
+    ready: "מוכנים לגלות",
+    mapHint: "תצוגה מקדימה של הקשרים הישירים שלכם.",
+  },
+  tr: {
+    workspace: "Ağ çalışma alanı",
+    map: "Bağlantı haritası",
+    sample: "Örnek veriler",
+    tryProfile: "Bir profil deneyin",
+    ready: "Keşfetmeye hazır",
+    mapHint: "Doğrudan bağlantılarınızın bir önizlemesi.",
+  },
+  ar: {
+    workspace: "مساحة الشبكة",
+    map: "خريطة العلاقات",
+    sample: "بيانات تجريبية",
+    tryProfile: "جرّب ملفًا شخصيًا",
+    ready: "جاهز للاستكشاف",
+    mapHint: "معاينة لعلاقاتك المباشرة.",
+  },
+  pl: {
+    workspace: "Przestrzeń sieci",
+    map: "Mapa relacji",
+    sample: "Dane przykładowe",
+    tryProfile: "Wypróbuj profil",
+    ready: "Gotowe do odkrywania",
+    mapHint: "Podgląd Twoich bezpośrednich relacji.",
+  },
+  nl: {
+    workspace: "Netwerkwerkruimte",
+    map: "Netwerkkaart",
+    sample: "Voorbeeldgegevens",
+    tryProfile: "Probeer een profiel",
+    ready: "Klaar om te ontdekken",
+    mapHint: "Een voorproefje van je directe connecties.",
+  },
+  da: {
+    workspace: "Netværksarbejdsområde",
+    map: "Netværkskort",
+    sample: "Eksempeldata",
+    tryProfile: "Prøv en profil",
+    ready: "Klar til at udforske",
+    mapHint: "Et udsnit af dine direkte forbindelser.",
+  },
+  sv: {
+    workspace: "Nätverksarbetsyta",
+    map: "Nätverkskarta",
+    sample: "Exempeldata",
+    tryProfile: "Prova en profil",
+    ready: "Redo att utforska",
+    mapHint: "En förhandsvisning av dina direkta kontakter.",
+  },
+  no: {
+    workspace: "Nettverksarbeidsområde",
+    map: "Nettverkskart",
+    sample: "Eksempeldata",
+    tryProfile: "Prøv en profil",
+    ready: "Klar til å utforske",
+    mapHint: "En forhåndsvisning av dine direkte forbindelser.",
+  },
+  cs: {
+    workspace: "Síťový pracovní prostor",
+    map: "Mapa vztahů",
+    sample: "Ukázková data",
+    tryProfile: "Vyzkoušejte profil",
+    ready: "Připraveno k prozkoumání",
+    mapHint: "Náhled vašich přímých spojení.",
+  },
+  hu: {
+    workspace: "Hálózati munkaterület",
+    map: "Kapcsolati térkép",
+    sample: "Mintaadatok",
+    tryProfile: "Próbálj ki egy profilt",
+    ready: "Felfedezésre kész",
+    mapHint: "Közvetlen kapcsolataid előnézete.",
+  },
+};

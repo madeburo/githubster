@@ -1,10 +1,23 @@
 "use client";
 
-import { useEffect, useId, useImperativeHandle, useRef, useState, type Ref } from "react";
-import { ArrowRightIcon, LockIcon, SpinnerIcon, UserIcon } from "@/components/icons";
+import {
+  useEffect,
+  useId,
+  useImperativeHandle,
+  useRef,
+  useState,
+  type Ref,
+} from "react";
+import {
+  ArrowRightIcon,
+  GitHubIcon,
+  LockIcon,
+  SpinnerIcon,
+} from "@/components/icons";
 import type { Locale } from "@/lib/i18n";
 import { useLocale } from "@/lib/locale-context";
 import { cx, focusRing } from "@/lib/ui";
+import { workspaceCopy } from "@/lib/workspace-content";
 
 const searchShortcut: Record<Locale, { before: string; after: string }> = {
   en: { before: "Press ", after: " to focus search" },
@@ -41,9 +54,16 @@ interface SearchPanelProps {
   isLoading: boolean;
   /** Username of the lookup on screen; the field follows it (shared `?user=` links, Home reset). */
   searchedUser?: string | null;
+  showExample?: boolean;
 }
 
-export function SearchPanel({ ref, onSearch, isLoading, searchedUser = null }: SearchPanelProps) {
+export function SearchPanel({
+  ref,
+  onSearch,
+  isLoading,
+  searchedUser = null,
+  showExample = false,
+}: SearchPanelProps) {
   const { t, locale } = useLocale();
   const [username, setUsername] = useState("");
   const [token, setToken] = useState("");
@@ -74,7 +94,12 @@ export function SearchPanel({ ref, onSearch, isLoading, searchedUser = null }: S
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key !== "/" || e.ctrlKey || e.metaKey || e.altKey) return;
       const target = e.target as HTMLElement;
-      if (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.tagName === "SELECT" || target.isContentEditable) {
+      if (
+        target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA" ||
+        target.tagName === "SELECT" ||
+        target.isContentEditable
+      ) {
         return;
       }
       e.preventDefault();
@@ -95,9 +120,16 @@ export function SearchPanel({ ref, onSearch, isLoading, searchedUser = null }: S
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto w-full max-w-xl text-start" role="search" autoComplete="off">
-      <div className="flex items-center gap-2 rounded-2xl border border-line bg-card p-1.5 ps-4 shadow-[0_12px_32px_-20px_rgba(76,60,170,0.55)] transition-[border-color,box-shadow] focus-within:border-brand/50 focus-within:ring-4 focus-within:ring-brand/15">
-        <UserIcon size={20} className="hidden shrink-0 text-fg-subtle sm:block" />
+    <form
+      onSubmit={handleSubmit}
+      className="workspace-search-form"
+      role="search"
+      autoComplete="off"
+    >
+      <div className="workspace-search-input">
+        <span aria-hidden="true" className="workspace-search-prompt">
+          @
+        </span>
         <label htmlFor={inputId} className="sr-only">
           {t.search.placeholder}
         </label>
@@ -129,10 +161,7 @@ export function SearchPanel({ ref, onSearch, isLoading, searchedUser = null }: S
         <button
           type="submit"
           disabled={isLoading}
-          className={cx(
-            "inline-flex h-11 shrink-0 cursor-pointer items-center gap-2 rounded-xl bg-linear-to-r from-(--cta-from) to-(--cta-to) px-4 text-[15px] font-semibold text-white shadow-[0_10px_22px_-10px_var(--cta-from)] transition-[filter,transform] hover:brightness-110 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 sm:px-5",
-            focusRing
-          )}
+          className={cx("workspace-search-submit", focusRing)}
         >
           {isLoading ? (
             <>
@@ -148,13 +177,16 @@ export function SearchPanel({ ref, onSearch, isLoading, searchedUser = null }: S
         </button>
       </div>
 
-      <div className="mt-2.5 px-1">
+      <div className="workspace-token-controls">
         <button
           type="button"
           onClick={() => setShowTokenField(!showTokenField)}
           aria-expanded={showTokenField}
           aria-controls={tokenId}
-          className={cx("tap-target inline-flex cursor-pointer items-center gap-1.5 rounded text-xs text-fg-muted transition-colors hover:text-fg", focusRing)}
+          className={cx(
+            "tap-target inline-flex cursor-pointer items-center gap-1.5 rounded text-xs text-fg-muted transition-colors hover:text-fg",
+            focusRing,
+          )}
         >
           <LockIcon size={13} />
           {showTokenField ? t.search.tokenHide : t.search.tokenToggle}
@@ -180,18 +212,40 @@ export function SearchPanel({ ref, onSearch, isLoading, searchedUser = null }: S
                 type="button"
                 onClick={() => setTokenVisible(!tokenVisible)}
                 className="cursor-pointer px-3 py-2.5 text-fg-muted transition-opacity hover:opacity-70"
-                aria-label={tokenVisible ? t.search.tokenMask : t.search.tokenShow}
+                aria-label={
+                  tokenVisible ? t.search.tokenMask : t.search.tokenShow
+                }
                 title={tokenVisible ? t.search.tokenMask : t.search.tokenShow}
               >
                 {tokenVisible ? (
-                  <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    aria-hidden="true"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <path d="m3 3 18 18" />
                     <path d="M10.6 10.6a2 2 0 0 0 2.8 2.8" />
                     <path d="M9.9 4.2A10.8 10.8 0 0 1 12 4c5.5 0 9 8 9 8a18 18 0 0 1-2.1 3.2" />
                     <path d="M6.6 6.6C4.4 8.1 3 12 3 12s3.5 8 9 8a9.8 9.8 0 0 0 4.1-.9" />
                   </svg>
                 ) : (
-                  <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    aria-hidden="true"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
                     <circle cx="12" cy="12" r="3" />
                   </svg>
@@ -212,12 +266,36 @@ export function SearchPanel({ ref, onSearch, isLoading, searchedUser = null }: S
                 </button>
               )}
             </div>
-            <p id={`${tokenId}-privacy`} className="px-1 text-[11px] leading-relaxed text-fg-subtle">
+            <p
+              id={`${tokenId}-privacy`}
+              className="px-1 text-[11px] leading-relaxed text-fg-subtle"
+            >
               {t.search.tokenPrivacy}
             </p>
           </div>
         )}
       </div>
+      {showExample && (
+        <div className="workspace-example-link">
+          <span>{workspaceCopy[locale].tryProfile}</span>
+          <button
+            type="button"
+            disabled={isLoading}
+            onClick={() => {
+              setUsername("madeburo");
+              onSearch("madeburo", token.trim() || undefined);
+            }}
+            className={cx(
+              "inline-flex items-center gap-1.5 rounded px-1 py-1 font-mono text-fg hover:text-brand disabled:opacity-50",
+              focusRing,
+            )}
+          >
+            <GitHubIcon size={13} />
+            madeburo
+            <ArrowRightIcon size={12} className="rtl:rotate-180" />
+          </button>
+        </div>
+      )}
     </form>
   );
 }

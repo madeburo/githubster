@@ -27,7 +27,15 @@ const caveat = Caveat({
 });
 
 /** The `<html>` document shared by the English and localized root layouts. */
-export function RootDocument({ lang, dir, children }: { lang: string; dir: "ltr" | "rtl"; children: React.ReactNode }) {
+export function RootDocument({
+  lang,
+  dir,
+  children,
+}: {
+  lang: string;
+  dir: "ltr" | "rtl";
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang={lang}
@@ -38,11 +46,14 @@ export function RootDocument({ lang, dir, children }: { lang: string; dir: "ltr"
     >
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#6d58ee" />
+        <meta name="theme-color" content="#1b222c" />
         {process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
           <script
             defer
-            src={process.env.NEXT_PUBLIC_UMAMI_URL || "https://umami.withnohype.com/mb.js"}
+            src={
+              process.env.NEXT_PUBLIC_UMAMI_URL ||
+              "https://umami.withnohype.com/mb.js"
+            }
             data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
           />
         )}
@@ -54,9 +65,7 @@ export function RootDocument({ lang, dir, children }: { lang: string; dir: "ltr"
         <JsonLd />
       </head>
       <body className="min-h-screen antialiased">
-        <ErrorBoundary>
-          {children}
-        </ErrorBoundary>
+        <ErrorBoundary>{children}</ErrorBoundary>
         <KofiWidget />
         <PwaRegistration />
       </body>

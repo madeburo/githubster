@@ -8,6 +8,7 @@ interface ProfileOverviewProps {
   overview: ProfileOverview;
   username: string;
   avatarUrl: string;
+  compact?: boolean;
 }
 
 const languageColors: Record<string, string> = {
@@ -46,47 +47,72 @@ function getLanguageColor(language: string): string {
   return languageColors[language] || "var(--text-muted)";
 }
 
-export function ProfileOverviewCard({ overview, username, avatarUrl }: ProfileOverviewProps) {
+export function ProfileOverviewCard({
+  overview,
+  username,
+  avatarUrl,
+  compact = false,
+}: ProfileOverviewProps) {
   const { t } = useLocale();
   const stats = overview.repositoryStats;
 
   return (
     <div
-      className="flex flex-col gap-4 rounded-xl border p-4 sm:flex-row sm:items-center sm:gap-5"
+      className={
+        compact
+          ? "workspace-profile-insights"
+          : "flex flex-col gap-4 rounded-xl border p-4 sm:flex-row sm:items-center sm:gap-5"
+      }
       style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}
     >
-      {/* Avatar + name */}
-      <a
-        href={`https://github.com/${username}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-3 transition-opacity hover:opacity-80"
-      >
-        <Image
-          src={avatarUrl}
-          alt={`${username}'s avatar`}
-          width={44}
-          height={44}
-          className="rounded-full"
-          unoptimized
-        />
-        <div className="min-w-0">
-          <p className="text-sm font-semibold" style={{ color: "var(--text)" }}>
-            @{username}
-          </p>
-          <p className="text-xs" style={{ color: "var(--text-subtle)" }}>
-            {stats
-              ? `${stats.publicRepos} ${t.profileOverview.repositories} · ★ ${stats.totalStars}`
-              : t.profileOverview.repositoriesUnavailable}
-          </p>
-        </div>
-      </a>
+      {compact ? (
+        <p className="shrink-0 font-mono text-[11px] text-fg-muted">
+          {stats
+            ? `${stats.publicRepos} ${t.profileOverview.repositories} · ★ ${stats.totalStars}`
+            : t.profileOverview.repositoriesUnavailable}
+        </p>
+      ) : (
+        <a
+          href={`https://github.com/${username}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 transition-opacity hover:opacity-80"
+        >
+          <Image
+            src={avatarUrl}
+            alt={`${username}'s avatar`}
+            width={44}
+            height={44}
+            className="rounded-full"
+            unoptimized
+          />
+          <div className="min-w-0">
+            <p
+              className="text-sm font-semibold"
+              style={{ color: "var(--text)" }}
+            >
+              @{username}
+            </p>
+            <p className="text-xs" style={{ color: "var(--text-subtle)" }}>
+              {stats
+                ? `${stats.publicRepos} ${t.profileOverview.repositories} · ★ ${stats.totalStars}`
+                : t.profileOverview.repositoriesUnavailable}
+            </p>
+          </div>
+        </a>
+      )}
 
       {/* Languages */}
       {stats && stats.topLanguages.length > 0 && (
-        <div className="flex flex-1 flex-col gap-2 sm:border-l sm:pl-5" style={{ borderColor: "var(--border)" }}>
+        <div
+          className="flex flex-1 flex-col gap-2 sm:border-l sm:pl-5"
+          style={{ borderColor: "var(--border)" }}
+        >
           {/* Language bar */}
-          <div className="flex h-2.5 overflow-hidden rounded-full" style={{ background: "var(--border)" }}>
+          <div
+            className="flex h-2.5 overflow-hidden rounded-full"
+            style={{ background: "var(--border)" }}
+          >
             {stats.topLanguages.map((lang, i) => (
               <div
                 key={lang.language}
@@ -108,7 +134,10 @@ export function ProfileOverviewCard({ overview, username, avatarUrl }: ProfileOv
                   className="inline-block h-2 w-2 rounded-full"
                   style={{ backgroundColor: getLanguageColor(lang.language) }}
                 />
-                <span className="text-[11px]" style={{ color: "var(--text-muted)" }}>
+                <span
+                  className="text-[11px]"
+                  style={{ color: "var(--text-muted)" }}
+                >
                   {lang.language} {lang.percentage}%
                 </span>
               </div>

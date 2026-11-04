@@ -4,8 +4,8 @@
   "description": "Track your GitHub followers, unfollowers, and following relationships",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f0f0f7",
-  "theme_color": "#6366f1",
+  "background_color": "#f2f3f5",
+  "theme_color": "#1b222c",
   "icons": [
     {
       "src": "/favicon.png",

@@ -1,86 +1,159 @@
 "use client";
 
-import { explorerLabels, withUser } from "@/lib/explorer-content";
+import { GitHubIcon } from "@/components/icons";
+import { UserGrid } from "@/components/user-grid";
+import { explorerLabels } from "@/lib/explorer-content";
+import type { FollowData, GitHubUser } from "@/lib/github";
 import { useLocale } from "@/lib/locale-context";
-import { ExplorerTabs } from "./explorer-tabs";
-import { NetworkPanel, PublicProfileBadge } from "./network-panel";
-import { PeopleList, type Person } from "./people-list";
+import { workspaceCopy } from "@/lib/workspace-content";
+import { ExplorerTabs, tabId } from "./explorer-tabs";
+import { NetworkMap } from "./network-map";
+import type { ExplorerView } from "./network-results";
 import { StatsPreview } from "./stats-preview";
 
-/**
- * Illustrative, static sample shown before the first search — not live GitHub data.
- * Keep it in sync with the design mock rather than the real profile.
- */
-const EXAMPLE = {
-  login: "torvalds",
-  counts: { followers: 203_000, following: 0, mutuals: 0, unfollowers: 203_000 },
-  followers: [
-    { login: "kubernetes", subtitle: "Kubernetes", accent: "#326ce5" },
-    { login: "vercel", subtitle: "Vercel", accent: "#111118" },
-    { login: "printfd", subtitle: "printfd", accent: "#8b7cf6" },
-  ],
-  following: [
-    { login: "linux", subtitle: "The Linux Kernel", accent: "#2f2f3a" },
-    { login: "git", subtitle: "Git", accent: "#f05032" },
-    { login: "subsurface", subtitle: "Subsurface", accent: "#2b6fd6" },
-  ],
-} satisfies { login: string; counts: Record<string, number>; followers: Person[]; following: Person[] };
+// Deliberately illustrative. Derive every category from the two lists so that
+// counts stay consistent; no GitHub request runs until someone starts a lookup.
+const handles = [
+  "mona",
+  "hubot",
+  "defunkt",
+  "mojombo",
+  "pjhyett",
+  "tpope",
+  "schacon",
+  "dhh",
+  "mdo",
+  "sindresorhus",
+  "rauchg",
+  "gaearon",
+  "cassidoo",
+  "yyx990803",
+  "antfu",
+];
+const colors = ["#526a3b", "#687583", "#785f89", "#906f3f"];
+const people: GitHubUser[] = handles.map((login, i) => ({
+  id: i + 1,
+  login,
+  html_url: `https://github.com/${login}`,
+  avatar_url: `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><rect width="40" height="40" rx="10" fill="${colors[i % colors.length]}"/><text x="20" y="25" text-anchor="middle" fill="white" font-size="12" font-family="monospace">${login.slice(0, 2).toUpperCase()}</text></svg>`)}`,
+}));
+const followers = people.slice(0, 12);
+const following = [...people.slice(0, 5), ...people.slice(12)];
+const followerIds = new Set(followers.map((p) => p.id));
+const followingIds = new Set(following.map((p) => p.id));
+const sample: FollowData = {
+  followers,
+  following,
+  mutuals: followers.filter((p) => followingIds.has(p.id)),
+  unfollowers: following.filter((p) => !followerIds.has(p.id)),
+  notFollowingBack: followers.filter((p) => !followingIds.has(p.id)),
+  rateLimit: null,
+};
 
-const noop = () => {};
-
-export function ExamplePreview() {
+export function ExamplePreview({
+  view,
+  onViewChange,
+}: {
+  view: ExplorerView;
+  onViewChange: (view: ExplorerView) => void;
+}) {
   const { t, locale } = useLocale();
   const labels = explorerLabels[locale];
-  const compact = new Intl.NumberFormat(locale, { notation: "compact", maximumFractionDigits: 0 });
-  const openLabel = (login: string) => withUser(labels.openProfile, login);
-
+  const copy = workspaceCopy[locale];
+  const tabs = [
+    { id: "overview" as const, label: labels.overview },
+    {
+      id: "followers" as const,
+      label: t.tabs.followers,
+      count: followers.length,
+    },
+    {
+      id: "following" as const,
+      label: t.tabs.following,
+      count: following.length,
+    },
+    {
+      id: "mutuals" as const,
+      label: t.tabs.mutuals,
+      count: sample.mutuals.length,
+    },
+    {
+      id: "unfollowers" as const,
+      label: t.tabs.unfollowers,
+      count: sample.unfollowers.length,
+    },
+    {
+      id: "notFollowingBack" as const,
+      label: t.tabs.notFollowingBack,
+      count: sample.notFollowingBack.length,
+    },
+  ];
   return (
-    // `inert`: the sample looks like the real panel but is not interactive or announced as live data.
-    <div inert className="select-none">
-      <NetworkPanel
-        heading={
-          <>
-            <h2 className="font-display text-lg font-semibold text-fg">
-              <span className="font-medium text-fg-muted">{labels.example}:</span> {EXAMPLE.login}
-            </h2>
-            <PublicProfileBadge login={EXAMPLE.login} label={labels.publicProfile} />
-          </>
-        }
-        aside={
-          <ExplorerTabs
-            className="max-sm:hidden"
-            idPrefix="example"
-            label={labels.example}
-            active="overview"
-            onChange={noop}
-            items={[
-              { id: "overview", label: labels.overview },
-              { id: "followers", label: t.tabs.followers },
-              { id: "following", label: t.tabs.following },
-              { id: "mutuals", label: t.tabs.mutuals },
-            ]}
-          />
-        }
-      >
-        <StatsPreview
-          stats={[
-            { key: "followers", label: t.stats.followers, value: compact.format(EXAMPLE.counts.followers) },
-            { key: "following", label: t.stats.following, value: compact.format(EXAMPLE.counts.following) },
-            { key: "mutuals", label: t.stats.mutuals, value: compact.format(EXAMPLE.counts.mutuals) },
-            { key: "unfollowers", label: t.tabs.unfollowers, value: compact.format(EXAMPLE.counts.unfollowers) },
-          ]}
-        />
-        <div className="mt-3 hidden gap-3 md:grid md:grid-cols-2">
-          <PeopleList title={t.tabs.followers} people={EXAMPLE.followers} openLabel={openLabel} viewAllLabel={labels.viewAll} onViewAll={noop} />
-          <PeopleList
-            title={withUser(labels.peopleFollows, EXAMPLE.login)}
-            people={EXAMPLE.following}
-            openLabel={openLabel}
-            viewAllLabel={labels.viewAll}
-            onViewAll={noop}
-          />
+    <div className="workspace-demo">
+      <div className="workspace-demo-header">
+        <div className="flex items-center gap-2.5">
+          <span className="workspace-demo-avatar">
+            <GitHubIcon size={20} />
+          </span>
+          <h2 dir="ltr" className="font-mono text-sm font-medium">@octocat</h2>
         </div>
-      </NetworkPanel>
+        <span className="workspace-sample-label">
+          <span aria-hidden="true" />
+          {copy.sample}
+        </span>
+      </div>
+      <ExplorerTabs
+        idPrefix="example"
+        label={`${labels.example}: octocat`}
+        items={tabs}
+        active={view}
+        onChange={onViewChange}
+      />
+      <div
+        id="example-panel"
+        role="tabpanel"
+        aria-labelledby={tabId("example", view)}
+        className="workspace-demo-panel"
+      >
+        {view === "overview" ? (
+          <>
+            <StatsPreview
+              onSelect={onViewChange}
+              stats={[
+                {
+                  key: "followers",
+                  label: t.stats.followers,
+                  value: String(followers.length),
+                },
+                {
+                  key: "following",
+                  label: t.stats.following,
+                  value: String(following.length),
+                },
+                {
+                  key: "mutuals",
+                  label: t.stats.mutuals,
+                  value: String(sample.mutuals.length),
+                },
+                {
+                  key: "unfollowers",
+                  label: t.tabs.unfollowers,
+                  value: String(sample.unfollowers.length),
+                },
+              ]}
+            />
+            <NetworkMap
+              data={sample}
+              username="octocat"
+              onSelect={onViewChange}
+            />
+          </>
+        ) : (
+          <div className="workspace-demo-list">
+            <UserGrid users={sample[view]} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

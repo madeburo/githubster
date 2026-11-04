@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./workspace.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -14,6 +15,10 @@
 
 /* Semantic tokens backed by the theme variables below, so utilities follow light/dark automatically. */
 @theme inline {
+  --color-primary: var(--brand);
+  --color-primary-hover: var(--border-focus);
+  --color-primary-light: var(--signal);
+  --color-accent: var(--signal);
   --color-canvas: var(--bg);
   --color-card: var(--bg-card);
   --color-card-hover: var(--bg-card-hover);
@@ -30,26 +35,30 @@
 }
 
 :root {
-  --bg: #f4f3fc;
+  --bg: #f2f3f5;
   --bg-card: #ffffff;
-  --bg-card-hover: #f6f5fe;
+  --bg-card-hover: #f0f2f5;
   --bg-input: #ffffff;
-  --border: #e6e3f5;
-  --border-focus: #6d58ee;
-  --text: #17162b;
-  --text-muted: #5f5c7c;
-  --text-subtle: #9491ad;
-  --shadow: 0 1px 3px rgba(40, 32, 110, 0.06), 0 1px 2px rgba(40, 32, 110, 0.04);
-  --shadow-lg: 0 10px 15px -3px rgba(40, 32, 110, 0.08), 0 4px 6px -4px rgba(40, 32, 110, 0.04);
-  --gradient-start: #6d58ee;
-  --gradient-end: #a18bfa;
-  --brand: #6d58ee;
-  --brand-soft: #efecff;
-  --cta-from: #6651ea;
-  --cta-to: #7d65f1;
-  --window-bg: rgba(255, 255, 255, 0.8);
-  --window-border: rgba(255, 255, 255, 0.95);
-  --window-shadow: 0 40px 90px -40px rgba(76, 60, 170, 0.45), 0 0 0 1px rgba(109, 88, 238, 0.07);
+  --border: #dde1e6;
+  --border-focus: #5c7a32;
+  --text: #1d222b;
+  --text-muted: #5b6574;
+  --text-subtle: #6d7786;
+  --shadow: 0 1px 3px rgb(25 35 15 / 4%);
+  --shadow-lg: 0 8px 24px rgb(25 35 15 / 8%);
+  --gradient-start: #466420;
+  --gradient-end: #86a94e;
+  --brand: #476521;
+  --brand-soft: #eaf2de;
+  --cta-from: #344e20;
+  --cta-to: #4f6c32;
+  --signal: #d7fb80;
+  --signal-ink: #1c2a12;
+  --window-bg: #ffffff;
+  --window-border: #ccd4c3;
+  --window-shadow:
+    0 20px 60px -25px rgb(33 45 21 / 20%), 0 1px 2px rgb(33 45 21 / 4%);
+  --workspace-sidebar: #f7f8fa;
 }
 
 html {
@@ -63,45 +72,42 @@ html {
 }
 
 .dark {
-  --bg: #0e0f24;
-  --bg-card: #171936;
-  --bg-card-hover: #1f2146;
-  --bg-input: #171936;
-  --border: #2a2c56;
-  --border-focus: #a594ff;
-  --text: #eeedfb;
-  --text-muted: #a7a5c9;
-  --text-subtle: #75739b;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.45), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
-  --gradient-start: #8b7cf8;
-  --gradient-end: #c4b5fd;
-  --brand: #a594ff;
-  --brand-soft: #25234f;
-  --window-bg: rgba(20, 21, 48, 0.84);
-  --window-border: rgba(165, 148, 255, 0.16);
-  --window-shadow: 0 40px 100px -40px rgba(0, 0, 0, 0.8), 0 0 60px -20px rgba(124, 108, 246, 0.35);
+  --bg: #0d1117;
+  --bg-card: #171d26;
+  --bg-card-hover: #202834;
+  --bg-input: #141b23;
+  --border: #303946;
+  --border-focus: #c8ef7a;
+  --text: #f0f4f9;
+  --text-muted: #b0bac8;
+  --text-subtle: #929fb1;
+  --shadow: 0 1px 3px rgb(0 0 0 / 15%);
+  --shadow-lg: 0 8px 24px rgb(0 0 0 / 25%);
+  --gradient-start: #98c45a;
+  --gradient-end: #d7fb80;
+  --brand: #c8ef7a;
+  --brand-soft: #2b3821;
+  --cta-from: #3d5a20;
+  --cta-to: #4f722b;
+  --window-bg: #151c25;
+  --window-border: #334050;
+  --window-shadow: 0 20px 60px -25px rgb(0 0 0 / 55%);
+  --workspace-sidebar: #111820;
 }
 
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: var(--font-manrope), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family:
+    var(--font-manrope),
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
   position: relative;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: url("/bg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.05;
-  pointer-events: none;
-  z-index: -1;
 }
 
 /* Ko-fi creates these elements after hydration, outside of the React tree. */
@@ -111,17 +117,13 @@ body::before {
   transform-origin: bottom left !important;
 }
 
-.dark body::before {
-  opacity: 0.06;
-}
-
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-google-sans-flex), var(--font-manrope), sans-serif;
-}
-
-/* Smooth transitions for theme switching */
-*, *::before, *::after {
-  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Custom scrollbar */
@@ -170,15 +172,31 @@ h1, h2, h3, h4, h5, h6 {
 .desktop-wallpaper {
   background-color: var(--bg);
   background-image:
-    radial-gradient(60rem 30rem at 15% -10%, rgba(196, 181, 253, 0.45), transparent 70%),
-    radial-gradient(50rem 30rem at 100% 10%, rgba(221, 214, 254, 0.6), transparent 70%),
+    radial-gradient(
+      60rem 30rem at 15% -10%,
+      rgba(196, 181, 253, 0.45),
+      transparent 70%
+    ),
+    radial-gradient(
+      50rem 30rem at 100% 10%,
+      rgba(221, 214, 254, 0.6),
+      transparent 70%
+    ),
     linear-gradient(180deg, #f5f3ff 0%, #f1effb 55%, #eceaf8 100%);
 }
 
 .dark .desktop-wallpaper {
   background-image:
-    radial-gradient(60rem 30rem at 10% -10%, rgba(124, 108, 246, 0.25), transparent 70%),
-    radial-gradient(50rem 30rem at 100% 20%, rgba(76, 58, 180, 0.28), transparent 70%),
+    radial-gradient(
+      60rem 30rem at 10% -10%,
+      rgba(124, 108, 246, 0.25),
+      transparent 70%
+    ),
+    radial-gradient(
+      50rem 30rem at 100% 20%,
+      rgba(76, 58, 180, 0.28),
+      transparent 70%
+    ),
     linear-gradient(180deg, #111230 0%, #0e0f24 60%, #0b0c1d 100%);
 }
 
@@ -246,7 +264,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes pulse-soft {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -255,7 +274,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes float-soft {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) rotate(var(--float-rotate, 0deg));
   }
   50% {
@@ -299,23 +319,51 @@ h1, h2, h3, h4, h5, h6 {
   animation: fade-in 0.4s ease-out both;
 }
 
-.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
-.stagger-children > *:nth-child(2) { animation-delay: 60ms; }
-.stagger-children > *:nth-child(3) { animation-delay: 120ms; }
-.stagger-children > *:nth-child(4) { animation-delay: 180ms; }
+.stagger-children > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+.stagger-children > *:nth-child(2) {
+  animation-delay: 60ms;
+}
+.stagger-children > *:nth-child(3) {
+  animation-delay: 120ms;
+}
+.stagger-children > *:nth-child(4) {
+  animation-delay: 180ms;
+}
 
 /* Grid stagger for user cards */
 .stagger-grid > * {
   animation: fade-in-scale 0.35s ease-out both;
 }
 
-.stagger-grid > *:nth-child(1) { animation-delay: 0ms; }
-.stagger-grid > *:nth-child(2) { animation-delay: 40ms; }
-.stagger-grid > *:nth-child(3) { animation-delay: 80ms; }
-.stagger-grid > *:nth-child(4) { animation-delay: 120ms; }
-.stagger-grid > *:nth-child(5) { animation-delay: 160ms; }
-.stagger-grid > *:nth-child(6) { animation-delay: 200ms; }
-.stagger-grid > *:nth-child(7) { animation-delay: 240ms; }
-.stagger-grid > *:nth-child(8) { animation-delay: 280ms; }
-.stagger-grid > *:nth-child(9) { animation-delay: 320ms; }
-.stagger-grid > *:nth-child(n+10) { animation-delay: 350ms; }
+.stagger-grid > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+.stagger-grid > *:nth-child(2) {
+  animation-delay: 40ms;
+}
+.stagger-grid > *:nth-child(3) {
+  animation-delay: 80ms;
+}
+.stagger-grid > *:nth-child(4) {
+  animation-delay: 120ms;
+}
+.stagger-grid > *:nth-child(5) {
+  animation-delay: 160ms;
+}
+.stagger-grid > *:nth-child(6) {
+  animation-delay: 200ms;
+}
+.stagger-grid > *:nth-child(7) {
+  animation-delay: 240ms;
+}
+.stagger-grid > *:nth-child(8) {
+  animation-delay: 280ms;
+}
+.stagger-grid > *:nth-child(9) {
+  animation-delay: 320ms;
+}
+.stagger-grid > *:nth-child(n + 10) {
+  animation-delay: 350ms;
+}
