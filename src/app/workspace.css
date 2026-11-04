@@ -747,7 +747,9 @@
   box-shadow: inset 0 0 0 1px rgb(215 251 128 / 16%);
 }
 .workspace-nav-item .support-heart {
-  margin: -4px;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
 }
 .support-heart-large {
   padding: 16px;
