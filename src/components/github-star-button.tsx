@@ -3,8 +3,10 @@
 import { useState, useEffect } from "react";
 import { GitHubIcon } from "@/components/icons";
 import { pillClass } from "@/lib/ui";
+import { useLocale } from "@/lib/locale-context";
 
 export function GitHubStarButton() {
+  const { t, locale } = useLocale();
   const [stars, setStars] = useState<number | null>(null);
 
   useEffect(() => {
@@ -25,7 +27,7 @@ export function GitHubStarButton() {
       target="_blank"
       rel="noopener noreferrer"
       className={pillClass}
-      aria-label={stars === null ? "Star Githubster on GitHub" : `Star Githubster on GitHub (${stars} stars)`}
+      aria-label={stars === null ? t.support.star : `${t.support.star} (${stars.toLocaleString(locale)})`}
     >
       <GitHubIcon size={15} className="text-fg" />
       Star

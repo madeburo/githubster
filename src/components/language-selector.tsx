@@ -6,7 +6,7 @@ import { useState, useRef, useEffect, useId } from "react";
 import { GlobeIcon } from "@/components/icons";
 import { useLocale } from "@/lib/locale-context";
 import { cx, focusRing, pillClass } from "@/lib/ui";
-import { isRtl, locales, localeNames, type Locale } from "@/lib/i18n";
+import { locales, localeNames, type Locale } from "@/lib/i18n";
 
 const languageNameCollator = new Intl.Collator("en", { sensitivity: "base" });
 const languageLabels: Record<Locale, string> = {
@@ -50,7 +50,7 @@ export function LanguageSelector() {
   }, [open]);
 
   return (
-    <div className="relative" ref={ref}>
+    <div className="lg:relative" ref={ref}>
       <button
         ref={buttonRef}
         type="button"
@@ -73,9 +73,8 @@ export function LanguageSelector() {
         aria-label={label}
         dir="ltr"
         className={cx(
-          "absolute top-full z-50 mt-2 max-h-[70dvh] w-72 grid-cols-2 overflow-y-auto rounded-xl border border-line bg-card p-1 shadow-[var(--shadow-lg)] sm:left-auto sm:right-0 sm:w-80",
+          "absolute inset-x-0 top-full z-50 mt-2 max-h-[70dvh] w-auto grid-cols-2 overflow-y-auto rounded-xl border border-line bg-card p-1 shadow-[var(--shadow-lg)] sm:left-auto sm:right-0 sm:w-80",
           open ? "grid" : "hidden",
-          isRtl(locale) ? "right-0" : "left-0",
         )}
       >
         {[...locales]

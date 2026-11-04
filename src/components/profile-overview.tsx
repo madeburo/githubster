@@ -55,6 +55,9 @@ export function ProfileOverviewCard({
 }: ProfileOverviewProps) {
   const { t } = useLocale();
   const stats = overview.repositoryStats;
+  const repositorySummary = stats
+    ? `${t.profileOverview.repositories}: ${stats.publicRepos} · ★ ${stats.totalStars}`
+    : t.profileOverview.repositoriesUnavailable;
 
   return (
     <div
@@ -67,9 +70,7 @@ export function ProfileOverviewCard({
     >
       {compact ? (
         <p className="shrink-0 font-mono text-[11px] text-fg-muted">
-          {stats
-            ? `${stats.publicRepos} ${t.profileOverview.repositories} · ★ ${stats.totalStars}`
-            : t.profileOverview.repositoriesUnavailable}
+          {repositorySummary}
         </p>
       ) : (
         <a
@@ -94,9 +95,7 @@ export function ProfileOverviewCard({
               @{username}
             </p>
             <p className="text-xs" style={{ color: "var(--text-subtle)" }}>
-              {stats
-                ? `${stats.publicRepos} ${t.profileOverview.repositories} · ★ ${stats.totalStars}`
-                : t.profileOverview.repositoriesUnavailable}
+              {repositorySummary}
             </p>
           </div>
         </a>

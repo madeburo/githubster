@@ -13,7 +13,7 @@ export function SiteHeader({ onLogoClick }: { onLogoClick?: () => void }) {
   const homeHref = locale === "en" ? "/" : `/${locale}`;
 
   return (
-    <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+    <header className="relative flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
       <a
         href={homeHref}
         onClick={

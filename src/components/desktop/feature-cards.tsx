@@ -160,7 +160,7 @@ export function AboutSection() {
 
         <nav
           className="mt-10 flex flex-wrap justify-center gap-2"
-          aria-label="Githubster tools and guides"
+          aria-label={`${seoLabels[locale].tools} / ${seoLabels[locale].guides}`}
         >
           {[...toolPages, ...guidePages].map((sourcePage, index) => {
             const kind = index < toolPages.length ? "tools" : "guides";

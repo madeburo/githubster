@@ -81,7 +81,7 @@ export const ru = {
   profileOverview: {
     title: "Обзор профиля",
     ownProjects: "Собственные проекты",
-    repositories: "репозитории",
+    repositories: "Репозитории",
     totalStars: "Всего звёзд",
     topLanguages: "Языки по числу звёзд",
     repositoriesUnavailable: "Данные о репозиториях недоступны",
