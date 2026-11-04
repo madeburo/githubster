@@ -20,7 +20,9 @@ import { sv } from "./sv";
 import { no } from "./no";
 import { cs } from "./cs";
 import { hu } from "./hu";
+import { ru } from "./ru";
+import { id } from "./id";
 
 export const translations: Record<Locale, Translations> = {
-  en, zh, ko, ja, pt, es, de, fr, it, uk, he, tr, ar, pl, nl, da, sv, no, cs, hu,
+  en, zh, ko, ja, pt, es, de, fr, it, uk, he, tr, ar, pl, nl, da, sv, no, cs, hu, ru, id,
 };

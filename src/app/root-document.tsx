@@ -3,6 +3,7 @@ import { ErrorBoundary } from "@/components/error-boundary";
 import { JsonLd } from "@/components/json-ld";
 import { KofiWidget } from "@/components/kofi-widget";
 import { PwaRegistration } from "@/components/pwa-registration";
+import type { Locale } from "@/lib/i18n";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -32,7 +33,7 @@ export function RootDocument({
   dir,
   children,
 }: {
-  lang: string;
+  lang: Locale;
   dir: "ltr" | "rtl";
   children: React.ReactNode;
 }) {
@@ -62,7 +63,7 @@ export function RootDocument({
             __html: `(function(){var t=localStorage.getItem('theme');if(t==='dark'){document.documentElement.classList.add('dark')}})();`,
           }}
         />
-        <JsonLd />
+        <JsonLd locale={lang} />
       </head>
       <body className="min-h-screen antialiased">
         <ErrorBoundary>{children}</ErrorBoundary>

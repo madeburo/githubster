@@ -19,6 +19,8 @@ import { useLocale } from "@/lib/locale-context";
 import { cx, focusRing } from "@/lib/ui";
 
 const searchShortcut: Record<Locale, { before: string; after: string }> = {
+  ru: { before: "Нажмите ", after: ", чтобы перейти к поиску" },
+  id: { before: "Tekan ", after: " untuk fokus ke pencarian" },
   en: { before: "Press ", after: " to focus search" },
   zh: { before: "按 ", after: " 聚焦搜索框" },
   ko: { before: "", after: " 키를 눌러 검색창에 포커스" },

@@ -1,4 +1,6 @@
 import type { Locale } from "./i18n";
+import { detailedSeoCopy } from "./detailed-seo-copy";
+import { languageAlternates } from "./site";
 import type { SeoPage } from "./seo-content";
 import { translations } from "./translations";
 
@@ -6,6 +8,8 @@ type Copy = readonly [h1: string, body: string];
 type CopyBySlug = Record<string, Copy>;
 
 export const seoLabels: Record<Locale, { tools: string; guides: string; faq: string }> = {
+  ru: { tools: "Инструменты", guides: "Руководства", faq: "Вопросы и ответы" },
+  id: { tools: "Alat", guides: "Panduan", faq: "Pertanyaan umum" },
   en: { tools: "Tools", guides: "Guides", faq: "FAQ" },
   de: { tools: "Werkzeuge", guides: "Ratgeber", faq: "Häufige Fragen" },
   fr: { tools: "Outils", guides: "Guides", faq: "Questions fréquentes" },
@@ -29,18 +33,12 @@ export const seoLabels: Record<Locale, { tools: string; guides: string; faq: str
 };
 
 export function seoLanguageAlternates(path: string): Record<string, string> {
-  return {
-    "x-default": `https://www.githubster.com${path}`,
-    ...Object.fromEntries(
-      (["en", ...Object.keys(copy)] as Locale[]).map((locale) => [
-        locale,
-        `https://www.githubster.com${locale === "en" ? "" : `/${locale}`}${path}`,
-      ]),
-    ),
-  };
+  return languageAlternates(path);
 }
 
-const copy: Record<Exclude<Locale, "en">, CopyBySlug> = {
+type CompactLocale = Exclude<Locale, "en" | "ru" | "id">;
+
+const copy: Record<CompactLocale, CopyBySlug> = {
   de: {
     "github-followers-checker": ["GitHub-Follower-Checker", "Vergleiche öffentliche Follower- und Following-Listen. Githubster gruppiert die aktuellen Daten in gegenseitige Verbindungen, fehlende Rückfollows und Personen, denen du noch nicht folgst."],
     "github-not-following-back": ["Wer folgt dir auf GitHub nicht zurück?", "Sieh, welchen öffentlichen Konten du folgst, die dir derzeit nicht zurückfolgen. Das Ergebnis ist eine aktuelle Momentaufnahme und kein historisches Unfollow-Tracking."],
@@ -195,7 +193,7 @@ const copy: Record<Exclude<Locale, "en">, CopyBySlug> = {
   },
 };
 
-const whatIsGithubCopy: Record<Exclude<Locale, "en">, Copy> = {
+const whatIsGithubCopy: Record<CompactLocale, Copy> = {
   de: ["Was ist GitHub?", "GitHub ist eine Online-Plattform zum Hosten von Git-Repositories und zur Zusammenarbeit an Software. Sie verbindet Versionskontrolle mit Code-Reviews, Issues, Pull Requests, Projektverwaltung, Open Source und öffentlichen Entwicklerprofilen."],
   fr: ["Qu’est-ce que GitHub ?", "GitHub est une plateforme en ligne qui héberge des dépôts Git et facilite la collaboration logicielle. Elle associe le contrôle de version aux revues de code, issues, pull requests, outils de projet, projets open source et profils publics."],
   es: ["¿Qué es GitHub?", "GitHub es una plataforma en línea para alojar repositorios Git y colaborar en software. Combina el control de versiones con revisiones de código, incidencias, pull requests, gestión de proyectos, código abierto y perfiles públicos de desarrolladores."],
@@ -217,7 +215,7 @@ const whatIsGithubCopy: Record<Exclude<Locale, "en">, Copy> = {
   ar: ["ما هو GitHub؟", "GitHub منصة عبر الإنترنت لاستضافة مستودعات Git والتعاون في تطوير البرمجيات. تجمع بين التحكم في الإصدارات ومراجعة الكود وIssues وPull Requests وإدارة المشاريع والمصدر المفتوح وملفات المطورين العامة."],
 };
 
-function highlights(locale: Locale, slug: string): string[] {
+export function getSeoHighlights(locale: Locale, slug: string): string[] {
   const t = translations[locale];
   if (slug === "what-is-github") return [t.profileOverview.repositories, t.profileOverview.ownProjects, t.stats.followers];
   if (slug === "github-followers-checker" || slug === "github-followers-vs-following") return [t.stats.followers, t.stats.following, t.stats.mutuals];
@@ -227,23 +225,47 @@ function highlights(locale: Locale, slug: string): string[] {
   return [t.error.rateLimit, t.search.tokenToggle, t.seo.feature3Title];
 }
 
-export function getLocalizedSeoPage(locale: Locale, page: SeoPage): SeoPage {
+export function getSeoPageSummary(locale: Locale, page: SeoPage): Pick<SeoPage, "slug" | "title" | "description" | "h1"> {
   if (locale === "en") return page;
-  const localized = page.slug === "what-is-github" ? whatIsGithubCopy[locale] : copy[locale][page.slug];
+  const localized = locale === "ru" || locale === "id"
+    ? detailedSeoCopy[locale][page.slug]
+    : page.slug === "what-is-github" ? whatIsGithubCopy[locale] : copy[locale][page.slug];
   if (!localized) return page;
-  const [h1, body] = localized;
-  const t = translations[locale];
+  const [h1, description] = localized;
+  return { slug: page.slug, title: `${h1} | Githubster`, h1, description };
+}
+
+type SeoIndexContent = { title: string; heading: string; description: string };
+
+const indexContent: Record<"en" | "ru" | "id", Record<"tools" | "guides", SeoIndexContent>> = {
+  en: {
+    tools: { title: "Free GitHub Tools — Followers, Mutuals & Profile Overview | Githubster", heading: "Free GitHub relationship tools", description: "Free tools to compare public GitHub followers and following lists, find mutuals, and view repository profile insights." },
+    guides: { title: "GitHub Followers Guides | Githubster", heading: "Understand public GitHub relationships", description: "Practical guides to GitHub followers, following, mutuals, and API rate limits." },
+  },
+  ru: {
+    tools: { title: "Инструменты проверки подписчиков GitHub | Githubster", heading: "Инструменты для анализа связей GitHub", description: "Бесплатные инструменты для проверки подписчиков, подписок, взаимных связей и публичных репозиториев GitHub. Без аккаунта Githubster." },
+    guides: { title: "Руководства по подписчикам и API GitHub | Githubster", heading: "Как работают связи и API GitHub", description: "Разберитесь в подписчиках, подписках, взаимных связях и лимитах API GitHub. Короткие руководства с примерами и официальными источниками." },
+  },
+  id: {
+    tools: { title: "Alat Cek Pengikut dan Koneksi GitHub | Githubster", heading: "Alat untuk menjelajahi koneksi GitHub", description: "Alat gratis untuk membandingkan pengikut, akun yang diikuti, koneksi mutual, dan ringkasan repositori publik GitHub. Tanpa akun Githubster." },
+    guides: { title: "Panduan Pengikut dan API GitHub | Githubster", heading: "Memahami koneksi dan API GitHub", description: "Pelajari pengikut, akun yang diikuti, koneksi mutual, dan batas API GitHub melalui panduan singkat dengan contoh serta sumber resmi." },
+  },
+};
+
+export function getSeoIndexContent(locale: Locale, kind: "tools" | "guides"): SeoIndexContent {
+  if (locale === "en" || locale === "ru" || locale === "id") return indexContent[locale][kind];
   return {
-    ...page,
-    title: `${h1} | Githubster`,
-    description: body,
-    h1,
-    intro: body,
-    highlights: highlights(locale, page.slug),
-    sections: [{ heading: h1, paragraphs: [body] }],
-    faqs: page.slug === "what-is-github" ? [] : [
-      { question: t.search.tokenToggle, answer: t.search.tokenPrivacy },
-      { question: t.error.rateLimit, answer: t.error.rateLimitDesc },
-    ],
+    title: `${seoLabels[locale][kind]} | Githubster`,
+    heading: seoLabels[locale][kind],
+    description: translations[locale].seo.description,
   };
 }
+
+export const seoSourceLabels: Record<Locale, string> = {
+  en: "Official sources", zh: "官方来源", ko: "공식 출처", ja: "公式情報",
+  pt: "Fontes oficiais", es: "Fuentes oficiales", de: "Offizielle Quellen", fr: "Sources officielles",
+  it: "Fonti ufficiali", uk: "Офіційні джерела", he: "מקורות רשמיים", tr: "Resmî kaynaklar",
+  ar: "مصادر رسمية", pl: "Oficjalne źródła", nl: "Officiële bronnen", da: "Officielle kilder",
+  sv: "Officiella källor", no: "Offisielle kilder", cs: "Oficiální zdroje", hu: "Hivatalos források",
+  ru: "Официальные источники", id: "Sumber resmi",
+};

@@ -10,6 +10,32 @@ export type PrivacyContent = {
 };
 
 export const privacyContent: Record<Locale, PrivacyContent> = {
+  ru: {
+    title: "Политика конфиденциальности",
+    description: "Как Githubster обрабатывает публичные данные GitHub, необязательные токены, настройки, аналитику и виджет поддержки.",
+    updated: "Обновлено: 4 ноября 2026 года",
+    sections: [
+      { heading: "Обработка в браузере", text: "Githubster обрабатывает публичные данные профиля GitHub в вашем браузере. Списки подписчиков и подписок запрашиваются напрямую у GitHub, а не через серверы приложения Githubster." },
+      { heading: "Запросы к GitHub и токены", text: "Необязательный токен используется только для прямых запросов к API GitHub. Он не записывается в localStorage и не отправляется на серверы Githubster. При закрытии или перезагрузке страницы токен очищается." },
+      { heading: "Настройки и аналитика", text: "Настройки темы и языка могут сохраняться локально в браузере. На сайте подключена аналитика Umami для оценки посещаемости, например просмотренных страниц, типов устройств и языков браузера. При открытии страницы хостинг также получает обычный веб-запрос, включая адрес страницы." },
+      { heading: "Ko-fi и электронная почта", text: "Виджет и страницы поддержки Ko-fi обрабатывают взаимодействия по собственным правилам конфиденциальности. Если вы пишете нам, мы используем сообщение и контактные данные для ответа и сохраняем переписку столько, сколько необходимо для её обработки." },
+    ],
+    questions: "Остались вопросы?",
+    linkLabel: "Конфиденциальность",
+  },
+  id: {
+    title: "Kebijakan Privasi",
+    description: "Cara Githubster menangani data publik GitHub, token opsional, preferensi, analitik, dan widget dukungan.",
+    updated: "Diperbarui: 4 November 2026",
+    sections: [
+      { heading: "Pemrosesan di browser", text: "Githubster memproses data profil publik GitHub di browser Anda. Daftar pengikut dan akun yang diikuti diminta langsung dari GitHub, bukan melalui server aplikasi Githubster." },
+      { heading: "Permintaan GitHub dan token", text: "Token opsional hanya digunakan untuk permintaan langsung ke API GitHub. Token tidak disimpan di localStorage atau dikirim ke server Githubster. Token dihapus saat halaman ditutup atau dimuat ulang." },
+      { heading: "Preferensi dan analitik", text: "Preferensi tema dan bahasa dapat disimpan secara lokal di browser. Situs ini memakai Umami untuk memahami penggunaan situs, seperti halaman yang dilihat, jenis perangkat, dan bahasa browser. Saat Anda membuka halaman, penyedia hosting juga menerima permintaan web biasa beserta alamat halaman tersebut." },
+      { heading: "Ko-fi dan email", text: "Widget dan halaman dukungan Ko-fi menangani interaksi berdasarkan kebijakan privasinya sendiri. Jika Anda mengirim email, kami menggunakan pesan dan informasi kontak Anda untuk membalas serta menyimpan percakapan selama diperlukan untuk menanganinya." },
+    ],
+    questions: "Ada pertanyaan?",
+    linkLabel: "Privasi",
+  },
   en: {
     title: "Privacy Policy",
     description: "How Githubster handles public GitHub data, optional tokens, preferences, analytics, and support widgets.",

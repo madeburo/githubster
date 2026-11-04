@@ -1,15 +1,9 @@
 import { createHash, timingSafeEqual } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
-import { locales } from "@/lib/i18n";
+import { siteUrl as SITE_URL } from "@/lib/site";
+import { publicPageUrls } from "@/lib/site-routes";
 
-const SITE_URL = "https://www.githubster.com";
-
-const URLS_TO_INDEX = [
-  SITE_URL,
-  ...locales
-    .filter((locale) => locale !== "en")
-    .map((locale) => `${SITE_URL}/${locale}`),
-];
+const URLS_TO_INDEX = publicPageUrls();
 
 function hasValidBearerToken(request: NextRequest, expectedToken: string): boolean {
   const authorization = request.headers.get("authorization");

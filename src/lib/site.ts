@@ -5,6 +5,13 @@ export const siteUrl = "https://www.githubster.com";
 
 const ogImages = [{ url: "/og-image.png", width: 1200, height: 630, alt: "Githubster" }];
 
+export const socialLocales: Record<Locale, string> = {
+  en: "en_US", zh: "zh_CN", ko: "ko_KR", ja: "ja_JP", pt: "pt_BR", es: "es_ES",
+  de: "de_DE", fr: "fr_FR", it: "it_IT", uk: "uk_UA", he: "he_IL", tr: "tr_TR",
+  ar: "ar_SA", pl: "pl_PL", nl: "nl_NL", da: "da_DK", sv: "sv_SE", no: "no_NO",
+  cs: "cs_CZ", hu: "hu_HU", ru: "ru_RU", id: "id_ID",
+};
+
 /** hreflang map for a route that exists in every locale; `path` is the English path ("" for home). */
 export function languageAlternates(path = ""): Record<string, string> {
   const urlFor = (locale: Locale) => `${siteUrl}${locale === "en" ? "" : `/${locale}`}${path}`;
@@ -33,7 +40,8 @@ export function pageSocial({
     openGraph: {
       type: "website",
       siteName: "Githubster",
-      locale: locale === "en" ? "en_US" : locale,
+      locale: socialLocales[locale],
+      alternateLocale: locales.filter((other) => other !== locale).map((other) => socialLocales[other]),
       url: path,
       title,
       description,
@@ -59,6 +67,7 @@ export const baseMetadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
+    alternateLocale: locales.filter((locale) => locale !== "en").map((locale) => socialLocales[locale]),
     url: "https://www.githubster.com",
     siteName: "Githubster",
     title: "GitHub Followers Checker — Find Who Doesn’t Follow Back | Githubster",

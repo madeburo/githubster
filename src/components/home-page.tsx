@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { AppShell } from "@/components/desktop/app-shell";
 import {
   ShortcutDock,
@@ -38,7 +38,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SupportHeart } from "@/components/support-heart";
 import { SkeletonLoader } from "@/components/skeleton-loader";
 import { explorerLabels } from "@/lib/explorer-content";
-import { locales, type Locale } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
 import { LocaleProvider, useLocale } from "@/lib/locale-context";
 import { workspaceCopy } from "@/lib/workspace-content";
 import { useNetworkSearch } from "@/lib/use-network-search";
@@ -46,47 +46,9 @@ import { useNetworkSearch } from "@/lib/use-network-search";
 export function HomePage({ initialLocale }: { initialLocale: Locale }) {
   return (
     <LocaleProvider key={initialLocale} initialLocale={initialLocale}>
-      <BrowserLocaleRedirect initialLocale={initialLocale} />
       <HomeContent />
     </LocaleProvider>
   );
-}
-
-function BrowserLocaleRedirect({ initialLocale }: { initialLocale: Locale }) {
-  useEffect(() => {
-    if (initialLocale !== "en" || window.location.pathname !== "/") return;
-
-    // Keep crawlers on the canonical English URL; this redirect is only a convenience for people.
-    if (
-      /bot|crawler|spider|crawling|slurp|facebookexternalhit|preview/i.test(
-        navigator.userAgent,
-      )
-    )
-      return;
-
-    const storedLocale = localStorage.getItem("locale");
-    const browserLocales = navigator.languages || [navigator.language];
-    const preferredLocale =
-      (storedLocale && locales.includes(storedLocale as Locale)
-        ? storedLocale
-        : undefined) ??
-      browserLocales
-        .map((language) => {
-          const languageCode = language.split("-")[0].toLowerCase();
-          return languageCode === "nb" || languageCode === "nn"
-            ? "no"
-            : languageCode;
-        })
-        .find((language) => locales.includes(language as Locale));
-
-    if (!preferredLocale || preferredLocale === "en") return;
-
-    window.location.replace(
-      `/${preferredLocale}${window.location.search}${window.location.hash}`,
-    );
-  }, [initialLocale]);
-
-  return null;
 }
 
 function scrollBehavior(): ScrollBehavior {

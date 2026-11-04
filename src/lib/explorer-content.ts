@@ -18,6 +18,8 @@ export type ExplorerLabels = {
 };
 
 export const explorerLabels: Record<Locale, ExplorerLabels> = {
+  ru: { overview: "Обзор", home: "Главная", compare: "Сравнение", insights: "Статистика", about: "О проекте", example: "Пример", publicProfile: "Публичный профиль", peopleFollows: "Подписки {user}", viewAll: "Показать всех", viewsNav: "Разделы сети", moreNav: "Ещё", openProfile: "Открыть {user} на GitHub" },
+  id: { overview: "Ringkasan", home: "Beranda", compare: "Bandingkan", insights: "Statistik", about: "Tentang", example: "Contoh", publicProfile: "Profil publik", peopleFollows: "Akun yang diikuti {user}", viewAll: "Lihat semua", viewsNav: "Tampilan jaringan", moreNav: "Lainnya", openProfile: "Buka {user} di GitHub" },
   en: { overview: "Overview", home: "Home", compare: "Compare", insights: "Insights", about: "About", example: "Example", publicProfile: "Public profile", peopleFollows: "People {user} follows", viewAll: "View all", viewsNav: "Network views", moreNav: "More", openProfile: "Open {user} on GitHub" },
   de: { overview: "Übersicht", home: "Start", compare: "Vergleichen", insights: "Einblicke", about: "Über", example: "Beispiel", publicProfile: "Öffentliches Profil", peopleFollows: "Personen, denen {user} folgt", viewAll: "Alle anzeigen", viewsNav: "Netzwerkansichten", moreNav: "Mehr", openProfile: "{user} auf GitHub öffnen" },
   fr: { overview: "Aperçu", home: "Accueil", compare: "Comparer", insights: "Statistiques", about: "À propos", example: "Exemple", publicProfile: "Profil public", peopleFollows: "Personnes suivies par {user}", viewAll: "Tout voir", viewsNav: "Vues du réseau", moreNav: "Plus", openProfile: "Ouvrir {user} sur GitHub" },

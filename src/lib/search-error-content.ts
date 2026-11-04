@@ -14,6 +14,28 @@ export type SearchErrorLabels = {
 };
 
 export const searchErrorLabels: Record<Locale, SearchErrorLabels> = {
+  ru: {
+    tokenTitle: "Токен не принят",
+    tokenDesc: "GitHub отклонил токен. Проверьте его срок действия или очистите поле и попробуйте ещё раз.",
+    tooLargeTitle: "Для этого профиля не хватает доступных запросов",
+    tooLargeDesc: "Для загрузки нужно примерно {needed} запросов к API GitHub, а сейчас доступно {remaining}. Токен обычно повышает лимит до 5000 запросов в час.",
+    usernameTitle: "Некорректное имя пользователя",
+    usernameDesc: "Имя пользователя GitHub может содержать только латинские буквы, цифры и одиночные дефисы.",
+    networkTitle: "Ошибка сети",
+    networkDesc: "Проверьте подключение к интернету и попробуйте ещё раз.",
+    genericTitle: "Что-то пошло не так",
+  },
+  id: {
+    tokenTitle: "Token tidak diterima",
+    tokenDesc: "GitHub menolak token ini. Periksa masa berlakunya atau kosongkan kolom token, lalu coba lagi.",
+    tooLargeTitle: "Profil ini melebihi batas permintaan yang tersedia",
+    tooLargeDesc: "Dibutuhkan sekitar {needed} permintaan API GitHub, tetapi saat ini hanya {remaining} yang tersedia. Token biasanya menaikkan batas menjadi 5.000 per jam.",
+    usernameTitle: "Nama pengguna tidak valid",
+    usernameDesc: "Nama pengguna GitHub hanya boleh berisi huruf Latin, angka, dan tanda hubung tunggal.",
+    networkTitle: "Gangguan jaringan",
+    networkDesc: "Periksa koneksi internet Anda, lalu coba lagi.",
+    genericTitle: "Terjadi kesalahan",
+  },
   en: {
     tokenTitle: "Token not accepted",
     tokenDesc: "GitHub rejected this token. Check that it is valid and not expired, or clear it and try again.",

@@ -9,6 +9,20 @@ type WorkspaceCopy = {
 };
 
 export const workspaceCopy: Record<Locale, WorkspaceCopy> = {
+  ru: {
+    workspace: "Пространство связей",
+    map: "Карта связей",
+    sample: "Демо-данные",
+    ready: "Готово к проверке",
+    mapHint: "Пример ваших прямых связей.",
+  },
+  id: {
+    workspace: "Ruang jaringan",
+    map: "Peta jaringan",
+    sample: "Data contoh",
+    ready: "Siap menjelajah",
+    mapHint: "Pratinjau koneksi langsung Anda.",
+  },
   en: {
     workspace: "Network workspace",
     map: "Network map",

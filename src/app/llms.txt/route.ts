@@ -8,9 +8,9 @@ function links(kind: "tools" | "guides", pages: SeoPage[]) {
   return pages.map((page) => `- [${page.h1}](${siteUrl}/${kind}/${page.slug}): ${page.description}`).join("\n");
 }
 
-/** Plain-language summary for AI assistants and answer engines (https://llmstxt.org). */
+/** Optional discovery summary; ordinary crawlable pages remain the source of truth. */
 export function GET() {
-  const languages = locales.map((locale) => localeNames[locale]).join(", ");
+  const languageLinks = locales.map((locale) => `- [${localeNames[locale]}](${siteUrl}${locale === "en" ? "" : `/${locale}`}): ${locale}`).join("\n");
 
   const body = `# Githubster
 
@@ -22,7 +22,8 @@ export function GET() {
 - Results are a snapshot of the current public lists. Githubster does not store history, so it cannot tell when someone unfollowed.
 - "Not following back" means accounts the user follows that do not follow them; "You don't follow" means followers the user does not follow back; "Mutuals" follow each other.
 - The profile overview shows the user's own (non-fork) public repositories, total stars and top languages.
-- Without a token GitHub allows 60 API requests per hour per IP address, enough for a little under 6,000 followers and following combined. An optional personal access token raises this to 5,000 requests per hour. The token is sent only to GitHub and is not saved or sent to Githubster.
+- GitHub's primary limit is normally 60 unauthenticated API requests per hour per IP address, or 5,000 authenticated requests per hour per user with a personal access token. Lists are paginated at up to 100 accounts per request; available limits and additional rate limits still apply. The optional token is sent only to GitHub and is not saved or sent to Githubster.
+- Githubster only reads data. It does not follow or unfollow accounts for the user, and it is an independent open-source project rather than an official GitHub service.
 - A profile can be opened by link: ${siteUrl}/?user=USERNAME
 
 ## Tools
@@ -39,7 +40,17 @@ ${links("guides", guidePages)}
 - [Source code](https://github.com/madeburo/githubster): MIT-licensed, built with Next.js and React
 - [Privacy policy](${siteUrl}/privacy)
 - Contact: hi@githubster.com
-- Available in ${locales.length} languages: ${languages}. Localized pages live under a language prefix, for example ${siteUrl}/de
+
+## Languages
+
+Available in ${locales.length} languages. Each localized homepage links to its tools, guides and privacy page. The URL determines the page language.
+
+${languageLinks}
+
+## Official API references
+
+- [GitHub followers API](https://docs.github.com/en/rest/users/followers)
+- [GitHub REST API rate limits](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api)
 `;
 
   return new Response(body, {

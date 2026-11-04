@@ -7,6 +7,20 @@ export type FaqItem = { question: string; answer: string };
  * so both always say the same thing.
  */
 export const homeFaq: Record<Locale, FaqItem[]> = {
+  ru: [
+    { question: "Как узнать, кто не подписан на меня в ответ на GitHub?", answer: "Введите имя пользователя GitHub и откройте вкладку «Не подписаны в ответ». В ней будут аккаунты, на которые вы подписаны, но которые не подписаны на вас. Вкладка «Вы не подписаны» показывает обратную ситуацию: ваших подписчиков, на которых вы ещё не подписались." },
+    { question: "Githubster бесплатен? Нужна ли регистрация?", answer: "Githubster бесплатен и имеет открытый исходный код. Регистрация в Githubster и вход в GitHub не требуются: сервис использует только публичные списки подписчиков и подписок." },
+    { question: "Можно ли узнать, кто отписался от меня?", answer: "Нет. Githubster сравнивает текущие публичные списки и не хранит историю. Он показывает, кто не подписан на вас в ответ сейчас, но не определяет, кто и когда отписался." },
+    { question: "Нужен ли токен GitHub и как он используется?", answer: "Токен необязателен. Обычно он повышает лимит API с 60 запросов в час на IP-адрес до 5000 запросов в час для пользователя. Токен отправляется напрямую в GitHub, не сохраняется и не передаётся на серверы Githubster." },
+    { question: "Почему не загружается большой профиль?", answer: "API GitHub возвращает списки постранично, не более 100 аккаунтов на запрос. Без токена обычно доступно 60 запросов в час на IP-адрес. Githubster заранее проверяет размер профиля и сообщает, если оставшегося лимита недостаточно. Токен помогает загрузить большинство больших профилей." },
+  ],
+  id: [
+    { question: "Bagaimana cara melihat siapa yang tidak mengikuti saya balik di GitHub?", answer: "Masukkan nama pengguna GitHub, lalu buka tab “Tidak mengikuti balik”. Tab ini menampilkan akun yang Anda ikuti tetapi tidak mengikuti Anda. Tab “Belum Anda ikuti” menampilkan kebalikannya: pengikut yang belum Anda ikuti balik." },
+    { question: "Apakah Githubster gratis dan perlu akun?", answer: "Githubster gratis dan sumber terbuka. Anda tidak perlu akun Githubster atau masuk ke GitHub karena alat ini hanya membaca daftar publik pengikut dan akun yang diikuti." },
+    { question: "Bisakah Githubster menunjukkan siapa yang berhenti mengikuti saya?", answer: "Tidak. Githubster membandingkan daftar publik saat ini dan tidak menyimpan riwayat. Hasilnya menunjukkan siapa yang tidak mengikuti Anda balik sekarang, bukan siapa yang berhenti mengikuti atau kapan hal itu terjadi." },
+    { question: "Apakah token GitHub diperlukan dan bagaimana token digunakan?", answer: "Token bersifat opsional. Biasanya token menaikkan batas API dari 60 permintaan per jam per alamat IP menjadi 5.000 permintaan per jam untuk pengguna. Token dikirim langsung ke GitHub, tidak disimpan, dan tidak dikirim ke server Githubster." },
+    { question: "Mengapa profil besar tidak dapat dimuat?", answer: "API GitHub membagi daftar menjadi beberapa halaman, dengan maksimal 100 akun per permintaan. Tanpa token, biasanya tersedia 60 permintaan per jam per alamat IP. Githubster memeriksa ukuran profil terlebih dahulu dan memberi tahu jika batas yang tersisa tidak cukup. Token membantu memuat sebagian besar profil besar." },
+  ],
   en: [
     { question: "How do I see who doesn’t follow me back on GitHub?", answer: "Enter your GitHub username and open the “Not Following Back” tab. It lists the accounts you follow that do not follow you. The “You Don’t Follow” tab shows the opposite: followers you have not followed back." },
     { question: "Is Githubster free, and do I need an account?", answer: "Githubster is free and open source. You do not need a Githubster account or a GitHub login: it only reads public follower and following lists." },

@@ -15,7 +15,7 @@ export function SiteFooter({ showSupport = true }: { showSupport?: boolean }) {
   const { t, locale } = useLocale();
   const prefix = locale === "en" ? "" : `/${locale}`;
   const linkClass = cx(
-    "tap-target inline-flex min-h-10 items-center gap-2.5 rounded text-sm text-fg-muted transition-colors hover:text-fg",
+    "tap-target inline-flex min-h-10 max-w-full items-center gap-2.5 rounded text-sm text-fg-muted [overflow-wrap:anywhere] transition-colors hover:text-fg",
     focusRing,
   );
 

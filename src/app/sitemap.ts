@@ -40,8 +40,8 @@ function localizedEntries(
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const homeUpdated = lastCommitDate("src/components/home-page.tsx", "src/components/desktop", "src/lib/translations");
-  const seoUpdated = lastCommitDate("src/lib/seo-content.ts", "src/lib/localized-seo-content.ts", "src/components/seo-page.tsx");
+  const homeUpdated = lastCommitDate("src/components/home-page.tsx", "src/components/desktop", "src/lib/translations", "src/lib/home-faq-content.ts", "src/lib/workspace-content.ts", "src/lib/i18n.ts");
+  const seoUpdated = lastCommitDate("src/lib/seo-content.ts", "src/lib/localized-seo-content.ts", "src/lib/detailed-seo-content.ts", "src/lib/detailed-seo-copy.ts", "src/lib/seo-pages.ts", "src/lib/seo-sources.ts", "src/components/seo-page.tsx", "src/components/seo-index-page.tsx", "src/lib/i18n.ts");
   const privacyUpdated = lastCommitDate("src/lib/privacy-content.ts");
 
   return [

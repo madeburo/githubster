@@ -5,6 +5,7 @@ import { useLocale } from "@/lib/locale-context";
 import type { Locale } from "@/lib/i18n";
 
 const copyLabels: Record<Locale, string> = {
+  ru: "Скопировать ссылку на профиль", id: "Salin tautan profil",
   en: "Copy profile link", de: "Profillink kopieren", fr: "Copier le lien du profil", es: "Copiar enlace del perfil",
   it: "Copia link del profilo", pt: "Copiar link do perfil", nl: "Profiellink kopiëren", pl: "Kopiuj link do profilu",
   da: "Kopiér profillink", tr: "Profil bağlantısını kopyala", uk: "Копіювати посилання профілю", zh: "复制个人资料链接",

@@ -9,7 +9,7 @@ import {
 } from "@/components/icons";
 import { useLocale } from "@/lib/locale-context";
 import { homeFaq } from "@/lib/home-faq-content";
-import { getLocalizedSeoPage, seoLabels } from "@/lib/localized-seo-content";
+import { getSeoPageSummary, seoLabels } from "@/lib/localized-seo-content";
 import { guidePages, toolPages } from "@/lib/seo-content";
 import { cx, focusRing } from "@/lib/ui";
 
@@ -57,6 +57,7 @@ function HomeFaq() {
 
   return (
     <section
+      id="faq"
       aria-labelledby="faq-title"
       className="mx-auto mt-14 max-w-3xl text-start"
     >
@@ -163,7 +164,7 @@ export function AboutSection() {
         >
           {[...toolPages, ...guidePages].map((sourcePage, index) => {
             const kind = index < toolPages.length ? "tools" : "guides";
-            const page = getLocalizedSeoPage(locale, sourcePage);
+            const page = getSeoPageSummary(locale, sourcePage);
             return (
               <Link
                 key={page.slug}
