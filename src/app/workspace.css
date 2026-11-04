@@ -740,20 +740,20 @@
   display: inline-grid;
   place-items: center;
   flex-shrink: 0;
-  padding: 4px;
-  border-radius: 7px;
-  background: #1b222c;
-  color: var(--signal);
-  box-shadow: inset 0 0 0 1px rgb(215 251 128 / 16%);
-}
-.workspace-nav-item .support-heart {
   padding: 0;
   background: transparent;
+  color: #315bff;
   box-shadow: none;
+}
+.dark .support-heart {
+  color: var(--signal);
 }
 .support-heart-large {
   padding: 16px;
   border-radius: 18px;
+  background: #1b222c;
+  color: var(--signal);
+  box-shadow: inset 0 0 0 1px rgb(215 251 128 / 16%);
 }
 .support-heart-icon {
   transform-origin: center;
