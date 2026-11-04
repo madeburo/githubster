@@ -23,10 +23,11 @@ Githubster is a free, open-source tool that helps you understand your public Git
 - Loading progress with skeleton animation
 - Optional GitHub token for higher rate limits
 - Dark/Light theme
-- 20 languages supported (i18n with RTL)
+- 22 languages supported, including Russian (`/ru`) and Indonesian (`/id`), with RTL for Arabic and Hebrew
 - Web app manifest for standalone installation (GitHub data still requires a network connection)
 - Browser-based profile analysis — usernames and optional tokens are sent directly to GitHub, not to a Githubster API
-- SEO optimized with structured data (JSON-LD)
+- Localized metadata, canonical URLs, reciprocal hreflang, and JSON-LD matching visible content
+- 242 indexable pages, with complete Russian and Indonesian tools, guides, FAQs, and privacy pages
 
 ## Getting Started
 
@@ -169,6 +170,8 @@ curl --request POST https://www.githubster.com/api/indexnow \
 ```
 
 `GET /api/indexnow` is intentionally unsupported, and the secret must never use a `NEXT_PUBLIC_` prefix.
+
+The protected endpoint submits all canonical document URLs (homepages, tools, guides, and privacy pages) across the 22 supported languages. It excludes transient profile query strings. `/llms.txt` provides an optional discovery summary with links to each language; it is not a guarantee of inclusion in AI answers.
 
 ## Supporting Githubster
 
