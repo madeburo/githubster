@@ -319,21 +319,6 @@
 .workspace-token-controls > button {
   font-size: 10px;
 }
-.workspace-example-link {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin-top: 15px;
-  font-size: 10px;
-  color: var(--text-muted);
-}
-.workspace-example-link button {
-  cursor: pointer;
-  border: 1px solid var(--border);
-  padding-inline: 7px;
-  background: var(--bg-card);
-}
 .workspace-trust {
   display: flex;
   flex-wrap: wrap;
@@ -622,6 +607,7 @@
 }
 .workspace-bottom-line {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
@@ -635,6 +621,13 @@
   display: flex;
   align-items: center;
   gap: 7px;
+}
+.workspace-credits {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.6;
 }
 .workspace-status-dot {
   height: 5px;

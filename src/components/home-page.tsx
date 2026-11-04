@@ -34,6 +34,7 @@ import {
   SupportIcon,
 } from "@/components/icons";
 import { SiteFooter } from "@/components/site-footer";
+import { ProjectSupport } from "@/components/project-support";
 import { SiteHeader } from "@/components/site-header";
 import { SkeletonLoader } from "@/components/skeleton-loader";
 import { explorerLabels } from "@/lib/explorer-content";
@@ -242,8 +243,9 @@ function HomeContent() {
       header={<SiteHeader onLogoClick={goHome} />}
       footer={
         <>
+          <ProjectSupport />
           <AboutSection />
-          <SiteFooter />
+          <SiteFooter showSupport={false} />
         </>
       }
     >
@@ -287,7 +289,6 @@ function HomeContent() {
                     onSearch={search}
                     isLoading={isLoading}
                     searchedUser={searchedUser}
-                    showExample={!isExploring}
                   />
                   {!isExploring && (
                     <div className="workspace-trust">
@@ -317,7 +318,18 @@ function HomeContent() {
             <span className="workspace-status-dot" />
             {copy.ready}
           </span>
-          <span aria-hidden="true">GITHUBSTER / V.04</span>
+          <span className="workspace-credits" dir="ltr">
+            <span>GITHUBSTER / V.04</span>
+            <span aria-hidden="true">/</span>
+            <a
+              href="https://github.com/madeburo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-sm py-1 text-fg-muted transition-colors hover:text-fg hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+            >
+              By MadeBuro
+            </a>
+          </span>
         </div>
       </main>
     </AppShell>

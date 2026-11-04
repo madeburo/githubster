@@ -10,14 +10,12 @@ import {
 } from "react";
 import {
   ArrowRightIcon,
-  GitHubIcon,
   LockIcon,
   SpinnerIcon,
 } from "@/components/icons";
 import type { Locale } from "@/lib/i18n";
 import { useLocale } from "@/lib/locale-context";
 import { cx, focusRing } from "@/lib/ui";
-import { workspaceCopy } from "@/lib/workspace-content";
 
 const searchShortcut: Record<Locale, { before: string; after: string }> = {
   en: { before: "Press ", after: " to focus search" },
@@ -54,7 +52,6 @@ interface SearchPanelProps {
   isLoading: boolean;
   /** Username of the lookup on screen; the field follows it (shared `?user=` links, Home reset). */
   searchedUser?: string | null;
-  showExample?: boolean;
 }
 
 export function SearchPanel({
@@ -62,7 +59,6 @@ export function SearchPanel({
   onSearch,
   isLoading,
   searchedUser = null,
-  showExample = false,
 }: SearchPanelProps) {
   const { t, locale } = useLocale();
   const [username, setUsername] = useState("");
@@ -275,27 +271,6 @@ export function SearchPanel({
           </div>
         )}
       </div>
-      {showExample && (
-        <div className="workspace-example-link">
-          <span>{workspaceCopy[locale].tryProfile}</span>
-          <button
-            type="button"
-            disabled={isLoading}
-            onClick={() => {
-              setUsername("madeburo");
-              onSearch("madeburo", token.trim() || undefined);
-            }}
-            className={cx(
-              "inline-flex items-center gap-1.5 rounded px-1 py-1 font-mono text-fg hover:text-brand disabled:opacity-50",
-              focusRing,
-            )}
-          >
-            <GitHubIcon size={13} />
-            madeburo
-            <ArrowRightIcon size={12} className="rtl:rotate-180" />
-          </button>
-        </div>
-      )}
     </form>
   );
 }

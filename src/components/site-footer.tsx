@@ -5,22 +5,13 @@ import { ProjectSupport } from "@/components/project-support";
 import { useLocale } from "@/lib/locale-context";
 import { privacyContent } from "@/lib/privacy-content";
 
-export function SiteFooter() {
+export function SiteFooter({ showSupport = true }: { showSupport?: boolean }) {
   const { t, locale } = useLocale();
   const prefix = locale === "en" ? "" : `/${locale}`;
 
   return (
     <>
-      <section
-        className="border-t bg-cover bg-center bg-no-repeat px-4 py-14 sm:py-16"
-        style={{
-          borderColor: "#25283d",
-          backgroundImage:
-            'linear-gradient(rgba(13, 14, 27, 0.85), rgba(13, 14, 27, 0.85)), url("/bg.jpg")',
-        }}
-      >
-        <div className="mx-auto max-w-5xl"><ProjectSupport /></div>
-      </section>
+      {showSupport && <ProjectSupport />}
       <footer className="border-t px-4 py-6 text-center text-xs" style={{ borderColor: "var(--border)", color: "var(--text-subtle)" }}>
         <p>
           {t.footer.openSource}{" "}
