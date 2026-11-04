@@ -6,6 +6,7 @@ import {
   useImperativeHandle,
   useRef,
   useState,
+  type KeyboardEvent as ReactKeyboardEvent,
   type Ref,
 } from "react";
 import {
@@ -107,17 +108,27 @@ export function SearchPanel({
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const user = username.trim();
+    if (isLoading) return;
+    // Native autofill does not always emit a change event before Enter.
+    const user = (usernameRef.current?.value ?? username).trim();
     if (!user) {
       usernameRef.current?.focus();
       return;
     }
-    onSearch(user, token.trim() || undefined);
+    onSearch(user, (tokenRef.current?.value ?? token).trim() || undefined);
+  }
+
+  function handleSearchKeyDown(e: ReactKeyboardEvent<HTMLInputElement>) {
+    if (e.key !== "Enter" || e.nativeEvent.isComposing) return;
+    e.preventDefault();
+    if (!e.repeat) e.currentTarget.form?.requestSubmit();
   }
 
   return (
     <form
       onSubmit={handleSubmit}
+      action={locale === "en" ? "/" : `/${locale}`}
+      method="get"
       className="workspace-search-form"
       role="search"
       autoComplete="off"
@@ -133,10 +144,11 @@ export function SearchPanel({
           ref={usernameRef}
           id={inputId}
           type="search"
-          name="github-username-search"
+          name="user"
           placeholder={t.search.placeholder}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          onKeyDown={handleSearchKeyDown}
           className="min-w-0 flex-1 bg-transparent py-2.5 text-[15px] text-fg outline-none placeholder:text-fg-subtle"
           disabled={isLoading}
           autoComplete="off"
@@ -196,13 +208,14 @@ export function SearchPanel({
                 placeholder={t.search.tokenPlaceholder}
                 value={token}
                 onChange={(e) => setToken(e.target.value)}
+                onKeyDown={handleSearchKeyDown}
                 className="min-w-0 flex-1 bg-transparent px-4 py-2.5 text-sm text-fg outline-none placeholder:text-fg-subtle"
                 disabled={isLoading}
                 autoComplete="off"
                 spellCheck={false}
+                enterKeyHint="search"
                 aria-label={t.search.tokenToggle}
                 aria-describedby={`${tokenId}-privacy`}
-                name="github-token-input"
               />
               <button
                 type="button"

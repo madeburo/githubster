@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRightIcon, GitHubIcon, HeartIcon } from "@/components/icons";
+import { ArrowRightIcon, GitHubIcon } from "@/components/icons";
+import { SupportHeart } from "@/components/support-heart";
 import { useLocale } from "@/lib/locale-context";
 import { cx, focusRing } from "@/lib/ui";
 
@@ -12,38 +13,36 @@ const KOFI_URL = "https://ko-fi.com/githubster";
 export function ProjectSupport() {
   const { t } = useLocale();
   const actionClass = cx(
-    "group flex min-h-12 items-center gap-3 rounded-xl border border-line bg-card px-4 py-3 text-sm font-semibold text-fg transition-colors hover:border-brand/40 hover:bg-brand-soft",
+    "group flex min-h-14 items-center gap-3 rounded-xl border border-line bg-card px-5 py-4 text-[15px] font-semibold text-fg transition-colors hover:border-brand/40 hover:bg-brand-soft",
     focusRing,
   );
 
   return (
     <section
       id="support"
-      className="scroll-mt-6 px-4 py-10 sm:py-12"
+      className="site-content-width scroll-mt-6 py-10 sm:py-12"
       aria-labelledby="support-title"
     >
-      <div className="mx-auto grid max-w-5xl items-center gap-7 rounded-2xl border border-line bg-linear-to-br from-card via-card to-brand-soft p-6 text-start shadow-[var(--shadow)] sm:p-8 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:gap-12">
+      <div className="project-support-card grid min-h-[360px] items-center gap-8 rounded-[20px] border border-line bg-linear-to-br from-card via-card to-brand-soft p-7 text-start shadow-[var(--shadow)] sm:p-10 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:gap-12 lg:min-h-[390px] lg:gap-16 lg:px-14 lg:py-14">
         <div>
-          <span className="mb-5 flex size-11 items-center justify-center rounded-xl bg-brand-soft text-brand">
-            <HeartIcon size={22} />
-          </span>
+          <SupportHeart size={28} className="support-heart-large mb-6" />
           <h2
             id="support-title"
-            className="text-2xl font-bold tracking-tight text-fg sm:text-3xl"
+            className="text-3xl font-bold tracking-tight text-fg sm:text-4xl"
           >
             {t.support.title}
           </h2>
-          <p className="mt-3 max-w-md text-sm leading-relaxed text-fg-muted">
+          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-fg-muted sm:text-base">
             {t.support.description}
           </p>
         </div>
-        <div className="grid gap-2.5">
+        <div className="grid gap-3">
           <a
             href={KOFI_URL}
             target="_blank"
             rel="noopener noreferrer"
             className={cx(
-              "flex min-h-12 items-center gap-3 rounded-xl border border-transparent bg-[var(--signal)] px-4 py-3 text-sm font-semibold text-[var(--signal-ink)] transition-colors hover:border-brand/40 hover:bg-[var(--signal)]/80",
+              "flex min-h-14 items-center gap-3 rounded-xl border border-transparent bg-[var(--signal)] px-5 py-4 text-[15px] font-semibold text-[var(--signal-ink)] transition-colors hover:border-brand/40 hover:bg-[var(--signal)]/80",
               focusRing,
             )}
           >

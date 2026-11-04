@@ -31,11 +31,11 @@ import {
   InsightsIcon,
   MutualsIcon,
   NotFollowingBackIcon,
-  SupportIcon,
 } from "@/components/icons";
 import { SiteFooter } from "@/components/site-footer";
 import { ProjectSupport } from "@/components/project-support";
 import { SiteHeader } from "@/components/site-header";
+import { SupportHeart } from "@/components/support-heart";
 import { SkeletonLoader } from "@/components/skeleton-loader";
 import { explorerLabels } from "@/lib/explorer-content";
 import { locales, type Locale } from "@/lib/i18n";
@@ -205,7 +205,7 @@ function HomeContent() {
   const supportShortcut: ShortcutItem = {
     id: "support",
     label: t.support.nav,
-    icon: SupportIcon,
+    icon: SupportHeart,
     href: "#support",
   };
 
