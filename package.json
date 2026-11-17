@@ -16,9 +16,9 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "node --test scripts/*.test.mjs",
-    "cf:build": "opennextjs-cloudflare build",
+    "cf:build": "opennextjs-cloudflare build && node --env-file-if-exists=.env.production.local scripts/prepare-cloudflare-guard.mjs",
     "cf:preview": "opennextjs-cloudflare preview --infer-origin-from-routes=false",
-    "cf:deploy": "node scripts/check-cloudflare-cache.mjs && opennextjs-cloudflare deploy",
+    "cf:deploy": "node scripts/check-cloudflare-cache.mjs && node scripts/check-cloudflare-guard.mjs && opennextjs-cloudflare deploy",
     "cf:smoke": "node --env-file-if-exists=.env.production.local scripts/smoke-cloudflare.mjs"
   },
   "dependencies": {

@@ -93,6 +93,24 @@ Deployment refuses a stale KV-based build, so a checkout update cannot silently
 repopulate Workers KV before the new configuration has been built.
 `public/_headers` gives hashed Next.js assets immutable browser caching.
 
+The Worker entry point is `cloudflare/worker.mjs`. It rejects archive/database
+scan paths and returns a small, localized HTML 404 for unknown paths before
+loading the Next.js server. No React, hydration scripts, or full translation
+bundles are loaded for these requests. Real document/RSC routes, public assets,
+image optimization, `/api/stars`, and the protected IndexNow routes keep their
+existing handlers. `cf:build` derives the allowed routes and the 22 small 404
+translations from the actual build; `cf:deploy` checks for a matching build ID.
+
+The zone also has an active Free-plan WAF custom rule, **Block backup and database
+scans** (`fc1a5679dbc1472d851cb08bd3783018`), scoped to `githubster.com` and
+`www.githubster.com`. It blocks archive/dump/backup extensions before the Worker
+runs. `cloudflare/backup-policy.mjs` contains the matching policy and exports
+`backupRuleExpression()` to reproduce the expression for the dashboard. Changes
+to that source require updating the WAF rule separately; deploying a Worker does
+not manage zone rules. The Worker guard is the fallback for workers.dev and any
+request that bypasses the zone rule. To undo the zone block, disable only this
+named custom rule. Worker rollback does not change the WAF rule.
+
 The `githubster.com/*` and `www.githubster.com/*` Worker routes keep the existing
 proxied DNS records. The apex redirects to `https://www.githubster.com` with the
 path and query intact. Both domains are served by the Worker without calling an

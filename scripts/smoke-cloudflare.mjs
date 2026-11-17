@@ -133,8 +133,16 @@ assert.equal(new URL(alias.headers.get("location"), origin).search, "?user=madeb
 await request("/api/indexnow", 405);
 await request("/api/indexnow", 401, { method: "POST" });
 await request("/api/indexnow", 401, { method: "POST", headers: { Authorization: "Bearer invalid" } });
-await request("/this-page-does-not-exist", 404);
-await request("/ar/this-page-does-not-exist", 404);
+for (const path of ["/this-page-does-not-exist", "/ar/this-page-does-not-exist", "/api/not-a-route", "/_next/static/not-a-real-asset.js"]) {
+  const missing = await request(path, 404);
+  assert.equal(missing.headers.get("x-githubster-handler"), "static-404", `${path}: missing early guard`);
+  const body = await missing.text();
+  assert(!body.includes("<script"), `${path}: 404 must not load React or scripts`);
+  assert(Buffer.byteLength(body) < 3000, `${path}: 404 is too large`);
+}
+for (const path of ["/backup.zip", "/database.sql", "/nested/DUMP.SQL.GZ", "/back%75p%2ezip"]) {
+  await (await request(path, 403)).body?.cancel();
+}
 
 if (process.env.INDEXNOW_KEY) {
   assert.equal(await (await request(`/${process.env.INDEXNOW_KEY}.txt`)).text(), process.env.INDEXNOW_KEY);
